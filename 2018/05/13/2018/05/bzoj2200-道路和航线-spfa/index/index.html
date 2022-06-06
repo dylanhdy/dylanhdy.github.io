@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题描述Farmer John想把牛奶送到T个城镇 (1 &lt;&#x3D; T &lt;&#x3D; 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;&#x3D; R &lt;&#x3D; 50,000，编号为1到R) 和P条航线 (1 &lt;&#x3D; P &lt;&#x3D; 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;&amp;">
+  <meta name="description" content="问题描述Farmer John想把牛奶送到T个城镇 (1 &lt;&#x3D; T &lt;&#x3D; 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;&#x3D; R &lt;&#x3D; 50,000，编号为1到R) 和P条航线 (1 &lt;&#x3D; P &lt;&#x3D; 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;&#x3D; A_i &lt;&#x3D; T)到B_i (1 &lt;&#x3D; B_i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BZOJ2200 道路和航线  [SPFA]">
 <meta property="og:url" content="http://example.com/2018/05/13/2018/05/bzoj2200-%E9%81%93%E8%B7%AF%E5%92%8C%E8%88%AA%E7%BA%BF-spfa/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述Farmer John想把牛奶送到T个城镇 (1 &lt;&#x3D; T &lt;&#x3D; 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;&#x3D; R &lt;&#x3D; 50,000，编号为1到R) 和P条航线 (1 &lt;&#x3D; P &lt;&#x3D; 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;&amp;">
+<meta property="og:description" content="问题描述Farmer John想把牛奶送到T个城镇 (1 &lt;&#x3D; T &lt;&#x3D; 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;&#x3D; R &lt;&#x3D; 50,000，编号为1到R) 和P条航线 (1 &lt;&#x3D; P &lt;&#x3D; 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;&#x3D; A_i &lt;&#x3D; T)到B_i (1 &lt;&#x3D; B_i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-05-13T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-05T14:30:18.881Z">
@@ -204,7 +204,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>Farmer John想把牛奶送到T个城镇 (1 &lt;&#x3D; T &lt;&#x3D; 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;&#x3D; R &lt;&#x3D; 50,000，编号为1到R) 和P条航线 (1 &lt;&#x3D; P &lt;&#x3D; 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;&#x3D; A_i &lt;&#x3D; T)到B_i (1 &lt;&#x3D; B_i &lt;&#x3D; T)，花费为C_i。 对于道路，0 &lt;&#x3D; C_i &lt;&#x3D; 10,000;然而航线的花费很神奇，花费C_i可能是负数(-10,000 &lt;&#x3D; C_i &lt;&#x3D; 10,000)。道路是双向的，可以从A_i到B_i，也可以从B_i到A_i，花费都是C_i。然而航线与之不同，只可以从A_i到B_i。 如果有一条航线可以从A_i到B_i，那么保证不可能通过一些道路和航线从B_i回到A_i。他需要运送奶牛到每一个城镇。他想找到从发送中心城镇S(1 &lt;&#x3D; S &lt;&#x3D; T) 把奶牛送到每个城镇的最便宜的方案，或者知道这是不可能的。</p>
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>Farmer John想把牛奶送到T个城镇 (1 &lt;= T &lt;= 25,000)，编号为1-T。这些城镇之间通过R条道路 (1 &lt;= R &lt;= 50,000，编号为1到R) 和P条航线 (1 &lt;= P &lt;= 50,000，编号为1到P) 连接。每条道路i或者航线i连接城镇A_i (1 &lt;= A_i &lt;= T)到B_i (1 &lt;= B_i &lt;= T)，花费为C_i。 对于道路，0 &lt;= C_i &lt;= 10,000;然而航线的花费很神奇，花费C_i可能是负数(-10,000 &lt;= C_i &lt;= 10,000)。道路是双向的，可以从A_i到B_i，也可以从B_i到A_i，花费都是C_i。然而航线与之不同，只可以从A_i到B_i。 如果有一条航线可以从A_i到B_i，那么保证不可能通过一些道路和航线从B_i回到A_i。他需要运送奶牛到每一个城镇。他想找到从发送中心城镇S(1 &lt;= S &lt;= T) 把奶牛送到每个城镇的最便宜的方案，或者知道这是不可能的。</p>
 <h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第1行：四个空格隔开的整数: T, R, P, and S 第2到R+1行：三个空格隔开的整数（表示一条道路）：A_i, B_i 和C_i 第R+2到R+P+1行：三个空格隔开的整数（表示一条航线）：A_i, B_i 和 C_i</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>第1到T行：从S到达城镇i的最小花费，如果不存在输出”NO PATH”。</p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>最早一看以为是一个裸的SPFA，于是很愉快的花十分钟码完了，结果T了两个点。果然BZOJ没有这么水的题QWQ原来数据构造好了要卡SPFA。</p>
@@ -308,7 +308,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

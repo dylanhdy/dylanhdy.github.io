@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题描述：Byteotia城市有n个 towns，m条双向roads。每条road连接两个不同的 towns，没有重复的road且所有towns连通。 输入：输入n&lt;&#x3D;100000 m&lt;&#x3D;500000及m条边 输出：输出n个数，代表如果把第i个点去掉，将有多少对点不能互通。 思路：这道题与无向图的联通性有关，所以可以利用点双联通分量的相关知识。 首先考虑如果点i不为">
+  <meta name="description" content="问题描述：Byteotia城市有n个 towns，m条双向roads。每条road连接两个不同的 towns，没有重复的road且所有towns连通。 输入：输入n&lt;&#x3D;100000 m&lt;&#x3D;500000及m条边 输出：输出n个数，代表如果把第i个点去掉，将有多少对点不能互通。 思路：这道题与无向图的联通性有关，所以可以利用点双联通分量的相关知识。 首先考虑如果点i不为割点，那么答案就是$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BZOJ1123 BLO [点双联通分量]">
 <meta property="og:url" content="http://example.com/2018/07/08/2018/07/bzoj1123-blo-%E7%82%B9%E5%8F%8C%E8%81%94%E9%80%9A%E5%88%86%E9%87%8F/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述：Byteotia城市有n个 towns，m条双向roads。每条road连接两个不同的 towns，没有重复的road且所有towns连通。 输入：输入n&lt;&#x3D;100000 m&lt;&#x3D;500000及m条边 输出：输出n个数，代表如果把第i个点去掉，将有多少对点不能互通。 思路：这道题与无向图的联通性有关，所以可以利用点双联通分量的相关知识。 首先考虑如果点i不为">
+<meta property="og:description" content="问题描述：Byteotia城市有n个 towns，m条双向roads。每条road连接两个不同的 towns，没有重复的road且所有towns连通。 输入：输入n&lt;&#x3D;100000 m&lt;&#x3D;500000及m条边 输出：输出n个数，代表如果把第i个点去掉，将有多少对点不能互通。 思路：这道题与无向图的联通性有关，所以可以利用点双联通分量的相关知识。 首先考虑如果点i不为割点，那么答案就是$">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-07-08T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-05T14:30:19.680Z">
@@ -205,7 +205,7 @@
 
       
         <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>Byteotia城市有n个 towns，m条双向roads。每条road连接两个不同的 towns，没有重复的road且所有towns连通。</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>输入n&lt;&#x3D;100000 m&lt;&#x3D;500000及m条边</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>输入n&lt;=100000 m&lt;=500000及m条边</p>
 <h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>输出n个数，代表如果把第i个点去掉，将有多少对点不能互通。</p>
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这道题与无向图的联通性有关，所以可以利用点双联通分量的相关知识。</p>
 <p>首先考虑如果点i不为割点，那么答案就是$(n-1)*2$。如果它为割点，那么就把这张图分为了若干块，然后利用乘法原理我们就可以根据每个联通块的大小计算出答案。</p>
@@ -308,7 +308,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

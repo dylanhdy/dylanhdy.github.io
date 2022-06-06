@@ -212,7 +212,7 @@
 <p>对于每个操作，你需要输出这步操作会改变多少个软件包的安装状态，随后应用这个操作（即改变你维护的安装状态）</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出文件包括q行。</p>
 <p>输出文件的第i行输出1个整数，为第i步操作中改变安装状态的软件包数。</p>
-<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p>对于全部数据：n&lt;&#x3D;100000, q&lt;&#x3D;100000。</p>
+<h3 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h3><p>对于全部数据：n&lt;=100000, q&lt;=100000。</p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们可以看出这些软件的依赖关系是一棵树。设未安装的节点权值为0，安装的权值为1。</p>
 <p>然后install操作就是让x节点到根节点路径上权值为0的节点变为1，并输出权值为0节点个数。uninstall操作就是让x子树权值为1的节点变为0，并输出权值为1节点个数。</p>
 <p>然后这就是一个很裸的树剖啦QVQ 线段树上的操作就是将整个区间变为0或1。</p>
@@ -319,7 +319,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

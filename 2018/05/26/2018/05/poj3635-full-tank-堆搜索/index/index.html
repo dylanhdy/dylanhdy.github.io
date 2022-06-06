@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题描述有N(1&lt;&#x3D;N&lt;&#x3D;1000)个城市和M(1&lt;&#x3D;M&lt;&#x3D;10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;&#x3D;100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;&#x3D;C&lt;&#x3D;100)的车子">
+  <meta name="description" content="问题描述有N(1&lt;&#x3D;N&lt;&#x3D;1000)个城市和M(1&lt;&#x3D;M&lt;&#x3D;10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;&#x3D;100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;&#x3D;C&lt;&#x3D;100)的车子，从起点S开到终点T至少要话多少油钱？ 输入第一行两个数字n,m。 接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POJ3635 Full Tank? [堆+搜索]">
 <meta property="og:url" content="http://example.com/2018/05/26/2018/05/poj3635-full-tank-%E5%A0%86%E6%90%9C%E7%B4%A2/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述有N(1&lt;&#x3D;N&lt;&#x3D;1000)个城市和M(1&lt;&#x3D;M&lt;&#x3D;10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;&#x3D;100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;&#x3D;C&lt;&#x3D;100)的车子">
+<meta property="og:description" content="问题描述有N(1&lt;&#x3D;N&lt;&#x3D;1000)个城市和M(1&lt;&#x3D;M&lt;&#x3D;10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;&#x3D;100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;&#x3D;C&lt;&#x3D;100)的车子，从起点S开到终点T至少要话多少油钱？ 输入第一行两个数字n,m。 接">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-05-26T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-05T14:30:19.105Z">
@@ -204,7 +204,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>有N(1&lt;&#x3D;N&lt;&#x3D;1000)个城市和M(1&lt;&#x3D;M&lt;&#x3D;10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;&#x3D;100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;&#x3D;C&lt;&#x3D;100)的车子，从起点S开到终点T至少要话多少油钱？</p>
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>有N(1&lt;=N&lt;=1000)个城市和M(1&lt;=M&lt;=10000)条道路，构成一张无向图。在每个城市里面都有一个加油站，不同的加油站的价格不一样。通过每一条道路的油耗就是该道路的边权。你需要回答q(q&lt;=100)个问题,在每个问题中，请计算出油箱容量为C(1&lt;=C&lt;=100)的车子，从起点S开到终点T至少要话多少油钱？</p>
 <h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行两个数字n,m。 接下来一行n个数字描述每个城市的油价。 接下来m行描述每行描述一条道路。 接下来一行一个数字q。 然后q行描述q个问题。</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>一共q行，每行输出每个问题的油钱。如果不能到达，输出impossible。</p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这题的主要思想就是优先队列搜索。我们对于每一个问题都进行一次优先队列BFS。对于每一个状态我们储存3个信息：所在城市，当前油量，当前花费。再用用一个二维数组d记录最少花费。</p>
@@ -307,7 +307,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

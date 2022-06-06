@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题描述：给你一张由$T$条边构成的无向图，求起点$S$到终点$E$恰好经过$N$条边的最道路。（路径可以重复经过） 输入：第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;&#x3D;1000000，T&lt;&#x3D;100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边 输出：一个整数，起点$">
+  <meta name="description" content="问题描述：给你一张由$T$条边构成的无向图，求起点$S$到终点$E$恰好经过$N$条边的最道路。（路径可以重复经过） 输入：第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;&#x3D;1000000，T&lt;&#x3D;100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边 输出：一个整数，起点$S$到终点$E$恰好">
 <meta property="og:type" content="article">
 <meta property="og:title" content="POJ3613 Cow Relays [矩阵加速递推+最短路]">
 <meta property="og:url" content="http://example.com/2018/08/08/2018/08/poj3613-cow-relays-%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E9%80%92%E6%8E%A8%E6%9C%80%E7%9F%AD%E8%B7%AF/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题描述：给你一张由$T$条边构成的无向图，求起点$S$到终点$E$恰好经过$N$条边的最道路。（路径可以重复经过） 输入：第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;&#x3D;1000000，T&lt;&#x3D;100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边 输出：一个整数，起点$">
+<meta property="og:description" content="问题描述：给你一张由$T$条边构成的无向图，求起点$S$到终点$E$恰好经过$N$条边的最道路。（路径可以重复经过） 输入：第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;&#x3D;1000000，T&lt;&#x3D;100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边 输出：一个整数，起点$S$到终点$E$恰好">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-08-08T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-05T14:30:20.680Z">
@@ -207,7 +207,7 @@
 
       
         <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>给你一张由$T$条边构成的无向图，求起点$S$到终点$E$恰好经过$N$条边的最道路。（路径可以重复经过）</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;&#x3D;1000000，T&lt;&#x3D;100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行包含4个整数$N$、$T$、$S$、$E$ （$N&lt;=1000000，T&lt;=100$，节点编号不超过1000） 接下来T行每行三个数$Len，I_1，I_2$ 表示$I_1 I_2$间有一条长度为$Len$的无向边</p>
 <h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>一个整数，起点$S$到终点$E$恰好经过$N$条边的最道路长度</p>
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>将这个与矩阵加速递推联系起来确实需要对递推有很深的理解（需要很大脑洞）。。。</p>
 <p>其实我们每进行一次递推就是多经过一条路径，然后每一次进行递推时都需要将所有点之间的距离初始化一下（如果不初始化就是普通的最短路，初始化了就是经过N条边的最短路）。</p>
@@ -312,7 +312,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

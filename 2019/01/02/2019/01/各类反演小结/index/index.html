@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="反演的原理反演一般是解决这样一个问题：有两个数列 $\lbrace f_n\rbrace,\lbrace g_n\rbrace$，满足关系： $$g_n &#x3D; \sum_{i&#x3D;0}^n a_{ni}f_i$$ 题目要你求 $f_n$，但你却知道数列 $\lbrace g_n\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \cdots, g_n$ 求出 $f">
+  <meta name="description" content="反演的原理反演一般是解决这样一个问题：有两个数列 $\\lbrace f_n\\rbrace,\\lbrace g_n\\rbrace$，满足关系： g\_n &#x3D; \\sum\_{i&#x3D;0}^n a\_{ni}f\_i 题目要你求 $f_n$，但你却知道数列 $\\lbrace g_n\\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \\cdots, g_n$ 求出 $f_n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="各类反演小结">
 <meta property="og:url" content="http://example.com/2019/01/02/2019/01/%E5%90%84%E7%B1%BB%E5%8F%8D%E6%BC%94%E5%B0%8F%E7%BB%93/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="反演的原理反演一般是解决这样一个问题：有两个数列 $\lbrace f_n\rbrace,\lbrace g_n\rbrace$，满足关系： $$g_n &#x3D; \sum_{i&#x3D;0}^n a_{ni}f_i$$ 题目要你求 $f_n$，但你却知道数列 $\lbrace g_n\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \cdots, g_n$ 求出 $f">
+<meta property="og:description" content="反演的原理反演一般是解决这样一个问题：有两个数列 $\\lbrace f_n\\rbrace,\\lbrace g_n\\rbrace$，满足关系： g\_n &#x3D; \\sum\_{i&#x3D;0}^n a\_{ni}f\_i 题目要你求 $f_n$，但你却知道数列 $\\lbrace g_n\\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \\cdots, g_n$ 求出 $f_n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-02T00:00:00.000Z">
 <meta property="article:modified_time" content="2022-06-05T14:30:21.205Z">
@@ -204,31 +204,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="反演的原理"><a href="#反演的原理" class="headerlink" title="反演的原理"></a>反演的原理</h3><p>反演一般是解决这样一个问题：有两个数列 $\lbrace f_n\rbrace,\lbrace g_n\rbrace$，满足关系： $$g_n &#x3D; \sum_{i&#x3D;0}^n a_{ni}f_i$$ 题目要你求 $f_n$，但你却知道数列 $\lbrace g_n\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \cdots, g_n$ 求出 $f_n$，即： $$f_n &#x3D; \sum_{i &#x3D; 0}^n b_{ni}g_i$$</p>
-<p>我们就考虑，如果 $\lbrace f_n\rbrace,\lbrace g_n\rbrace$ 能够反演，系数 $a,b$ 应该满足什么关系。</p>
-<p>我们假设它们能够反演，将上面两个式子合并： $$f_n&#x3D;\sum_{i&#x3D;0}^n b_{n,i}\sum_{j&#x3D;0}^ia_{i,j}f_j$$</p>
-<p>$$f_n&#x3D;\sum_{i&#x3D;0}^nf_i\sum_{j&#x3D;i}^n b_{n,j}a_{j,i}$$</p>
-<p>如果能够反演，那无论 $\lbrace g_n\rbrace$ 为多少，上式都应成立，因此反演的充要条件就是： $$\sum_{j&#x3D;i}^n a_{nj}b_{ji} &#x3D; [i&#x3D;n]$$</p>
+        <h3 id="反演的原理"><a href="#反演的原理" class="headerlink" title="反演的原理"></a>反演的原理</h3><p>反演一般是解决这样一个问题：有两个数列 $\\lbrace f_n\\rbrace,\\lbrace g_n\\rbrace$，满足关系： <script type="math/tex">g\_n = \\sum\_{i=0}^n a\_{ni}f\_i</script> 题目要你求 $f_n$，但你却知道数列 $\\lbrace g_n\\rbrace$ 怎么求。这时就可以利用反演，用 $g_0, g_1, \\cdots, g_n$ 求出 $f_n$，即： <script type="math/tex">f\_n = \\sum\_{i = 0}^n b\_{ni}g\_i</script></p>
+<p>我们就考虑，如果 $\\lbrace f_n\\rbrace,\\lbrace g_n\\rbrace$ 能够反演，系数 $a,b$ 应该满足什么关系。</p>
+<p>我们假设它们能够反演，将上面两个式子合并： <script type="math/tex">f\_n=\\sum\_{i=0}^n b\_{n,i}\\sum\_{j=0}^ia\_{i,j}f\_j</script></p>
+<script type="math/tex; mode=display">f\_n=\\sum\_{i=0}^nf\_i\\sum\_{j=i}^n b\_{n,j}a\_{j,i}</script><p>如果能够反演，那无论 $\\lbrace g_n\\rbrace$ 为多少，上式都应成立，因此反演的充要条件就是： <script type="math/tex">\\sum\_{j=i}^n a\_{nj}b\_{ji} = \[i=n\]</script></p>
 <p>满足这个条件的式子有很多，而下面会提到其中的一部分。</p>
-<h3 id="普通容斥（子集反演）"><a href="#普通容斥（子集反演）" class="headerlink" title="普通容斥（子集反演）"></a>普通容斥（子集反演）</h3><p>形式一： $$f(S)&#x3D;\sum_{T\subseteq S} g(T)$$ $$g(S)&#x3D;\sum_{T\subseteq S} (-1)^{|S|-|T|}f(T)$$ 形式二： $$f(S)&#x3D;\sum_{S\subseteq T} g(T)$$ $$g(S)&#x3D;\sum_{S\subseteq T} (-1)^{|T|-|S|}f(T)$$</p>
+<h3 id="普通容斥（子集反演）"><a href="#普通容斥（子集反演）" class="headerlink" title="普通容斥（子集反演）"></a>普通容斥（子集反演）</h3><p>形式一： <script type="math/tex">f(S)=\\sum\_{T\\subseteq S} g(T)</script> <script type="math/tex">g(S)=\\sum\_{T\\subseteq S} (-1)^{|S|-|T|}f(T)</script> 形式二： <script type="math/tex">f(S)=\\sum\_{S\\subseteq T} g(T)</script> <script type="math/tex">g(S)=\\sum\_{S\\subseteq T} (-1)^{|T|-|S|}f(T)</script></p>
 <p><strong>1.BZOJ4455 小星星</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/BZOJ4455%20%E5%B0%8F%E6%98%9F%E6%98%9F.cpp" title="代码链接">代码链接</a></strong></p>
 <p><strong>2.CF451 Devu and Flowers</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/CF451E%20Devu%20and%20Flowers.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h3><p>$$f(n)&#x3D;\sum_{k&#x3D;0}^{n}{n\choose k}g(k)$$ $$g(n)&#x3D;\sum_{k&#x3D;0}^{n}(-1)^{n-k}{n\choose k} f(k)$$</p>
-<p><strong>1.BZOJ3622 已经没有什么好害怕的了</strong></p>
+<h3 id="二项式反演"><a href="#二项式反演" class="headerlink" title="二项式反演"></a>二项式反演</h3><script type="math/tex; mode=display">f(n)=\\sum\_{k=0}^{n}{n\\choose k}g(k)$$ $$g(n)=\\sum\_{k=0}^{n}(-1)^{n-k}{n\\choose k} f(k)</script><p><strong>1.BZOJ3622 已经没有什么好害怕的了</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/BZOJ3622%20%E5%B7%B2%E7%BB%8F%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%AE%B3%E6%80%95%E7%9A%84%E4%BA%86.cpp" title="代码链接">代码链接</a></strong></p>
 <p><strong>2.BZOJ1879 Bill的挑战</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/BZOJ1879%20Bill%E7%9A%84%E6%8C%91%E6%88%98.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><p>$$f(n)&#x3D;\sum_{k&#x3D;0}^n \begin{Bmatrix} n \ m \end{Bmatrix} g(k)$$ $$ g(n)&#x3D;\sum_{k&#x3D;0}^n (-1)^{n-k} \begin{bmatrix} n \ m \end{bmatrix} f(k)$$</p>
-<h3 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>形式一： $$f(n)&#x3D;\sum_{d \mid n} g(d)$$ $$g(n)&#x3D;\sum_{d|n} \mu(\frac{n}{d})f(d)$$</p>
-<p>形式二： $$f(n)&#x3D;\sum_{n \mid d} g(d)$$ $$g(n)&#x3D;\sum_{n|d} \mu(\frac{d}{n})f(d)$$</p>
+<h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><script type="math/tex; mode=display">f(n)=\\sum\_{k=0}^n \\begin{Bmatrix} n \\ m \\end{Bmatrix} g(k)$$ $$ g(n)=\\sum\_{k=0}^n (-1)^{n-k} \\begin{bmatrix} n \\ m \\end{bmatrix} f(k)</script><h3 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><p>形式一： <script type="math/tex">f(n)=\\sum\_{d \\mid n} g(d)</script> <script type="math/tex">g(n)=\\sum\_{d|n} \\mu(\\frac{n}{d})f(d)</script></p>
+<p>形式二： <script type="math/tex">f(n)=\\sum\_{n \\mid d} g(d)</script> <script type="math/tex">g(n)=\\sum\_{n|d} \\mu(\\frac{d}{n})f(d)</script></p>
 <p><strong>1.BZOJ2301 Problem b</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/BZOJ2301%20Problem%20b.cpp" title="代码链接">代码链接</a></strong></p>
 <p><strong>2.BZOJ2820 YY的GCD</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/BZOJ2820%20YY%E7%9A%84GCD.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="最值反演"><a href="#最值反演" class="headerlink" title="最值反演"></a>最值反演</h3><p>两种普通形式： $$\max{S}&#x3D;\sum_{T\subset S}(-1)^{|T|+1}\min{T}$$ $$\min{S}&#x3D;\sum_{T\subset S}(-1)^{|T|+1}\max{T}$$</p>
-<p>期望意义下： $$\mathbb{E}(\max{S})&#x3D;\sum_{T\subset S}(-1)^{|T|+1}\mathbb{E}(\min{T})$$</p>
+<h3 id="最值反演"><a href="#最值反演" class="headerlink" title="最值反演"></a>最值反演</h3><p>两种普通形式： <script type="math/tex">\\max{S}=\\sum\_{T\\subset S}(-1)^{|T|+1}\\min{T}</script> <script type="math/tex">\\min{S}=\\sum\_{T\\subset S}(-1)^{|T|+1}\\max{T}</script></p>
+<p>期望意义下： <script type="math/tex">\\mathbb{E}(\\max{S})=\\sum\_{T\\subset S}(-1)^{|T|+1}\\mathbb{E}(\\min{T})</script></p>
 <p><strong>1.LOJ2542 随机游走</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E5%AE%B9%E6%96%A5%E5%8F%8D%E6%BC%94/LOJ2542%20%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0.cpp" title="代码链接">代码链接</a></strong></p>
 
@@ -328,7 +325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">122</span>
+          <span class="site-state-item-count">121</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
