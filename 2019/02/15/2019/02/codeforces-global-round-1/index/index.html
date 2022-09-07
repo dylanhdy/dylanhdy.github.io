@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="2 月 14 日 Codeforces Global Round 1 题目链接：https:&#x2F;&#x2F;codeforces.com&#x2F;contest&#x2F;1110 F - Nearest Leaf思路： 考虑用线段树维护当前点到叶子节点的距离，那么对于询问就是查询区间最小值。我们从根节点开始，按照 dfs 序依次维护在每一个点上的线段树。当从点 $x$ 走到点 $son_x$ 且边权为 $dis$ 时，$so">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/images/5c83806ef22f2.png">
-<meta property="og:image" content="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/images/5c8383e9b7097.png">
+<meta property="og:image" content="http://example.com/images/5c83806ef22f2.png">
+<meta property="og:image" content="http://example.com/images/5c8383e9b7097.png">
 <meta property="article:published_time" content="2019-02-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-05T14:30:21.479Z">
+<meta property="article:modified_time" content="2022-09-07T03:38:18.808Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/images/5c83806ef22f2.png">
+<meta name="twitter:image" content="http://example.com/images/5c83806ef22f2.png">
 
 <link rel="canonical" href="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/">
 
@@ -183,7 +183,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
+                <time title="Modified: 2022-09-07 11:38:18" itemprop="dateModified" datetime="2022-09-07T11:38:18+08:00">2022-09-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,10 +212,10 @@
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/F.cpp" title="代码链接">代码链接</a></strong></p>
 <h3 id="G-Tree-Tac-Toe"><a href="#G-Tree-Tac-Toe" class="headerlink" title="G - Tree-Tac-Toe"></a>G - Tree-Tac-Toe</h3><p><strong>思路：</strong></p>
 <p>首先发现黑色是不可能赢的。为了简化情况，我们先假设所有点都是没有涂色的，然后考虑有哪些情况白色必定赢。比较简单的一种就是存在度数大于 4 的节点，然后发现如果一个点度数为 3 且有两个相邻的非叶节点时，白色也同样必胜。排除掉这两种情况后，剩下的树的形态就比较简单了。如下图一样，就是中间一条长链，两端可能会有度数为 3 的点，当然也可能没有度数为3的点。</p>
-<p><img src="images/5c83806ef22f2.png" alt="Tree-Tac-Toe 1" title="Tree-Tac-Toe 1"></p>
+<p><img src="/images/5c83806ef22f2.png" alt="Tree-Tac-Toe 1" title="Tree-Tac-Toe 1"></p>
 <p>然后考虑这种情况下白色怎样才能获胜，可以发现只有两端都有度数为 3 的端点且链长为偶数时，白色才能获胜。然后其余的所有情况都会是平局。</p>
 <p>如果一开始树上有些点已经是白色了，考虑如何处理这种情况。比较巧妙的方式就是将一个白点按照下图的方式，拆成 4 个无色的点，可以发现这两种是完全等价的。然后就按照开始所讲的情况进行讨论即可。</p>
-<p><img src="images/5c8383e9b7097.png" alt="Tree-Tac-Toe 2" title="Tree-Tac-Toe 2"></p>
+<p><img src="/images/5c8383e9b7097.png" alt="Tree-Tac-Toe 2" title="Tree-Tac-Toe 2"></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/G.cpp" title="代码链接">代码链接</a></strong></p>
 
     </div>
@@ -311,7 +311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

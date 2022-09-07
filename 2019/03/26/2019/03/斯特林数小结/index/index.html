@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="第一类斯特林数定义： 表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\\begin{bmatrix} n \\\\ m \\end{bmatrix}$。 性质： 首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\\begin{bmatrix} n-1 \\\\ m-1 \\end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一">
+  <meta name="description" content="第一类斯特林数定义： 表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\begin{bmatrix} n \\ m \end{bmatrix}$。 性质： 首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\begin{bmatrix} n-1 \\ m-1 \end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一个的后面，方案数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斯特林数小结">
-<meta property="og:url" content="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%9A%84%E9%82%A3%E4%BA%9B%E4%B8%9C%E8%A5%BF/index/index.html">
+<meta property="og:url" content="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第一类斯特林数定义： 表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\\begin{bmatrix} n \\\\ m \\end{bmatrix}$。 性质： 首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\\begin{bmatrix} n-1 \\\\ m-1 \\end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一">
+<meta property="og:description" content="第一类斯特林数定义： 表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\begin{bmatrix} n \\ m \end{bmatrix}$。 性质： 首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\begin{bmatrix} n-1 \\ m-1 \end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一个的后面，方案数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-03-26T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-05T14:30:21.681Z">
+<meta property="article:modified_time" content="2022-09-07T03:33:17.202Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%9A%84%E9%82%A3%E4%BA%9B%E4%B8%9C%E8%A5%BF/index/">
+<link rel="canonical" href="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/">
 
 
 <script id="page-configurations">
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E7%9A%84%E9%82%A3%E4%BA%9B%E4%B8%9C%E8%A5%BF/index/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +180,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
+                <time title="Modified: 2022-09-07 11:33:17" itemprop="dateModified" datetime="2022-09-07T11:33:17+08:00">2022-09-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -204,25 +204,25 @@
 
       
         <h3 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h3><p><strong>定义：</strong></p>
-<p>表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\\begin{bmatrix} n \\\\ m \\end{bmatrix}$。</p>
+<p>表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\begin{bmatrix} n \\ m \end{bmatrix}$。</p>
 <p><strong>性质：</strong></p>
-<p>首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\\begin{bmatrix} n-1 \\\\ m-1 \\end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一个的后面，方案数为 $(n-1)\\begin{bmatrix} n-1 \\\\ m \\end{bmatrix}$，从而得出递推式:</p>
-<script type="math/tex; mode=display">\\begin{bmatrix} n \\\\ m \\end{bmatrix} = \\begin{bmatrix} n-1 \\\\ m-1 \\end{bmatrix} + (n-1)\\begin{bmatrix} n-1 \\\\ m \\end{bmatrix}</script><p>我们设 $f_n(x)$ 为 $\\begin{bmatrix} n \\\\ x \\end{bmatrix}$ 的生成函数。根据上面式子可以写出它的生成函数</p>
-<script type="math/tex; mode=display">f\_n(x)=\\prod\_{i=0}^{n-1} (x+i)</script><p>而这个可以直接套用分治 FFT 在 $O ( n \\log^2 n )$ 内求出，但我们还可以在它的基础上优化。考虑你目前分治到区间 $(l,r)$，在这之前已经计算出了区间 $(l, mid)$ 的卷积，这个时候应该要递归的计算 $(mid+1, r)$ 的卷积，但其实发现如果你设 $(l, mid)$ 的卷积为 $g(x)$，那么 $(mid+1,r)$ 的卷积就是 $g(x+mid)$。将式子如下化简：</p>
-<script type="math/tex; mode=display">\\begin{aligned} g(x+mid)=&\\sum\_{i=0}^{n} a\_i(x+mid)^i\\\\ =&\\sum\_{i=0}^{n} a\_i\\sum\_{j=0}^i {i\\choose j}mid^{i-j}x^j\\\\ =&\\sum\_{i=0}^{n} x^i \\sum\_{j=i}^{n}{i\\choose j}mid^{j-i}a\_j\\\\ =&\\sum\_{i=0}^{n} \\frac{x^i}{i!} \\sum\_{j=i}^{n}\\frac{mid^{j-i}}{(j-i)!}a\_j\*j! \\end{aligned}</script><p>你发现后面的那一块有点像卷积的形式，将其中一项反转后就可以卷起来了，这样我们做到 $O(n \\log n)$ 的复杂度</p>
+<p>首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\begin{bmatrix} n-1 \\ m-1 \end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一个的后面，方案数为 $(n-1)\begin{bmatrix} n-1 \\ m \end{bmatrix}$，从而得出递推式:</p>
+<script type="math/tex; mode=display">\begin{bmatrix} n \\ m \end{bmatrix} = \begin{bmatrix} n-1 \\ m-1 \end{bmatrix} + (n-1)\begin{bmatrix} n-1 \\ m \end{bmatrix}</script><p>我们设 $f_n(x)$ 为 $\begin{bmatrix} n \\ x \end{bmatrix}$ 的生成函数。根据上面式子可以写出它的生成函数</p>
+<script type="math/tex; mode=display">f_n(x)=\prod_{i=0}^{n-1} (x+i)</script><p>而这个可以直接套用分治 FFT 在 $O ( n \log^2 n )$ 内求出，但我们还可以在它的基础上优化。考虑你目前分治到区间 $(l,r)$，在这之前已经计算出了区间 $(l, mid)$ 的卷积，这个时候应该要递归的计算 $(mid+1, r)$ 的卷积，但其实发现如果你设 $(l, mid)$ 的卷积为 $g(x)$，那么 $(mid+1,r)$ 的卷积就是 $g(x+mid)$。将式子如下化简：</p>
+<script type="math/tex; mode=display">\begin{aligned} g(x+mid)=&\sum_{i=0}^{n} a_i(x+mid)^i\\ =&\sum_{i=0}^{n} a_i\sum_{j=0}^i {i\choose j}mid^{i-j}x^j\\ =&\sum_{i=0}^{n} x^i \sum_{j=i}^{n}{i\choose j}mid^{j-i}a_j\\ =&\sum_{i=0}^{n} \frac{x^i}{i!} \sum_{j=i}^{n}\frac{mid^{j-i}}{(j-i)!}a_j\cdot j! \end{aligned}</script><p>你发现后面的那一块有点像卷积的形式，将其中一项反转后就可以卷起来了，这样我们做到 $O(n \log n)$ 的复杂度</p>
 <h3 id="第二类斯特林数"><a href="#第二类斯特林数" class="headerlink" title="第二类斯特林数"></a>第二类斯特林数</h3><p><strong>定义：</strong></p>
-<p>表示 $n$ 个不同元素拆分为 $m$ 个集合的方案数，记为 $\\begin{Bmatrix} n \\\\ m \\end{Bmatrix}$。</p>
+<p>表示 $n$ 个不同元素拆分为 $m$ 个集合的方案数，记为 $\begin{Bmatrix} n \\ m \end{Bmatrix}$。</p>
 <p><strong>性质：</strong></p>
-<p>还是先从递推式考虑，枚举第 $n$ 个元素，它可以自己形成一个新的集合，方案数为 $\\begin{Bmatrix} n-1 \\\\ m-1 \\end{Bmatrix}$；它也放在已有的 $m$ 个集合中的一个里面，方案数为 $m\\begin{Bmatrix} n-1 \\\\ m \\end{Bmatrix} $，从而有递推式：</p>
-<script type="math/tex; mode=display">\\begin{Bmatrix} n \\\\ m \\end{Bmatrix} = \\begin{Bmatrix} n-1 \\\\ m-1 \\end{Bmatrix} + m\\begin{Bmatrix} n-1 \\\\ m \\end{Bmatrix}</script><p>但这个递推式并没有什么用。我们还可以从容斥的角度入手，考虑 $n$ 个元素放在 $m$ 个不同盒子中的方案数就是 $m^n$，而我们把存在空盒子的情况容斥掉后，就是 $m!\\begin{Bmatrix} n \\\\ m \\end{Bmatrix}$（因为每个集合是没有区别的），得到式子： <script type="math/tex">\\begin{Bmatrix} n \\\\ m \\end{Bmatrix}= \\frac{1}{m!} \\sum\_{i=1}^{m} (-1)^i {m \\choose i} (m-i)^n</script></p>
-<p>而这个式子稍微有些用，可以化简为： <script type="math/tex">\\begin{Bmatrix} n \\\\ m \\end{Bmatrix}= \\sum\_{i=1}^{m}\\frac{(-1)^i}{i!} \\frac{(m-i)^n}{(m-i)!}</script></p>
-<p>将这个简单卷积后也能在 $O(n \\log n)$ 内求出出第二类斯特林数。</p>
+<p>还是先从递推式考虑，枚举第 $n$ 个元素，它可以自己形成一个新的集合，方案数为 $\begin{Bmatrix} n-1 \\ m-1 \end{Bmatrix}$；它也放在已有的 $m$ 个集合中的一个里面，方案数为 $m \begin{Bmatrix} n-1 \\ m \end{Bmatrix}$，从而有递推式：</p>
+<script type="math/tex; mode=display">\begin{Bmatrix} n \\ m \end{Bmatrix} = \begin{Bmatrix} n-1 \\ m-1 \end{Bmatrix} + m\begin{Bmatrix} n-1 \\ m \end{Bmatrix}</script><p>但这个递推式并没有什么用。我们还可以从容斥的角度入手，考虑 $n$ 个元素放在 $m$ 个不同盒子中的方案数就是 $m^n$，而我们把存在空盒子的情况容斥掉后，就是 $m!\begin{Bmatrix} n \\ m \end{Bmatrix}$（因为每个集合是没有区别的），得到式子：</p>
+<script type="math/tex; mode=display">\begin{Bmatrix} n \\ m \end{Bmatrix}= \frac{1}{m!} \sum_{i=1}^{m} (-1)^i {m \choose i} (m-i)^n</script><p>而这个式子稍微有些用，可以化简为：</p>
+<script type="math/tex; mode=display">\begin{Bmatrix} n \\ m \end{Bmatrix}= \sum_{i=1}^{m}\frac{(-1)^i}{i!} \frac{(m-i)^n}{(m-i)!}</script><p>将这个简单卷积后也能在 $O(n \log n)$ 内求出出第二类斯特林数。</p>
 <h3 id="斯特林反演"><a href="#斯特林反演" class="headerlink" title="斯特林反演"></a>斯特林反演</h3><p>证明不会，形式上类似于二项式反演。。。</p>
-<script type="math/tex; mode=display">f(n)=\\sum\_{k=0}^n \\begin{Bmatrix} n \\\\ m \\end{Bmatrix} g(k)$$ $$ g(n)=\\sum\_{k=0}^n (-1)^{n-k} \\begin{bmatrix} n \\\\ m \\end{bmatrix} f(k)</script><h3 id="斯特林数与阶乘幂"><a href="#斯特林数与阶乘幂" class="headerlink" title="斯特林数与阶乘幂"></a>斯特林数与阶乘幂</h3><blockquote>
+<script type="math/tex; mode=display">f(n)=\sum_{k=0}^n \begin{Bmatrix} n \\ m \end{Bmatrix} g(k)</script><script type="math/tex; mode=display">g(n)=\sum_{k=0}^n (-1)^{n-k} \begin{bmatrix} n \\ m \end{bmatrix} f(k)</script><h3 id="斯特林数与阶乘幂"><a href="#斯特林数与阶乘幂" class="headerlink" title="斯特林数与阶乘幂"></a>斯特林数与阶乘幂</h3><blockquote>
 <p>斯特林子集数是产生通常幂的阶乘幂的系数</p>
 </blockquote>
-<script type="math/tex; mode=display">x^n= \\sum\_{i=0} ^n \\begin{Bmatrix} n \\\\ i \\end{Bmatrix} x^{\\underline i}</script><script type="math/tex; mode=display">x^\\overline n=\\sum\_{i=0}^n \\begin{bmatrix} n \\\\ m \\end{bmatrix} x^i</script><p>根据第一个式子我们可以解决自然数幂和这个问题：</p>
-<script type="math/tex; mode=display">\\begin{aligned} \\sum\_{i=1}^{n} i^k =&\\sum\_{i=1} ^n \\sum\_{j=0}^k \\begin{Bmatrix} k \\\\ j \\end{Bmatrix} x^{\\underline j} \\\\ =& \\sum\_{i=1} ^n \\sum\_{j=0}^k \\begin{Bmatrix} k \\\\ j \\end{Bmatrix} j! {i\\choose j} \\\\=& \\sum\_{j=0}^k \\begin{Bmatrix} k \\\\ j \\end{Bmatrix} j!\\sum\_{i=j}^n{i\\choose j} \\\\=&\\sum\_{j=0}^k \\begin{Bmatrix} k \\\\ j \\end{Bmatrix} j! {i\\choose j}\\\\=&\\sum\_{j=0}^k \\begin{Bmatrix} k \\\\ j \\end{Bmatrix} \\frac{(n+1)^\\underline {j+1}}{j+1} \\end{aligned}</script><p>这样一来，利用一开始提到求解斯特林数的方法，就可以在 $O(k \\log k)$ 内解决自然数幂和。除此之外利用拉格朗日插值还可以在 $O(k)$ 内解决这个问题，这里就不多说了。</p>
+<script type="math/tex; mode=display">x^n= \sum_{i=0} ^n \begin{Bmatrix} n \\ i \end{Bmatrix} x^{\underline i}</script><script type="math/tex; mode=display">x^{\overline n}=\sum_{i=0}^n \begin{bmatrix} n \\ m \end{bmatrix} x^i</script><p>根据第一个式子我们可以解决自然数幂和这个问题：</p>
+<script type="math/tex; mode=display">\begin{aligned} \sum_{i=1}^{n} i^k =&\sum_{i=1} ^n \sum_{j=0}^k \begin{Bmatrix} k \\ j \end{Bmatrix} x^{\underline j} \\ =& \sum_{i=1} ^n \sum_{j=0}^k \begin{Bmatrix} k \\ j \end{Bmatrix} j! {i\choose j} \\=& \sum_{j=0}^k \begin{Bmatrix} k \\ j \end{Bmatrix} j!\sum_{i=j}^n{i\choose j} \\=&\sum_{j=0}^k \begin{Bmatrix} k \\ j \end{Bmatrix} j! {i\choose j}\\=&\sum_{j=0}^k \begin{Bmatrix} k \\ j \end{Bmatrix} \frac{(n+1)^\underline {j+1}}{j+1} \end{aligned}</script><p>这样一来，利用一开始提到求解斯特林数的方法，就可以在 $O(k \log k)$ 内解决自然数幂和。除此之外利用拉格朗日插值还可以在 $O(k)$ 内解决这个问题，这里就不多说了。</p>
 <h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><strong>1.CF960G Bandit Blues</strong></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0/CF960G%20%20Bandit%20Blues.cpp" title="代码链接">代码链接</a></strong></p>
 
@@ -240,8 +240,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/03/26/2019/03/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%B0%8F%E7%BB%93/index/" rel="prev" title="网络流小结">
-      <i class="fa fa-chevron-left"></i> 网络流小结
+    <a href="/2019/03/21/2019/03/codeforces-round-545/index/" rel="prev" title="Codeforces Round #545">
+      <i class="fa fa-chevron-left"></i> Codeforces Round #545
     </a></div>
       <div class="post-nav-item">
     <a href="/2019/03/29/2019/03/bzoj4771-%E4%B8%83%E5%BD%A9%E6%A0%91-%E4%B8%BB%E5%B8%AD%E6%A0%91-%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6/index/" rel="next" title="BZOJ4771 七彩树 [主席树/线段树合并]">
@@ -319,7 +319,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">121</span>
+          <span class="site-state-item-count">120</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
