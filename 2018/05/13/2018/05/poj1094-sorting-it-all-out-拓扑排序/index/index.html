@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="问题描述给你N个变量，M个不等式(形如x&lt;y)，需要你判断：1.他们是否矛盾 2.若无矛盾，则是否能确定每个变量的关系 3.若能，则求出用前x个不等式就能求出关系x的最小值。 输入有多组数据，每组数据第一行n,m。当n&#x3D;0且m&#x3D;0时输入结束。 下面m行给出m个不等式。 输出对于每组数据输出下面三句话中的一句： Sorted sequence determined after xxx rela">
@@ -116,6 +116,16 @@
         <li class="menu-item menu-item-home">
 
     <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -234,12 +244,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/05/11/2018/05/bzoj1614-telephone-lines-spfa%E4%BA%8C%E5%88%86/index/" rel="prev" title="BZOJ1614 Telephone Lines [SPFA+二分]">
-      <i class="fa fa-chevron-left"></i> BZOJ1614 Telephone Lines [SPFA+二分]
+    <a href="/2018/05/13/2018/05/bzoj2200-%E9%81%93%E8%B7%AF%E5%92%8C%E8%88%AA%E7%BA%BF-spfa/index/" rel="prev" title="BZOJ2200 道路和航线  [SPFA]">
+      <i class="fa fa-chevron-left"></i> BZOJ2200 道路和航线  [SPFA]
     </a></div>
       <div class="post-nav-item">
-    <a href="/2018/05/13/2018/05/bzoj2200-%E9%81%93%E8%B7%AF%E5%92%8C%E8%88%AA%E7%BA%BF-spfa/index/" rel="next" title="BZOJ2200 道路和航线  [SPFA]">
-      BZOJ2200 道路和航线  [SPFA] <i class="fa fa-chevron-right"></i>
+    <a href="/2018/05/19/2018/05/poj1734-sightseeing-trip/index/" rel="next" title="POJ1734 Sightseeing trip  [Floyd]">
+      POJ1734 Sightseeing trip  [Floyd] <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -318,12 +328,16 @@
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
         <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">categories</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
         <span class="site-state-item-count">52</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
@@ -355,7 +369,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">CrazyDave</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
         
