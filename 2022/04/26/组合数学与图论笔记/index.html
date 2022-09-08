@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum _ {">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组合数学与图论笔记">
+<meta property="og:url" content="http://example.com/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Dave&#39;s Blog">
+<meta property="og:description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum _ {">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-26T08:22:46.000Z">
+<meta property="article:modified_time" content="2022-09-07T08:26:08.220Z">
+<meta property="article:author" content="CrazyDave">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>组合数学与图论笔记 | Dave's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dave's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          组合数学与图论笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-26 16:22:46" itemprop="dateCreated datePublished" datetime="2022-04-26T16:22:46+08:00">2022-04-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 16:26:08" itemprop="dateModified" datetime="2022-09-07T16:26:08+08:00">2022-09-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="组合数学"><a href="#组合数学" class="headerlink" title="组合数学"></a>组合数学</h1><p><strong>组合数</strong></p>
+<p>广义组合数</p>
+<p>${n \choose m} = \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数</p>
+<p>广义二项式定理</p>
+<p>$(x+1)^\alpha = \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数</p>
+<p>单位根反演：</p>
+<p>$[n \mid k]=\frac{1}{n}\sum _ {i=0}^{n-1} \omega _ {n}^{ik}$</p>
+<p>$[k \mod n \equiv j ]=\frac{1}{n}\sum _ {i=0}^{n-1} \omega _ {n}^{i(k-j)}$</p>
+<p>例：求 $\sum {n \choose 3i}$</p>
+<p>范德蒙恒等式</p>
+<p>${n+m\choose j} = \sum\limits_{0\leq i\leq j}{n\choose i} {m\choose j-i}$</p>
+<span id="more"></span>
+<p>整值多项式</p>
+<p>给定一个多项式 $p(x)$，对于任意整数 $x$，$p(x)$ 为一个整数，那么称 $p(x)$ 为一个整值多项式</p>
+<p>性质：</p>
+<p>整值多项式 $p(x)$ 可以写成如下形式：</p>
+<p>$p(x)=\sum\limits_{i\leq n} a_i{x\choose i}$   $a_i$ 为整数</p>
+<p>推论:</p>
+<p>给定一个 $n$ 次多项式 $p(x)$，若其在 $x = t,x = t+1,··· ,x = t+n,t \in Z$ 上值为整数，那么该多项式必定是整值多项式，反向亦成立</p>
+<p>例： 已知 $p(0),p(1),…,p(n)$，求 $a_0,a_1,…,a_n$</p>
+<p>组合数估算</p>
+<p>$(\frac{n}{m})^m \leq {n \choose m} \leq (\frac{ne}{m})^m$</p>
+<p>斯特林公式</p>
+<p>$n! = \sqrt{2 \pi n} (\frac{n}{e})^n$</p>
+<p>球盒问题</p>
+<p><strong>集合论</strong></p>
+<p>反链</p>
+<p>sperner 定理</p>
+<p>若 $\mathcal{F}$  是一个反链，则 $max\{ \mathcal{F}\} = {n\choose \lceil \frac{n}{2}\rceil}$</p>
+<p>相交集族</p>
+<p>最大 K 相交集族 =  ${n-1\choose k-1}$</p>
+<p>圆排列映射</p>
+<p><strong>数列</strong></p>
+<p>例：快排复杂度分析</p>
+<p>$P(n) = \frac{2}{n}\sum \limits_{i=1}^{n-1} P(i)+1$</p>
+<p>$P(n)=\frac{n+1}{n}P(n-1)+2$</p>
+<p>$P(n) = 2 \ln2$</p>
+<p>特征方程法</p>
+<p>已知 $af_n=bf_{n-1}+cf_{n-2}$</p>
+<p>令 $x_1, x_2$ 为方程 $ax^2=bx+c$ 两根，则 $f_n = c_1x_1^n+c_2x_2^n$</p>
+<p>$c_1, c_2$ 用待定系数法求出</p>
+<p>例：用 $1 × 2 $ 的多米诺骨牌覆盖 $3 × n$ 的棋盘有多少种方法</p>
+<p>生成函数</p>
+<p>例：设 $h_n$表示由数字 $1, 2, 3$ 构造的 $n$ 位数的个数，其中 $1$ 的个数是奇数，$2$ 的个数是 $3$ 的倍数，求 $h_n$</p>
+<p>卡特兰数</p>
+<p>$c_n =\sum_{i=0}^{n-1} c_i \cdot c_{n-i-1}$</p>
+<p>$C(x)= xC(x)^2+1$</p>
+<p>$c_n = \frac{1}{n+1} {2n \choose n}$</p>
+<p>例： $n$ 个数字在进栈之前，已经有 $m$ 个数在栈中，问输出序列的种数</p>
+<p>例：一位数学家随身只携带了一元钱来到拉斯维加斯的赌场，并去玩最简单的掷硬币游戏。在游戏中，他每次只押一元钱，输与赢的概率相同均为 1/2 且每次只输或赢一元钱。无论他赢了多少钱他都会继续掷硬币而不离开，若钱数为零，则按照赌场规定他需要离开。在本题中我们假设赌场的钱是无穷多的。</p>
+<p>(1) 最终的结局是赌场破产还是数学家输光了钱</p>
+<p>(2) 这位数学家一共能在赌场待多久</p>
+<p><strong>容斥原理</strong></p>
+<p>$\varphi(n) = n \prod (1-\frac{1}{p_i})$</p>
+<p>错排问题</p>
+<p>$f_n = (n-1)(f_{n-1}+f_{n-2})$</p>
+<p>$f_n \to \frac{n!}{e}$</p>
+<p>100 囚徒问题</p>
+<p><strong>斯特林数</strong></p>
+<p>下降幂  上升幂 斯特林数关系</p>
+<p>斯特林反演</p>
+<p><strong>分拆数</strong></p>
+<p>P(n,k) = Q (n, k)</p>
+<p>Ferres 图</p>
+<p>$2^{c_1 \sqrt{n}} \leq P(n) \leq 2^{c_2\sqrt{n}}$</p>
+<p><strong>鸽巢原理</strong></p>
+<p>n 个人 有两个人认识的人数相同</p>
+<p>1～100 中取 51 个数 必有两个互素 \ 整除</p>
+<p>1～20 中取 7 个数 S 必有两个子集的和相等</p>
+<p>有 101 个不同数 一定存在长度为 11 的上升子序列或下降子序列</p>
+<p>小明要备考英语四级，他给自己安排了一个学习计划，每天最少做一题，在80天的时间里要做完 120 道题，求证:一定有连续的若干天，小明在这些天里恰好做了39 道题</p>
+<p>Erdös-Ginzburg-Ziv Theorem</p>
+<p>对于任意素数 $p$ ，任意 $2p-1$ 个不同的数中，必有 $p$ 个数的和是 $p$ 的倍数</p>
+<p>推论：</p>
+<p>任意 $2x-1$ 个不同的数中，必有 $x$ 个数的和是 $x$ 的倍数</p>
+<p><strong>Ramsey 理论</strong></p>
+<p>Number</p>
+<p>R(3,4)=9</p>
+<p>R(n,m)&lt;= R(n-1, m)+R(n, m-1)</p>
+<p>(n-1)(m-1) +1 &lt;= R(n,m) &lt;= C(n+m-2, n-1)</p>
+<p>$R(n,n) \geq {2^{n/2-1}n} / e$</p>
+<p>舒尔定理</p>
+<p>范德瓦尔登定理</p>
+<h1 id="图论"><a href="#图论" class="headerlink" title="图论"></a>图论</h1><p><strong>树</strong></p>
+<p>1.For a simple graph G of order n the following are equivalent: </p>
+<p> (A) G is connected and acyclic;<br> (B) G is connected and has size n − 1;<br> (C) G is acyclic and has size n − 1;</p>
+<p>(D) For every two vertices u and v, the graph G contains exactly one uv-path.</p>
+<p>2.kruskal 算法</p>
+<p>3.prufer 序列 </p>
+<p><strong>二分图</strong></p>
+<p>1.A graph is bipartite if and only if it has no cycles of odd length.</p>
+<p>2.Berge 定理 A matching M in a bipartite graph G is a maximum matching in G if and only if G has no M-augmenting path.</p>
+<p>3.HALL 定理 Suppose G is a bipartite graph with bipartition {X, Y }. The graph G has a matching saturating X if and only if |N(S)| ≥ |S| for every subset S of X</p>
+<p>4.Konig 定理 if G is a bipartite graph, then the maximum size of a matching in G equals the minimum size of a vertex cover in G.</p>
+<p><strong>欧拉路</strong></p>
+<p>A graph is Eulerian if and only if all its vertices have even degrees and all of its edges belong to a single component.</p>
+<p><strong>连通度</strong></p>
+<p>$\kappa(G) \leq \kappa’(G) \leq \delta(G)$</p>
+<p>If G is simple and |G| ≥ 3, then the following are equivalent (and characterize simple 2-connected graphs):</p>
+<ol>
+<li><p>(A)  G is connected and has no cut-vertex;</p>
+</li>
+<li><p>(B)  For every two vertices x and y of G, there are two internally-disjoint</p>
+<p> xy-paths;</p>
+</li>
+<li><p>(C)  For every two vertices x and y of G, there is a cycle through x and y.</p>
+</li>
+<li><p>(D)  δ ≥ 1 and every pair of edges of G lies on a common cycle.</p>
+</li>
+</ol>
+<p>If x and y are non-adjacent distinct vertices of a graph G, then the minimum size of a vertex-cut separating x from y equals the maximum number of pairwise internally-disjoint xy-paths.</p>
+<p><strong>平面图</strong></p>
+<p>Edges in a plane graph form a cycle if and only if the edges in the dual graph form a bond.</p>
+<p>The following are equivalent for a plane graph G:</p>
+<p> (A) G is bipartite;<br> (B) every face of G has even length;<br> (C) G∗ is Eulerian.</p>
+<p>If a connected non-empty plane graph has v vertices, e edges, and f faces, then v − e + f = 2</p>
+<p>A graph is planar if and only if it has neither K5 nor K3,3 as a topological minor.</p>
+<p><strong>图染色</strong></p>
+<p>χ(G) ≥ |G|/α(G)</p>
+<p>χ(G)≤∆(G)+1</p>
+<p>If G is a connected simple graph other than a clique and an odd cycle, then χ(G) ≤ ∆(G)</p>
+<p>Every loopless planar graph has a proper 5-coloring.</p>
+<p>If G is bipartite, then χ′(G) = ∆(G)</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/13/2021/01/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E9%80%89%E8%AF%BE%E5%B7%A5%E5%85%B7/index/" rel="prev" title="中南大学自动选课工具">
+      <i class="fa fa-chevron-left"></i> 中南大学自动选课工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/07/submodular-optimization/" rel="next" title="submodular optimization 论文阅读">
+      submodular optimization 论文阅读 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6"><span class="nav-number">1.</span> <span class="nav-text">组合数学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">图论</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CrazyDave</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CrazyDave</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
