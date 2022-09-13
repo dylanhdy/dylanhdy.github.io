@@ -155,6 +155,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/07/2020/10/ccpc2020%E7%BD%91%E7%BB%9C%E8%B5%9B/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/07/2020/10/ccpc2020%E7%BD%91%E7%BB%9C%E8%B5%9B/index/" class="post-title-link" itemprop="url">2020CCPC 网络赛</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-07 08:00:00" itemprop="dateCreated datePublished" datetime="2020-10-07T08:00:00+08:00">2020-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-06 10:28:00" itemprop="dateModified" datetime="2022-06-06T10:28:00+08:00">2022-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>比赛链接：<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/contests/contest_show.php?cid=909" title="http://acm.hdu.edu.cn/contests/contest_show.php?cid=909">http://acm.hdu.edu.cn/contests/contest_show.php?cid=909</a></p>
+<h3 id="B-Graph-Theory-Class"><a href="#B-Graph-Theory-Class" class="headerlink" title="B - Graph Theory Class"></a>B - Graph Theory Class</h3><p>令 $f(n)$ 为小于等于 $n$ 的质数个数，答案其实就是</p>
+<script type="math/tex; mode=display">\sum_{i=3}^{n+1}i+f(n+1)-1</script><p>然后用 min_25 求 $f(n)$ 即可</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/B.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="E-Lunch"><a href="#E-Lunch" class="headerlink" title="E - Lunch"></a>E - Lunch</h3><p>设只有一根长度为 $l_i$ 的巧克力局面的 SG 值为 $SG(l_i)$</p>
+<p>那么当前局面 SG 值就为 $\bigoplus_{i=1}^{n} SG(l_i)$</p>
+<p>令 $pri$ 为任意不为 $2$ 的质数，那么 $SG(x\cdot pri)=SG(pri)+1$。当 $x$ 为奇数时，类似的有 $SG(x\cdot 2)=SG(x)+1$；当 $x$ 为偶数时，考虑 $x$ 获得 $SG(x)$ 级胜态的策略，$1$ 级胜态的局面为奇数根长度为 $2$ 的巧克力，如果 $SG(x*2)$ 采取相同的策略，最后的局面则为奇数根长度为 $4$ 的巧克力，此时 SG 值仍然为 $1$。因此 $x\cdot 2$ 不存在获得 $SG(x)+1$ 级胜态的策略，即此时 $SG(x\cdot 2)=SG(x)$。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="F-Robotic-Class"><a href="#F-Robotic-Class" class="headerlink" title="F - Robotic Class"></a>F - Robotic Class</h3><p>考虑每个区间的临界点，将其分别放入左右区间的路径上去模拟，如果到达 $n$ 点的数值不同，则函数不连续。</p>
+<p>模拟其实用 DFS 和 BFS 均可，下面代码是我用 BFS 的写法。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="M-Residual-Polynomial"><a href="#M-Residual-Polynomial" class="headerlink" title="M - Residual Polynomial"></a>M - Residual Polynomial</h3><p>对分治 FFT 的理解还不够到位，比赛时没有想出来。</p>
+<p>先考虑 $a_i$ 对 $w_{i-j}$ 的贡献。感性理解一下， $f_{1}$ 经过了 $j$ 次求导和 $n-j$ 次平移后，$a_i$ 的贡献才能加在 $w_{i-j}$ 上。因此我们令 $d_j$ 为 $\prod_{i=2}^{n}(b_ix+c_i)$ 的第 $j$ 项系数，那么 $a_i$ 对 $w_{i-j}$ 的贡献就为 $a_i\cdot d_j\cdot i!/(i-j)!$ 。</p>
+<p>令 $a_i\cdot i!$ 的母函数为 $f(x)$，$d_{n-i}$ 的母函数为 $g(x)$，那么 $f(x)\cdot g(x)$ 就是 $w_{i+n}\cdot i!$ 的母函数。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/16/2019/04/atcoder-grand-contest-032/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -490,93 +578,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/14/2019/03/bzoj4540-%E5%BA%8F%E5%88%97-%E8%8E%AB%E9%98%9F-rmq/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/14/2019/03/bzoj4540-%E5%BA%8F%E5%88%97-%E8%8E%AB%E9%98%9F-rmq/index/" class="post-title-link" itemprop="url">BZOJ4540 序列 [莫队/RMQ]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-14 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-14T08:00:00+08:00">2019-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定长度为 $n$ 的序列：$a_1,a_2,…,a_n$，记为 $a[1:n]$。有 $q$ 个询问，每个询问给定两个数 $l,r$，求 $a[l:r]$ 中所有子序列的最小值之和。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行包含两个整数 $n$ 和 $q$，分别代表序列长度和询问数。</p>
-<p>接下来一行，包含 $n$ 个整数，第 $i$ 个整数为 $a_i$。</p>
-<p>接下来 $q$ 行，每行包含两个整数 $l$ 和 $r$，代表一次询问。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>对于每次询问，输出一行，代表询问的答案。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>有一种比较直观的方法就是使用莫队，队中维护一个单调栈，并且记录栈中元素到前一个元素这段区间的答案。当插入元素时，更新单调栈，通过记录的信息可以比较容易的求出答案。</p>
-<p>这题还有一个很妙的 Idea。考虑类似于上面莫队的方法，先处理出右端点为 $i$ 的所有 $a[l,i]$ 的最小值的和，记为 $pre_i$，再处理一个 $pre_i$ 的前缀和 $spre_i$，这样 $spre_i$ 即是 $a[1,i]$ 的答案。类似的再处理出 $suf_i$，表示所有左端点为 $i$ 的序列的最小值之和，以及 $ssuf_i$ 表示 $suf_i$ 的后缀和。</p>
-<p>预处理完这些东西后，考虑如何回答区间 $a[l,r]$ 的答案，我们设 $a[l,r]$ 中最小值位于 $pos$，这个可以利用 ST 表求出。经过 $pos$ 这一点的所有区间对答案的贡献可以直接计算出来，考虑剩下 $a[l,pos-1]$ 及 $a[pos+1,r]$ 这两段的贡献如何计算。我们发现 $spre[r]-spre[pos]$ 就包含了 $a[pos+1,r]$ 这一段的答案和右端点在 $[pos+1,r]$ 左端点在 $[1,pos-1]$ 的区间最小值之和。而后面一部分由于跨过了 $pos$，它的贡献可以等价为 $(r-pos)*pre[pos]$，将它们相减就可以计算出 $a[pos+1,r]$ 的贡献，类似的可以同样计算出 $a[l,pos-1]$ 的贡献。</p>
-<p>这样我们可以在 $O(1)$ 的时间内回答每一个询问，而算法复杂度的瓶颈在 $O(n \\log n)$ 的 ST 表预处理上，而如果使用笛卡尔树或者用一些 $O(n)$ RMQ 的高级姿势，就可以在线性复杂度内完成这个操作。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, q, top, a[MAXN], f[MAXN][<span class="number">20</span>], sta[MAXN], Log[MAXN];</span><br><span class="line">LL pre[MAXN], spre[MAXN], suf[MAXN], ssuf[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> k=Log[y-x+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(a[f[x][k]]&lt;a[f[y-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]]) <span class="keyword">return</span> f[x][k];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> f[y-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;q);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">        f[i][<span class="number">0</span>]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;<span class="number">20</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="number">1</span>; j+(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>&lt;=n; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[f[j][i<span class="number">-1</span>]]&lt;a[f[j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)][i<span class="number">-1</span>]]) f[j][i]=f[j][i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">else</span> f[j][i]=f[j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)][i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i) Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">    sta[top=<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; a[sta[top]]&gt;=a[i]) top--;</span><br><span class="line">        pre[i]=pre[sta[top]]+<span class="number">1LL</span>*a[i]*(i-sta[top]);</span><br><span class="line">        sta[++top]=i;</span><br><span class="line">        spre[i]=spre[i<span class="number">-1</span>]+pre[i];</span><br><span class="line">    &#125;</span><br><span class="line">    sta[top=<span class="number">0</span>]=n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=n; i&gt;=<span class="number">1</span>; --i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; a[sta[top]]&gt;=a[i]) top--;</span><br><span class="line">        suf[i]=suf[sta[top]]+<span class="number">1LL</span>*(sta[top]-i)*a[i];</span><br><span class="line">        sta[++top]=i;</span><br><span class="line">        ssuf[i]=ssuf[i+<span class="number">1</span>]+suf[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>, l, r; i&lt;=q; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        LL ans=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;l, &amp;r);</span><br><span class="line">        <span class="type">int</span> pos=<span class="built_in">query</span>(l, r);</span><br><span class="line">        ans+=<span class="number">1LL</span>*(pos-l+<span class="number">1</span>)*(r-pos+<span class="number">1</span>)*a[pos];</span><br><span class="line">        ans+=ssuf[l]-ssuf[pos]<span class="number">-1LL</span>*(pos-l)*suf[pos];</span><br><span class="line">        ans+=spre[r]-spre[pos]<span class="number">-1LL</span>*(r-pos)*pre[pos];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -642,14 +647,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">

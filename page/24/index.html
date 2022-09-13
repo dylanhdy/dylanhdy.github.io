@@ -155,6 +155,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/22/2018/05/poj1011-sticks-%E6%90%9C%E7%B4%A2/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/22/2018/05/poj1011-sticks-%E6%90%9C%E7%B4%A2/index/" class="post-title-link" itemprop="url">POJ1011 Sticks [搜索]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-05-22 08:00:00" itemprop="dateCreated datePublished" datetime="2018-05-22T08:00:00+08:00">2018-05-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:19" itemprop="dateModified" datetime="2022-06-05T22:30:19+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>乔治有一些同样长的小木棍，他把这些木棍随意砍成几段，直到每段的长都不超过50。现在，他想把小木棍拼接成原来的样子，但是却忘记了自己开始时有多少根木棍和它们的长度。给出每段小木棍的长度，编程帮他找出原始木棍的最小可能长度。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行为一个单独的整数N表示砍过以后的小木棍的总数，其中N≤64。 第二行为N个用空个隔开的正整数，表示N根小木棍的长度。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>仅一行，表示要求的原始木棍的最小可能长度。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>依然还是爆搜。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 70</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, a[MAXN], ans=INF, sum, cnt;</span><br><span class="line"><span class="type">bool</span> vis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CMP</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;<span class="keyword">return</span> x&gt;y;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> len, <span class="type">int</span> last)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(num&gt;=cnt) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(len==ans) <span class="keyword">return</span> <span class="built_in">dfs</span>(num+<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> fail=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=last; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[i] || len+a[i]&gt;ans || fail==a[i]) <span class="keyword">continue</span>;</span><br><span class="line">        vis[i]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(num, len+a[i], i+<span class="number">1</span>)) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        fail=a[i]; </span><br><span class="line">        vis[i]=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;<span class="number">50</span>) n--, i--;</span><br><span class="line">        <span class="keyword">else</span> sum+=a[i], ans=<span class="built_in">min</span>(ans, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>, CMP);</span><br><span class="line">    <span class="keyword">for</span>(; ans&lt;=sum; ans++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(sum%ans!=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">        cnt=sum/ans;</span><br><span class="line">        <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>)) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/22/2018/05/poj1190-%E7%94%9F%E6%97%A5%E8%9B%8B%E7%B3%95/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -491,95 +569,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/13/2018/05/poj1094-sorting-it-all-out-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/13/2018/05/poj1094-sorting-it-all-out-%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/index/" class="post-title-link" itemprop="url">POJ1094 Sorting It All Out [拓扑排序]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-05-13 08:00:00" itemprop="dateCreated datePublished" datetime="2018-05-13T08:00:00+08:00">2018-05-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:18" itemprop="dateModified" datetime="2022-06-05T22:30:18+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给你N个变量，M个不等式(形如x&lt;y)，需要你判断：1.他们是否矛盾 2.若无矛盾，则是否能确定每个变量的关系 3.若能，则求出用前x个不等式就能求出关系x的最小值。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>有多组数据，每组数据第一行n,m。当n=0且m=0时输入结束。 下面m行给出m个不等式。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>对于每组数据输出下面三句话中的一句： Sorted sequence determined after xxx relations: yyy…y. Sorted sequence cannot be determined. Inconsistency found after xxx relations.</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>求这些约束关系的当然是用拓扑排序啦。</p>
-<p>拓扑排序时如果有两个或以上的点入度为0，则这个序列不能确定，如果没有一个入度为0的点，则这是矛盾的。然后每增加一个不等式时都进行一遍拓扑排序。</p>
-<p>考虑输出，我们开一个数组记录这些变量，拓扑排序时按照拓扑序将这些变量加进数组，这样数组内的元素就一定时从大到小的。</p>
-<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ol>
-<li>要注意输出格式</li>
-<li>如果成功了，但以后的关系出现矛盾依然认为它成功</li>
-<li>每一组数据要把输入读完</li>
-</ol>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 30</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, tag, top, pos, cnt, flag1, flag2, q[MAXN], deg[MAXN], temp[MAXN];</span><br><span class="line"><span class="type">bool</span> f[MAXN][MAXN];</span><br><span class="line"><span class="type">char</span> t[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">topo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    top=<span class="number">0</span>; flag2=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) temp[i]=deg[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=n; j++)</span><br><span class="line">            <span class="keyword">if</span>(temp[j]==<span class="number">0</span>) &#123;cnt++; pos=j;&#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(cnt&gt;<span class="number">1</span>) flag2=<span class="number">-1</span>;</span><br><span class="line">        q[top++]=pos;</span><br><span class="line">        temp[pos]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=n; j++)</span><br><span class="line">            <span class="keyword">if</span>(f[pos][j]==<span class="number">1</span>) temp[j]--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flag2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">while</span>(n!=<span class="number">0</span> &amp;&amp; m!=<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">memset</span>(f, <span class="number">0</span>, <span class="built_in">sizeof</span>(f));</span><br><span class="line">        <span class="built_in">memset</span>(deg, <span class="number">0</span>, <span class="built_in">sizeof</span>(deg));</span><br><span class="line">        flag1=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, t);</span><br><span class="line">            <span class="keyword">if</span>(flag1) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="type">int</span> x=t[<span class="number">0</span>]-<span class="string">&#x27;A&#x27;</span>+<span class="number">1</span>, y=t[<span class="number">2</span>]-<span class="string">&#x27;A&#x27;</span>+<span class="number">1</span>;</span><br><span class="line">            f[x][y]=<span class="literal">true</span>; deg[y]++;</span><br><span class="line">            tag=<span class="built_in">topo</span>();</span><br><span class="line">            <span class="keyword">if</span>(tag==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Inconsistency found after %d relations.\n&quot;</span>,i);</span><br><span class="line">                flag1=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tag==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;Sorted sequence determined after %d relations: &quot;</span>,i);</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt;n; j++) <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, q[j]+<span class="string">&#x27;A&#x27;</span><span class="number">-1</span>);</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;.\n&quot;</span>);</span><br><span class="line">                flag1=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag1) <span class="built_in">printf</span>(<span class="string">&quot;Sorted sequence cannot be determined.\n&quot;</span>);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/23/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/25/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -645,14 +638,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
