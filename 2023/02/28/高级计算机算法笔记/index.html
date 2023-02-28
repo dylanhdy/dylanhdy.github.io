@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基础概念 问题 $\pi$，最大化或最小化问题 实例(instance) $I$ $I$ 的可行解集合 $S(I)$，需满足 可行解 $s$ 大小为 $|I|$ 的多项式($|s|\in poly(|I|)$) 多项式时间能判断解 $s$ 是否可行($s\in S(I)$)   目标函数(objective function) $obj(I, s)$，需满足 $obj(I, s) \geq 0$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高级计算机算法笔记">
+<meta property="og:url" content="http://example.com/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Dave&#39;s Blog">
+<meta property="og:description" content="基础概念 问题 $\pi$，最大化或最小化问题 实例(instance) $I$ $I$ 的可行解集合 $S(I)$，需满足 可行解 $s$ 大小为 $|I|$ 的多项式($|s|\in poly(|I|)$) 多项式时间能判断解 $s$ 是否可行($s\in S(I)$)   目标函数(objective function) $obj(I, s)$，需满足 $obj(I, s) \geq 0$">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-28T08:46:44.000Z">
+<meta property="article:modified_time" content="2023-02-28T09:20:42.636Z">
+<meta property="article:author" content="CrazyDave">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>高级计算机算法笔记 | Dave's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Dave's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          高级计算机算法笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-28 16:46:44 / Modified: 17:20:42" itemprop="dateCreated datePublished" datetime="2023-02-28T16:46:44+08:00">2023-02-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ol>
+<li>问题 $\pi$，最大化或最小化问题</li>
+<li>实例(instance) $I$</li>
+<li>$I$ 的可行解集合 $S(I)$，需满足<ul>
+<li>可行解 $s$ 大小为 $|I|$ 的多项式($|s|\in poly(|I|)$)</li>
+<li>多项式时间能判断解 $s$ 是否可行($s\in S(I)$)</li>
+</ul>
+</li>
+<li>目标函数(objective function) $obj(I, s)$，需满足<ul>
+<li>$obj(I, s) \geq 0$</li>
+<li>给定 $I,s$ 时，目标函数能在多项式时间内算出</li>
+</ul>
+</li>
+<li>最优解 $OPT(I)$, 算法所得解 $ALG(I)$</li>
+<li>$\alpha$ 近似(factor-$\alpha$-approximation)：最小化问题为例，对于任意一个实例 $I$，算法给出的解 $s$ 都满足 $\frac{obj(I,s)}{OPT(I)} \leq \alpha$</li>
+</ol>
+<span id="more"></span>
+<h1 id="combinatorial-algorithm"><a href="#combinatorial-algorithm" class="headerlink" title="combinatorial algorithm"></a>combinatorial algorithm</h1><h2 id="Vertex-Cover"><a href="#Vertex-Cover" class="headerlink" title="Vertex Cover"></a>Vertex Cover</h2><p><strong>算法</strong><br>取所有匹配边的两个端点<br>[alg1]</p>
+<p><strong>近似比</strong><br>匹配中每条边都至少需要一个端点去覆盖 $OPT \geq |M|$</p>
+<p>$ALG \leq 2\cdot |M| \leq 2\cdot OPT$</p>
+<h2 id="Set-Cover-Greedy"><a href="#Set-Cover-Greedy" class="headerlink" title="Set Cover Greedy"></a>Set Cover Greedy</h2><p><strong>算法</strong><br>每次贪心选性价比最高的集合<br>[alg2]</p>
+<p><strong>近似比</strong><br>对于任意一个集合 $S$，将集合中元素按照算法的覆盖顺序进行排序，得到 $u_1,…,u_{|S|}$。当 $u_j$ 被覆盖时，$S$ 中未被覆盖的元素数量大于 $|S|-k+1$，此时 $S$ 性价比为 $C(S)/(|S|-j+1)$。$price(u_j)$ 为最优性价比，不大于 $C(S)/(|S|-j+1)$。</p>
+<p>假设最大集合大小为 $k$，令 $H_j = \sum_{i=1}^{j} \frac{1}{j}$，假设最优解选取集合 $S_1,…,S_m$。$ALG=\sum_{u\in U} price(u) \leq \sum_{i=1}^{m} \sum_{j=1}^{|S_i|} price(u_j) \leq \sum_{i=1}^{m} C(S_i) \cdot H_{|S_i|} \leq OPT \cdot H_k$</p>
+<p><strong>tight analysis</strong><br>[tight1]</p>
+<h2 id="Steiner-Tree"><a href="#Steiner-Tree" class="headerlink" title="Steiner Tree"></a>Steiner Tree</h2><p><strong>Metric Steiner Tree Problem</strong><br>在原有问题上限制了图需要满足两个性质：</p>
+<ul>
+<li>图为完全图</li>
+<li>对于任意三个点 $u,v,w$ 都存在 $c(u,w)\leq c(u,v)+c(v,w)$</li>
+</ul>
+<p><strong>近似保持规约</strong><br>对于 Steiner Tree 中的任何一个 $I_1$，在 Metric Steiner Tree 中都对应一个 $I_2$，$I_2$ 中的 $c_2(u, v)$ 为 $I_1$ 中 $u, v$ 的最短路长度。$I_1$ 中的最优解在 $I_2$ 中为合法解且代价根小，所以有 $OPT(I_2)\leq OPT(I_1)$。</p>
+<p>对于 $I_2$ 中的任意一个解 $t$，将该解中的每条边 $(u, v)$ 对应于 $I_1$ 中 $u, v$ 的最短路并将其加入 $I_1$ 问题中的解 $s$ 中。$s$ 为 $I_1$ 的一个合法解，并且有 $c_1(s) \leq c_2(t)$。</p>
+<p>如果 Metric Steiner Tree 有近似比为 $\alpha$ 的算法，那么对于 Steiner Tree 中的任意一个 $I_1$ 在转化为 $I_2$ 后用该算法求解得到解 $t$，解 $t$ 对应的解 $s$ 也一定满足 $\alpha$ 近似。因为 $\frac{ALG_1}{OPT_1} = \frac{c(s)}{OPT_1} \leq \frac{c(t)}{OPT_2} = \alpha$。</p>
+<p><strong>算法</strong><br>在对应的 Metric Steiner Tree 中构造 Terminal 节点的导出子图（只保留这些节点和这些节点之间的边），选择导出子图的最小生成树作为解，并将其对应于原问题中。</p>
+<p><strong>近似比</strong><br>$T$ 为经过每条最优解边两次的一个欧拉路。</p>
+<p>根据 Metric 性质，欧拉路中每两个相邻（访问顺序上的相邻） Terminal 节点 $u, v$ 的直接连边 $(u,v)$ 都小于欧拉路中 $u,v$ 的距离。选择欧拉路中每个相邻 Terminal 节点的直接连边，构造出包含所有 terminal 节点的 Hamilton 回路 $H$。</p>
+<p>$B$ 为由 terminal 节点导出子图的最小生成树</p>
+<script type="math/tex; mode=display">ALG_2 = c_2(B) \leq c_2(H) \leq c_2(T) = 2 \cdot OPT_2</script><p><strong>tight analysis</strong><br>[tight2]</p>
+<h2 id="Multiway-Cut"><a href="#Multiway-Cut" class="headerlink" title="Multiway Cut"></a>Multiway Cut</h2><p><strong>算法</strong><br>对于一个 terminal 节点 $t_i$ 的 isolating cut 为使 $t_i$ 与其他 terminal 节点都不连通的割。</p>
+<p>假设有 k 个 terminal 节点，对每个 $t_i$ 计算的最小 isolating cut $C_i$，选择最便宜的 k-1 个最小 isolating cut 取并集。</p>
+<p>[alg3]</p>
+<p><strong>近似比</strong></p>
+<p>设最优解为 $A$，令 $K_i$ 为割去 $A$ 后 $t_i$ 所在的连通块， $A_i$ 为 A 中与 $K_i$ 相连的边。根据最小 isolating cut 的定义，有 $c(C_i) \leq c(A_i)$。因为 $A$ 中每条边都跨过两个连通块并被计算两次，有 $\sum c(A_i) = 2*c(A)$。</p>
+<p>假设代价最大的 cut 为 $C_1$，那么有 $ALG= \sum_{i=2}^{k} c(C_i) \leq (1-\frac{1}{k}) \sum c(C_i)$</p>
+<script type="math/tex; mode=display">ALG \leq (1-\frac{1}{k}) \sum c(C_i) \leq (1-\frac{1}{k}) \sum c(A_i) = (2-\frac{2}{k}) \cdot OPT</script><p><strong>tight analysis</strong><br>构造 k 阶完全图，并在每条边中间加一个节点。<br>[tight3]</p>
+<h1 id="LP-base-algorithm"><a href="#LP-base-algorithm" class="headerlink" title="LP-base algorithm"></a>LP-base algorithm</h1><h2 id="Linear-Programs-相关概念"><a href="#Linear-Programs-相关概念" class="headerlink" title="Linear Programs 相关概念"></a>Linear Programs 相关概念</h2><p>在多个线性不等式的限制下对线性目标函数进行优化。</p>
+<p><strong>一般形式</strong><br>假设 prime program 为最小化问题</p>
+<p>minimize $c^{T}x$ \<br>subject to</p>
+<script type="math/tex; mode=display">
+Ax \geq b \\
+x \geq 0</script><p><strong>dual program</strong></p>
+<p>maximize $b^{T}y$ \<br>subject to</p>
+<script type="math/tex; mode=display">
+A^{T}y \leq c \\
+y \geq 0</script><p><strong>LP-Duality</strong></p>
+<p>如果 $x^<em>$ 为 primal program 的最优解，$y^</em>$ 为 dual program 的最优解，那么有$\sum_{j=1}^{n} c_j x^{<em>}_{j} = \sum_{i=1}^{m} b_i y^{</em>}_{i}$。</p>
+<p><strong>weak LP-Duality:</strong></p>
+<p>如果 $x$ 为 primal program 的可行解，$y$ 为 dual program 的可行解，那么有$\sum_{j=1}^{n} c_j x_{j} \geq \sum_{i=1}^{m} b_i y_{i}$。</p>
+<p>证明：</p>
+<script type="math/tex; mode=display">\sum_{j=1}^n c_jx_j \geq \sum_{j=1}^n(\sum_{i=1}^m a_{ij}y_i)x_j = \sum_{i=1}^m(\sum_{j=1}^n a_{ij}x_j)y_i \geq \sum_{i=1}^m b_i y_i</script><p><strong>Complementary Slackness</strong></p>
+<p>如果 $x$ 为 primal program 的最优解，$y$ 为 dual program 的最优解，当且仅当：<br>Primal CS: 对于每个 $j=1,…,n$，满足 $x_j=0$ 或 $\sum_{i=1}^{m} a_{ij} y_i =c_j$。<br>Dual CS: 对于每个 $i=1,…,m$，满足 $y_i=0$ 或 $\sum_{j=1}^{n} a_{ij} x_j =c_j$。</p>
+<p><strong>Relaxing Complementary Slackness</strong></p>
+<h2 id="Max-Flow-Min-Cut-Theorem"><a href="#Max-Flow-Min-Cut-Theorem" class="headerlink" title="Max-Flow Min-Cut Theorem"></a>Max-Flow Min-Cut Theorem</h2><p><strong>最大流</strong></p>
+<p>构造一个从 $t$ 到 $s$ 容量无穷大的虚边</p>
+<p>maximize $f_{ts}$<br>subject to</p>
+<script type="math/tex; mode=display">
+f_{uv} \leq c_{uv} \quad (u,v) \in E \\
+\sum_{(u,v)\in E} f_{uv} - \sum_{ (v,z) \in E} f_{vz} \leq 0 \quad v \in V \\
+f_{uv} \geq 0 \quad (u,v) \in E</script><p><strong>最小割</strong></p>
+<p>minimize $\sum_{(u,v)\in E} d_{uv} c_{uv}$<br>subject to</p>
+<script type="math/tex; mode=display">
+d_{uv} - p_{u} + p_{v} \geq 0 \\
+p_{s} - p_{t} \geq 1 \\
+d_{uv} \geq 0 \\
+p_{v} \geq 0</script><p>第一行不等式系数为 $d_{uv}$，为 $1$ 表示割开，为 $0$ 表示不割<br>第二行不等式系数为 $p_{v}$，为 $1$ 表示与 $s$ 连通，为 $0$ 表示与 $t$ 连通</p>
+<h2 id="set-cover-LP-Rounding"><a href="#set-cover-LP-Rounding" class="headerlink" title="set cover LP-Rounding"></a>set cover LP-Rounding</h2><p><strong>ILP 形式</strong></p>
+<p>minimize $\sum_{S \in \mathcal{s}} C_S x_S$<br>subject to</p>
+<script type="math/tex; mode=display">
+\sum_{u\in S} x_S \geq 1 \quad u \in U \\
+x_{S} \in \{0, 1\} \quad S \in \mathcal{S}</script><p><strong>算法</strong><br>在实数域上进行对上述 ILP 做线性规划，设解为 $x$。令 $f$ 为最多的点在集合中的出现次数，如果 $x_j&lt; \frac{1}{f}$ 则设 $x_j$ 为 0，否则为 $1$。<br>[alg4]</p>
+<p>对于任意一个 $u$，一定存在一个 $S$ 满足 $u \in S$ 且在线性规划解中 $x_{S} \geq \frac{1}{f}$，所以在 rounding 之后依然能满足 $\sum_{u\in S} x_S \geq 1$。</p>
+<p><strong>近似比</strong><br>rounding 后每个 $x_S$ 最多在线性规划解上扩大 $f$ 倍，所以 $ALG = \sum_{S \in \mathcal{s}} C_S x_S \leq f \cdot OPT_{LP} \leq f \cdot OPT$</p>
+<h2 id="set-cover-Prime-Dual-Schema"><a href="#set-cover-Prime-Dual-Schema" class="headerlink" title="set cover Prime Dual Schema"></a>set cover Prime Dual Schema</h2><p><strong>算法</strong><br>令 ILP 中第一行不等式系数为 y，每次任选一个未被覆盖的点 $u$，增加对应系数 $y_u$，直到有集合满足 Prime CS，并选择该集合。<br>[alg4]</p>
+<p><strong>近似比</strong><br>令 $f$ 为最多的点在集合中的出现次数，$\sum_{u \in S} x_S$ 表示点 $u$ 被集合覆盖次数，满足 $\sum_{u \in S} x_S \leq f$(Relaxed Dual CS)。</p>
+<p>$ALG= \sum_{S\in \mathcal{S}} x_S c_S = \sum_{S\in \mathcal{S}} x_S \sum_{u \in S}  y_u = \sum_{u \in U} y_u \sum_{u \in U} x_S \leq f \sum_{u\in U} y_u \leq f \cdot OPT_{LP} \leq f \cdot OPT$</p>
+<p><strong>tight analysis</strong><br>算法满足 tight 性质，证明略。</p>
+<h2 id="set-cover-Dual-Fitting"><a href="#set-cover-Dual-Fitting" class="headerlink" title="set cover Dual Fitting"></a>set cover Dual Fitting</h2><p><strong>算法</strong><br>同 set cover greedy 算法</p>
+<p><strong>近似比</strong><br>根据贪心策略选取 $y_u$，当 $y_u=price(u)$ 时不满足 dual 条件，但 $y_u=\frac{price(u)}{h_k}$ 时满足 dual 条件。根据贪心证明方法，$price(u_i)\leq \frac{c(S)}{|S|-i+1}$，有 $\sum_{i=1}^{|S|} y_{u_i} \leq \c(S)$。</p>
+<p>$ALG=\sum_{u \in U} price(u) = H_k \cdot \sum_{u \in U} y_u \leq H_k OPT_{LP} \leq H_k OPT$</p>
+<h2 id="scheduling-on-parallel-machines"><a href="#scheduling-on-parallel-machines" class="headerlink" title="scheduling on parallel machines"></a>scheduling on parallel machines</h2><p><strong>ILP 形式</strong><br>minimize $t$<br>subject to</p>
+<script type="math/tex; mode=display">
+\sum_{M_i \in \mathcal{M}} x_{ij} = 1 \quad J_j \in \mathcal{J}\\
+\sum_{J_j \in \mathcal{J}} x_{ij} p_{ij} \leq t \quad M_i \in \mathcal{M} \\
+x_{ij} \in {0,1} \quad M_i \in \mathcal{M}, J_j \in \mathcal{J}</script><p><strong>算法</strong><br>使用 parametre pruning 技巧，引入变量 $T$ 计算 OPT 的下界。定义 $S_T = \{(i, j) | p_{ij} \leq T\}$，定义 $LP(T)$ 为：</p>
+<script type="math/tex; mode=display">
+\sum x_{ij} = 1 \quad J_j \in \mathcal{J} \\
+\sum x_{ij} p_{ij} \leq T \quad M_i \in \mathcal{M} \\
+x_{ij} \geq 0 \quad (i,j) \in S_T</script><p>算法二分出最小的满足 $LP(T)$ 有解的 $T$，记为 $T^{<em>}$。根据 $LP(T^{</em>})$ 的解构造答案，在点集 $J \cup M$ 上构造二分图 $H$，当 $x_{ij} \neq 0$ 时，将 $i,j$ 之间连边。令 $F$ 表示被分割过的 job 集合，在点集 $F \cup M$ 上构造二分图 $H$，当 $x_{ij} \in (0,1)$ 时，将 $i,j$ 之间连边。</p>
+<p>[alg15]</p>
+<p><strong>近似比</strong><br>当未被分割过的 job 被分配完后，此时满足 $LP(T^{<em>})$ 的限制，时间不超过 $T^{</em>}$。因为被分割过的 job 是按照图上的匹配进行分配，所以每个机器最多一个 job，并且 $p_{ij} \leq T^{<em>}$。所以 $ALG \leq 2 \cdot T^{</em>} \leq 2 \cdot OPT$。</p>
+<h2 id="Maximum-Satisfiability"><a href="#Maximum-Satisfiability" class="headerlink" title="Maximum Satisfiability"></a>Maximum Satisfiability</h2><p><strong>算法</strong></p>
+<ol>
+<li><p>随机算法<br>对于每个变量随机赋值 0 或 1</p>
+</li>
+<li><p>去随机化技巧<br>分别计算 $x_1$ 为 0 或 1，$x_2,…x_n$ 随机时的条件期望，根据较大的条件期望决定 $x_1$ 取值。</p>
+</li>
+</ol>
+<p>决定了 $x_1,…,x_i-1$ 时，计算 $x_i$ 的条件期望，并根据较大的条件期望决定 $x_i$ 取值。</p>
+<ol>
+<li>整数规划<br>对于第 j 个子句中未取反的变量集合记为 $P_j$，取反的变量集合记为 $N_j$。</li>
+</ol>
+<p>maximize $\sum{j=1}^{m} w_j z_j<br>subject to</p>
+<script type="math/tex; mode=display">
+\sum_{i\in P_j} y_i + \sum_{i \in N_j} (1-y_i) \geq z_j \quad j=1,...,m \\
+y_i \in \{0, 1\} \quad i=1,...,n \\
+z_j \in \{0, 1\} \quad j=1,...,m</script><p>假设 $(y^{<em>}, z^{</em>})$ 为实数域上的 LP 最优解，对于变量 $x_i$ 以 $y^{*}_i$ 的概率设为 1，否则设为 0。</p>
+<p>同样可以应用去随机化技巧</p>
+<ol>
+<li>综合算法<br>以 $\frac{1}{2}$ 的概率，随机选取 1,2 算法中的一个求解。</li>
+</ol>
+<p><strong>近似比</strong></p>
+<ol>
+<li>随机算法</li>
+</ol>
+<p>令 $Y_j \in \{0, 1\}$ 表示子句 $C_j$ 是否为真，$l_j$ 表示子句 $C_j$ 的长度，$W$ 表示被满足子句的权值之和。$\mathbb{E}(Y_j) = 1-(1/2)^{l_j} \geq \frac{1}{2}$。</p>
+<p>$\mathbb{E}(ALG) = \mathbb{E}(\sum_{j=1}^{m} w_j Y_j) = \sum_{j=1}^{m} w_j\mathbb{E}(Y_j) \geq \frac{1}{2} \sum_{j=1}^{m} w_j \geq \frac{1}{2} OPT$</p>
+<ol>
+<li>去随机化技巧<br>假设 $x_i$ 被设为 $b_i$，有 $\mathbb{E}(W|x_1=b_1) \geq \mathbb{E}(W) \geq \frac{1}{2} OPT$。</li>
+</ol>
+<p>如果 $\mathbb{E}(W|x_1=b_1,…,x_i=b_i) \geq \frac{1}{2} OPT$，类似可以推导出 $\mathbb{E}(W|x_1=b_1,…,x_i+1=b_i+1) \geq \mathbb{E}(W|x_1=b_1,…,x_i=b_i) \geq \frac{1}{2} OPT$。使用数学归纳法即可证明。</p>
+<ol>
+<li>整数规划<br>$Pr(Y_j=0) = \prod_{i \in P_j} (1-y^{<em>}_i) \prod_{i \in N_j} y^{</em>}_i$。根据几何平均数小于算术平均数，有 $Pr(Y_j=0) \leq (\frac{1}{l_j}(\sum_{i \in P_j} (1-y^{<em>}_i)+\sum_{i \in N_j} y^{</em>}_i))^{l_j}=(1-\frac{1}{l_j}(\sum_{i \in P_j} y^{<em>}_i+\sum_{i \in N_j} (1-y^{</em>}_i))^{l_j}\leq (1-\frac{z_j^{*}}{l_j})^{l_j}$。</li>
+</ol>
+<p>将 $Pr(Y_j=1)= 1- (1-\frac{z_j^{<em>}}{l_j})^{l_j}$ 写成函数形式 $f(z^{</em>}_j)$，该函数在 $[0, 1]$ 上为凸函数，有 $f(z_{j}^{<em>}) \geq f(1)\cdot z_{j}^{</em>} +f(0) \geq (1-(1-\frac{1}{l_j})^{l_j}) z_j^{<em>} \geq (1-\frac{1}{e}z^{</em>}_j)$。</p>
+<p>$\mathbb{E}(ALG) = \sum_{j=1}^{m} Pr(Y_j=1) \cdot w_j \geq (1-\frac{1}{e}) \sum_{j=1}^{m} w_j z^{*}_j = (1-\frac{1}{e}) OPT_{LP} \geq (1-\frac{1}{e}) OPT$</p>
+<ol>
+<li>综合算法<br>[fml1]</li>
+</ol>
+<p>[fig1]</p>
+<p>最终可以得出算法的近似比为 $\frac{3}{4}$。</p>
+<h1 id="local-search"><a href="#local-search" class="headerlink" title="local search"></a>local search</h1><h2 id="Max-Cut"><a href="#Max-Cut" class="headerlink" title="Max Cut"></a>Max Cut</h2><p><strong>算法</strong><br>[alg13]</p>
+<p><strong>近似比</strong><br>假设 $S$ 为算法得到的局部最优解，令 $\delta(S)$ 表示集合 $S$ 对应的 cut 集合。对于任意一个点 $v$，有 $w(\delta(S) \cup \delta(v)) \geq w(\delta(v)) /2$；否则将 $v$ 放入另一边能使目标函数更大。</p>
+<p>$ALG = \frac{1}{2} \sum w(\delta(S) \cup \delta(v)) \geq \frac{1}{2} \sum w(\delta(v)) /2 = \frac{1}{2} w(E) \geq \frac{1}{2} OPT$</p>
+<h2 id="Submodular-Function-Maximization"><a href="#Submodular-Function-Maximization" class="headerlink" title="Submodular Function Maximization"></a>Submodular Function Maximization</h2><p><strong>算法</strong><br>[alg14]</p>
+<p><strong>近似比</strong><br>引理：假设 $f$ 为定义在集合上的非负 submodular 函数，令 $A \subset B \subseteq V$。那么有：</p>
+<ul>
+<li>当 $f(B)&gt;f(A)$ 时，一定存在 $v \in B \A$ 满足 $f(A+v)-f(A) \geq \frac{1}{|B\A|} (f(B)-f(A))$</li>
+<li>当 $f(A)&gt;f(B)$ 时，一定存在 $v \in B \A$ 满足 $f(B-v)-f(B) \geq \frac{1}{|B\A|} (f(A)-f(B))$</li>
+</ul>
+<p>假设 $S$ 为算法得到的局部最优解，$S^{<em>}$ 为最优解，根据引理有 $f(S) \geq f(S \cup S^{</em>})$ 和 $f(S) \geq f(S \cap S^{*})$。</p>
+<p>$2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S \cap S^{</em>}) + f(V\S)$。将后两项根据 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S) + f(V) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S)$。继续按照 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S^{*}) + f(\emptyset) \geq OPT$。根据鸽笼原理 $\max\{f(S), f(V\S) \} \geq OPT\3$。</p>
+<p>当函数 $f$ 满足 symmetric 性质时，$2f(S) \geq f(S \cup S^{<em>}) + f(S \cap S^{</em>}) = f(S \cap S^{<em>}) + f(v \ (S \cup S^{</em>})) =  f(S \cap S^{<em>}) + f(S^{</em>} \ S) \geq f(S^{*}) + f(\emptyset) \geq OPT$。因此 $f(S) \geq OPT/2$</p>
+<h1 id="Polynomial-Time-Approximation-Scheme"><a href="#Polynomial-Time-Approximation-Scheme" class="headerlink" title="Polynomial Time Approximation Scheme"></a>Polynomial Time Approximation Scheme</h1><h2 id="PTAS-相关概念"><a href="#PTAS-相关概念" class="headerlink" title="PTAS 相关概念"></a>PTAS 相关概念</h2><p><strong>PTAS</strong></p>
+<p><strong>FPTAS</strong></p>
+<p><strong>Pseudo-Polynomial Algorithm</strong></p>
+<h2 id="Snapsack-PTAS"><a href="#Snapsack-PTAS" class="headerlink" title="Snapsack PTAS"></a>Snapsack PTAS</h2><p><strong>算法</strong><br>根据 $\varepsilon$，按比例 $K=\frac{\varepsilon P}{n}$ 缩小所有物品的价值，并按照新的价值求解。<br>[alg8]</p>
+<p><strong>近似比</strong><br>令最优解选取物品 $o_1,…,o_k$。$K \sum profit’(o_i) \geq \sum profit(o_i) - kK \geq OPT -nK= OPT-\varepsilon P$。</p>
+<p>因为 $S’$ 为缩小后的最优解，$ALG= profit(S’) \geq K profit’(S’) \geq K \sum profit’(o_i) \geq OPT-\varepsilon P$。</p>
+<p>根据 $OPT \geq P$，有 $ALG = profit(S’) \geq OPT - \varepsilon P \geq (1-\varepsilon)\cdot OPT$。</p>
+<p><strong>时间复杂度</strong><br>缩小后物品的最大价值为 $\frac{n}{\varepsilon}$，根据背包问题的时间复杂度，该算法为 $O(n^{3}/\varepsilon)$</p>
+<h2 id="Max-cut-PTAS"><a href="#Max-cut-PTAS" class="headerlink" title="Max cut PTAS"></a>Max cut PTAS</h2><p><strong>算法</strong><br>[alg17]</p>
+<p><strong>近似比</strong><br>$ALG \geq \frac{1}{2(1+\varepsilon/4)} OPT$</p>
+<p><strong>时间复杂度</strong><br>$O(\frac{1}{\varepsilon}n \log n)$</p>
+<h1 id="clustering-and-facility-location"><a href="#clustering-and-facility-location" class="headerlink" title="clustering and facility location"></a>clustering and facility location</h1><h2 id="k-center-clustering-parametre-pruning"><a href="#k-center-clustering-parametre-pruning" class="headerlink" title="k-center clustering parametre pruning"></a>k-center clustering parametre pruning</h2><p>$c(v, S)$ 表示 $v$ 到 $S$ 中点的最近距离。找出 $k$ 个点的集合 $S$，使得 $cost(S) = \max_{v \in V} c(v, S)$ 最小</p>
+<p><strong>算法</strong><br>使用 parametre pruning 技巧，将边集 $E$ 按照长度从小到大排序，得到 $e_1, e_2, …, e_m$，一定存在某个 $j$ 满足 $opt = c(e_j)$。</p>
+<p>从小到大枚举 $j$， 考虑 $e_1,e_2,..,e_j$ 构成的子图 $G_j$，如果其最小支配集大小不大于 $k$，该支配集为最优解并且 $OPT=c(e_j)$。但一般图找最小支配集 NP 难，需要近似方法。认为如果极大独立集大小不大于 $k$，则认为该独立集为近似解。</p>
+<p>因为极大独立集属于支配集，所以该近似解合法。</p>
+<p>[alg6]</p>
+<p><strong>近似比</strong></p>
+<p>假设 $OPT=c_j$，构造 $G_j$ 的平方图 $G_j^2$（将原图所有距离小于 2 的点对连边），在 $G_j^2$ 中 $max_{e \in E} c(e) \leq 2 c_j$。</p>
+<p>考虑每个 $G_j$ 最小支配集中的点 $v$，$v$ 与 $v$ 支配的点在 $G_j^2$ 中构成团。因为一个团中最多包含一个独立集中的点，所以在 $G_j^2$ 中的任意独立集都小于 $G_j$ 中的最小支配集。</p>
+<p>假设 $i$ 为满足 $c_(e_i) \leq 2 \cdot OPT$ 的最大整数，那么 $G_j^2 \subseteq G_i$。$G_i$ 的极大独立集 $\leq$ $G_j$ 的最小支配集 $\leq k$。</p>
+<p>$ALG \leq c(e_i) \leq 2 \cdot c(e_j) = 2 OPT$</p>
+<h2 id="k-center-Gonzalez’s-algorithm"><a href="#k-center-Gonzalez’s-algorithm" class="headerlink" title="k-center Gonzalez’s algorithm"></a>k-center Gonzalez’s algorithm</h2><p><strong>算法</strong><br>[alg9]</p>
+<p><strong>近似比</strong></p>
+<p>引理：对于任意 $k+1$ 个点，如果任意两点距离都大于 $2R$，那么一定有 $OPT&gt;R$。假设 $OPT\leq R$，那么存在 $k$ 个中心 $c_1,…,c_k$  将所有点分为 $k$ 类 $C_1,…,C_k$，使得 $d(c_i, C_i) \leq R$。那么一个有两个距离大于 $2R$ 的点属于同一类，与引理中的假设矛盾。</p>
+<p>假设 $ALG &gt; 2 \cdot OPT$，那么存在一个 $p \notin C$ 满足 d(p, C) &gt; 2\cdot OPT$。根据算法，对于 $c_1,c_2,…,c_k, p$ 这些点，任意两点距离都大于 $2 \cdot OPT$，与引理矛盾。所以有 $ALG \leq 2 \cdot OPT$。</p>
+<h2 id="k-center-Hochbaum-Shmoys-approach"><a href="#k-center-Hochbaum-Shmoys-approach" class="headerlink" title="k-center Hochbaum-Shmoys approach"></a>k-center Hochbaum-Shmoys approach</h2><p><strong>算法</strong><br>[alg10]<br>二分查找满足 $|C| \leq k$ 的最小的 $R^{*}$，</p>
+<p><strong>近似比</strong><br>当 $R^{<em>} \leq OPT$ 时一定有 $|C|\leq k$，可以通过上文类似的反证法证明，所以 $R^{</em>} \leq OPT$。根据算法，$ALG \leq 2 \cdot R^{*} \leq 2 \cdot OPT。</p>
+<h2 id="k-median"><a href="#k-median" class="headerlink" title="k-median"></a>k-median</h2><p><strong>算法</strong><br>随机初始解 $S_0$。每次考虑将 $S$ 中一个点与 $V/S$ 中一个点交换的所有情况，如果某次交换能使目标函数更小，则进行交换并更新 $S$。直到没有交换操作使得目标函数更小，算法停止。</p>
+<p><strong>近似比</strong><br>令 $S^{<em>}$ 为最优解，定义 $A_i=d(j, S)$，$O_j=d(j, S^{</em>})$，<br>$\varphi(i), \varphi^{<em>}(i)$ 分别表示 $S, S^{</em>}$ 中距离 $i$ 最近的点，<br>$N(i), N^{<em>}(i)$ 分别表示距离 $\varphi(i), \varphi^{</em>}(i)$ 最近的点的集合。</p>
+<h2 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h2><p><strong>算法</strong></p>
+<ol>
+<li><p>Lloyd’s algorithm<br>[alg11]</p>
+</li>
+<li><p>$D^{2}$-sampling<br>[alg12]</p>
+</li>
+</ol>
+<p><strong>近似比</strong><br>Lloyd’s algorithm 结果与最优解没有近似关系，采用 $D^{2}$-sampling 的 Lloyd’s algorithm 近似比为 $8(\ln k + 2)$。证明略。</p>
+<h2 id="facility-location"><a href="#facility-location" class="headerlink" title="facility location"></a>facility location</h2><p><strong>ILP 形式</strong><br>minimize $\sum f_i y_i + \sum \sum d(i, j) x_{ij}$</p>
+<p>subject to </p>
+<script type="math/tex; mode=display">
+\sum_{i} x_{ij} = 1 \\
+x_{ij} \leq y_i
+x, y \in \{0, 1\}</script><p><strong>算法</strong><br>[alg16]</p>
+<p><strong>近似比</strong><br>令 $B(j, d)$ 表示在 $j$ 点 $d$ 范围内的设施集合，$ALG_F, ALG_C$ 分别表示算法近似解中开启设施和连接设施的费用。</p>
+<p>引理1：$ALG_F \leq 2 \sum f_y y_i$。根据马尔可夫不等式，$\sum_{i\in B(j,\alpha_j/delta) y_i} \geq 1-\delta$。令 $\delta = \frac{1}{2}$，可以推出在 $B(j, 2\alpha_j)$ 中最便宜的设施 $cheap_{j}$ 一定有 $f_{cheap_{j}}\leq 2\sum 2\sum_{j\in B(j, 2\alpha_j)} f_i y_i$。因为对于每个 $i$，$y_i f_i$ 最多会被一个设施计算，所以 $ALG_F = 2 \sum f_y y_i$。</p>
+<p>引理2：$ALG_C leq 6 \sum \alpha_j$。考虑被分配到设施 $i$ 的点 $j’$，$d(i,j’) \leq 4 \alpha_j + 2\alpha_{j’} \leq 6\alpha j’$。 $ALG \leq 6 \sum_{j} \alpha_j$。</p>
+<p>综上，$ALG \leq 6 \cdot OPT_{LP} \leq 6 \cdot OPT$</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/08/coevolutionary-algorithm-%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" rel="prev" title="coevolutionary algorithm 研究报告">
+      <i class="fa fa-chevron-left"></i> coevolutionary algorithm 研究报告
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">基础概念</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#combinatorial-algorithm"><span class="nav-number"></span> <span class="nav-text">combinatorial algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vertex-Cover"><span class="nav-number">1.</span> <span class="nav-text">Vertex Cover</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-Cover-Greedy"><span class="nav-number">2.</span> <span class="nav-text">Set Cover Greedy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Steiner-Tree"><span class="nav-number">3.</span> <span class="nav-text">Steiner Tree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiway-Cut"><span class="nav-number">4.</span> <span class="nav-text">Multiway Cut</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LP-base-algorithm"><span class="nav-number"></span> <span class="nav-text">LP-base algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Programs-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">Linear Programs 相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Flow-Min-Cut-Theorem"><span class="nav-number">2.</span> <span class="nav-text">Max-Flow Min-Cut Theorem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-cover-LP-Rounding"><span class="nav-number">3.</span> <span class="nav-text">set cover LP-Rounding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-cover-Prime-Dual-Schema"><span class="nav-number">4.</span> <span class="nav-text">set cover Prime Dual Schema</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#set-cover-Dual-Fitting"><span class="nav-number">5.</span> <span class="nav-text">set cover Dual Fitting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scheduling-on-parallel-machines"><span class="nav-number">6.</span> <span class="nav-text">scheduling on parallel machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Maximum-Satisfiability"><span class="nav-number">7.</span> <span class="nav-text">Maximum Satisfiability</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#local-search"><span class="nav-number"></span> <span class="nav-text">local search</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Cut"><span class="nav-number">1.</span> <span class="nav-text">Max Cut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Submodular-Function-Maximization"><span class="nav-number">2.</span> <span class="nav-text">Submodular Function Maximization</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Polynomial-Time-Approximation-Scheme"><span class="nav-number"></span> <span class="nav-text">Polynomial Time Approximation Scheme</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PTAS-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">PTAS 相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Snapsack-PTAS"><span class="nav-number">2.</span> <span class="nav-text">Snapsack PTAS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-cut-PTAS"><span class="nav-number">3.</span> <span class="nav-text">Max cut PTAS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#clustering-and-facility-location"><span class="nav-number"></span> <span class="nav-text">clustering and facility location</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#k-center-clustering-parametre-pruning"><span class="nav-number">1.</span> <span class="nav-text">k-center clustering parametre pruning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-center-Gonzalez%E2%80%99s-algorithm"><span class="nav-number">2.</span> <span class="nav-text">k-center Gonzalez’s algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-center-Hochbaum-Shmoys-approach"><span class="nav-number">3.</span> <span class="nav-text">k-center Hochbaum-Shmoys approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-median"><span class="nav-number">4.</span> <span class="nav-text">k-median</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-means"><span class="nav-number">5.</span> <span class="nav-text">k-means</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#facility-location"><span class="nav-number">6.</span> <span class="nav-text">facility location</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CrazyDave</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CrazyDave</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

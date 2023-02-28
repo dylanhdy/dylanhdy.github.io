@@ -155,6 +155,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/10/2018/08/poj1737-connected-graph-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/10/2018/08/poj1737-connected-graph-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/" class="post-title-link" itemprop="url">POJ1737 Connected Graph [计数类DP]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-08-10 08:00:00" itemprop="dateCreated datePublished" datetime="2018-08-10T08:00:00+08:00">2018-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>问你包含$n$个节点的无向联通图有多少个，其中节点的编号为$1-n$</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>有多组数据，输入以0结束 每组数据一个整数$n$表示有$n$个节点（$n&lt;=50$）</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>每组数据一行，表示有$n$个节点的无向联通图的个数</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>计数类DP好难啊。。。根本想不到。。。</p>
+<p>我们设$f[i]$为：包含$i$个节点的无向联通图的个数，那么答案就是$f[n]$。然后这个可以等价为所有无向图总数-无向不联通图的个数。无向图总数很容易求，为$2^{n*(n-1)/2}$，而无向不联通图的个数可以通过DP得到。</p>
+<p>假设我们推出了$f[1]$到$f[i-1]$，我们现在要求包含$i$个节点的无向不联通图个数。我们设1号节点所在的联通大小为$j$，那么这个联通块就有$C_{i-1}^{j-1}$种选择节点的方案，对于每一种选择方案，联通块有$f[j]$种构成方法，并且联通块之外的点是可以任意连边的的，所以有$2^{(i-j)*(i-j-1)/2}*f[j]$种情况。于是最后我们可以得出转移方程： <script type="math/tex">f\[i\]=2^{i\*(i-1)/2}-\\sum\_{j=1}^{i-1} 2^{(i-j)\*(i-j-1)/2}\*f\[j\]</script></p>
+<p>最后也是最最毒瘤的一点就是这道题要用高精！！！</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 2505</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">string f[MAXN], pow[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">add</span><span class="params">(string x, string y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> lenx=x.<span class="built_in">length</span>(), leny=y.<span class="built_in">length</span>();</span><br><span class="line">    <span class="type">int</span> numx[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;, numy[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;lenx; i++) numx[lenx-i<span class="number">-1</span>]=x[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;leny; i++) numy[leny-i<span class="number">-1</span>]=y[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> maxl=<span class="built_in">max</span>(lenx, leny);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;maxl; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        numx[i]+=numy[i];</span><br><span class="line">        numx[i+<span class="number">1</span>]+=numx[i]/<span class="number">10</span>, numx[i]%=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(numx[maxl]) maxl++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=maxl<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) ans+=numx[i]+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">sub</span><span class="params">(string x, string y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> lenx=x.<span class="built_in">length</span>(), leny=y.<span class="built_in">length</span>();</span><br><span class="line">    <span class="type">int</span> numx[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;, numy[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;lenx; i++) numx[lenx-i<span class="number">-1</span>]=x[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;leny; i++) numy[leny-i<span class="number">-1</span>]=y[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> maxl=<span class="built_in">max</span>(lenx, leny);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;maxl; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        numx[i]-=numy[i];</span><br><span class="line">        <span class="keyword">if</span>(numx[i]&lt;<span class="number">0</span>) numx[i]+=<span class="number">10</span>, numx[i+<span class="number">1</span>]--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(numx[--maxl]==<span class="number">0</span> &amp;&amp; maxl&gt;<span class="number">0</span>) ;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=maxl; i&gt;=<span class="number">0</span>; i--) ans+=numx[i]+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">mul</span><span class="params">(string x, string y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> numx[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;, numy[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;, numz[<span class="number">500</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> lenx=x.<span class="built_in">length</span>(), leny=y.<span class="built_in">length</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;lenx; i++) numx[lenx-i<span class="number">-1</span>]=x[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;leny; i++) numy[leny-i<span class="number">-1</span>]=y[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="type">int</span> maxlen=lenx+leny<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;lenx; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt;leny; j++) numz[i+j]+=numx[i]*numy[j];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;maxlen; i++) numz[i+<span class="number">1</span>]+=numz[i]/<span class="number">10</span>, numz[i]%=<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">if</span>(numz[maxlen]) maxlen++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=maxlen<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) ans+=numz[i]+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">div</span><span class="params">(string x, LL b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> lenx=x.<span class="built_in">length</span>(), d=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;lenx; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        ans+=(d*<span class="number">10</span>+x[i]-<span class="string">&#x27;0&#x27;</span>)/b+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        d=(d*<span class="number">10</span>+(x[i]-<span class="string">&#x27;0&#x27;</span>))%b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;ans.<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">if</span>(ans[i]!=<span class="string">&#x27;0&#x27;</span>) <span class="keyword">return</span> ans.<span class="built_in">substr</span>(i);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">change</span><span class="params">(LL x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string ans;</span><br><span class="line">    <span class="type">int</span> numx[<span class="number">500</span>], lenx=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x)</span><br><span class="line">    &#123;</span><br><span class="line">        numx[lenx++]=x%<span class="number">10</span>;</span><br><span class="line">        x/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=lenx<span class="number">-1</span>; i&gt;=<span class="number">0</span>; i--) ans+=numx[i]+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">comb</span><span class="params">(LL n, LL m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    string sum=<span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(LL i=m+<span class="number">1</span>; i&lt;=n; i++) sum=<span class="built_in">mul</span>(sum, <span class="built_in">change</span>(i));</span><br><span class="line">    <span class="keyword">for</span>(LL i=<span class="number">1</span>; i&lt;=n-m; i++) sum=<span class="built_in">div</span>(sum, i);</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    pow[<span class="number">0</span>]=<span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">1500</span>; i++) pow[i]=<span class="built_in">mul</span>(pow[i<span class="number">-1</span>], <span class="built_in">change</span>(<span class="number">2</span>));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">50</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=pow[i*(i<span class="number">-1</span>)/<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            string temp=<span class="string">&quot;&quot;</span>;</span><br><span class="line">            temp=<span class="built_in">mul</span>(<span class="built_in">mul</span>(<span class="built_in">comb</span>(i<span class="number">-1</span>, j<span class="number">-1</span>), f[j]), pow[(i-j)*(i-j<span class="number">-1</span>)/<span class="number">2</span>]);</span><br><span class="line">            f[i]=<span class="built_in">sub</span>(f[i], temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n) cout&lt;&lt;f[n]&lt;&lt;<span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/08/2018/08/poj3613-cow-relays-%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E9%80%92%E6%8E%A8%E6%9C%80%E7%9F%AD%E8%B7%AF/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -470,92 +551,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/06/2018/08/bzoj1101-zap-%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/06/2018/08/bzoj1101-zap-%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/index/" class="post-title-link" itemprop="url">BZOJ1101 Zap [莫比乌斯反演]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-06 08:00:00" itemprop="dateCreated datePublished" datetime="2018-08-06T08:00:00+08:00">2018-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>对于给定的整数$a，b，d$，有多少正整数对$x，y$，满足$x&lt;=a，y&lt;=b$并且$gcd(x,y)=d$</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行包含一个正整数$n$，表示一共有$n$组数据$（1&lt;=n&lt;= 50000）$ 接下来$n$行，每行表示一个询问。每行三个正整数，分别为$a,b,d$（$1&lt;=d&lt;=a,b&lt;=50000$）</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>对于每组询问，输出一个正整数，表示满足条件的整数对数</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这是一个莫比乌斯反演的模版题，莫比乌斯反演虽然听起来很高级但内容还是比较好理解的。</p>
-<p>首先是莫比乌斯函数$\\mu(n)$，这是一个表示容斥系数的函数。它的定义是这样的：当n有相等的质因子$\\mu(n)=0$；当n没有相等质因子且质因子个数为偶数$\\mu(n)=1$；当$n$没有相等质因子且质因子个数为奇数$\\mu(n)=-1$。</p>
-<p>然后关于莫比乌斯反演有下面两个形式：我们设存在两个函数$F(n), f(n)$</p>
-<p>形式一：如果满足条件<script type="math/tex">F(n)=\\sum\_{d|n}f(d)</script> 那么就有：<script type="math/tex">f(n)=\\sum\_{d|n}\\mu(d)F(\\lfloor\\frac{n}{d}\\rfloor)</script> 形式二：如果满足条件<script type="math/tex">F(n)=\\sum\_{n|d}f(d)</script> 那么就有：<script type="math/tex">f(n)=\\sum\_{n|d}\\mu(\\frac{d}{n})F(d)</script> 关于证明，我这么菜自然是不懂的。</p>
-<p>对于这道题，设$x=\\lfloor a/d\\rfloor$， $y=\\lfloor b/d \\rfloor$。显然可以将题目转化为求这样一个式子： <script type="math/tex">ans=\\sum\_{i=1}^{x} \\sum\_{j=1}^{y} \[gcd(i, j)==1\]</script> 然后我们设$f(n)$为在范围内$gcd(i,j)=n$的的个数，设$F(n)$为在范围内$n|gcd(i,j)$的个数，因此 <script type="math/tex">F(n)=\\lfloor x/n\\rfloor\*\\lfloor y/n\\rfloor</script> 那么很显然，函数$f(d),F(n)$满足反演的第二种形式且$f(1)$就是我们所求答案。于是利用反演得到： <script type="math/tex">f(1)=\\sum\_{d=1}^{min(x, y)}\\mu(d)F(d)</script></p>
-<p>于是直接计算就是这样的（实测70分）:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=<span class="built_in">min</span>(a, b); j++) ans+=mob[j]*(a/j)*(b/j);</span><br><span class="line"><span class="comment">//注意这里的mob是未经前缀和处理的</span></span><br></pre></td></tr></table></figure>
-<p>然后可以发现$a/j, b/j$的取值是一段一段的，所以我们利用数论分块的方法进行优化。数论分块可以看这道题:<a target="_blank" rel="noopener" href="https://www.crazydave.top/?p=716" title="BZOJ1257 余数之和">BZOJ1257 余数之和</a>，然后代码是这样的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>, r; l&lt;=<span class="built_in">min</span>(a, b); l=r+<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    r=<span class="built_in">min</span>(a/(a/l), b/(b/l));</span><br><span class="line">    ans+=(mob[r]-mob[l<span class="number">-1</span>])*(a/l)*(b/l);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注意这里的mob是经过前缀和处理的</span></span><br></pre></td></tr></table></figure>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 500005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, a, b, d, cnt, pri[MAXN], tag[MAXN], mob[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mob[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=<span class="number">50000</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!tag[i]) pri[++cnt]=i, mob[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=cnt &amp;&amp; pri[j]*i&lt;=<span class="number">50000</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            tag[i*pri[j]]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%pri[j]==<span class="number">0</span>) &#123;mob[i*pri[j]]=<span class="number">0</span>; <span class="keyword">break</span>;&#125;</span><br><span class="line">            <span class="keyword">else</span> mob[i*pri[j]]=-mob[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=<span class="number">50000</span>; i++) mob[i]+=mob[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;d);</span><br><span class="line">        a/=d; b/=d;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>, r; l&lt;=<span class="built_in">min</span>(a, b); l=r+<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            r=<span class="built_in">min</span>(a/(a/l), b/(b/l));</span><br><span class="line">            ans+=(mob[r]-mob[l<span class="number">-1</span>])*(a/l)*(b/l);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%dn&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -625,7 +620,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -665,7 +660,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

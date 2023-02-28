@@ -155,6 +155,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/21/2019/03/codeforces-round-545/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/21/2019/03/codeforces-round-545/index/" class="post-title-link" itemprop="url">Codeforces Round #545</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-21 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-21T08:00:00+08:00">2019-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>3 月 8 日 Codeforces Round #545 比赛链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1138">https://codeforces.com/contest/1138</a></p>
+<h3 id="E-Museums-Tour"><a href="#E-Museums-Tour" class="headerlink" title="E - Museums Tour"></a>E - Museums Tour</h3><p><strong>思路：</strong></p>
+<p>首先考虑将每一个 museum 按天数分为 $d$ 个点，然后对应的向相邻的连边。接着就很自然的想到用 tarjan 缩点，然后考虑如何统计答案。有一个性质就是如果一个 museum 对应不同天的点之间有边，那么这些点一定是在同一个强联通分量里面的，因此你缩点后直接找一个包含 museum 数最多的链就是对的。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Round%20%23545/E.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="F-Cooperative-Game"><a href="#F-Cooperative-Game" class="headerlink" title="F - Cooperative Game"></a>F - Cooperative Game</h3><p><strong>思路：</strong> 如果你知道 pollard-rho 中的 floyd 判环的话，这题的思路就应该不难想到。如果你直接模拟这个过程：让一个人每次走一步另一个人每次走两步，就能够在 $2*(t+c)$ 次交互内让两个人在环上相遇。那么问题就在于如何不知道终点位置的情况下让所有人走到终点。这里有个非常巧妙的性质就是在相遇点走 $t$ 步后一定能到达终点，如果我们设两个人分别走了 $t+x$，$2t+2x$ 步后相遇，那么 $t+x$ 一定是环长的倍数，如果再走 $t$ 步就意味着在环上总共走了 $t+x$ 步（一开始在链上走了 $t$ 步），那么就一定走到了终点。因此只要让一些人留在起点，两个人在环上相遇后所有一起走若干步，如果大家全部相遇，就意味着已经到终点了。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Round%20%23545/F.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/14/2019/03/bzoj4540-%E5%BA%8F%E5%88%97-%E8%8E%AB%E9%98%9F-rmq/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -487,90 +566,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/15/2019/02/codeforces-global-round-1/index/" class="post-title-link" itemprop="url">Codeforces Global Round 1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-02-15 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-15T08:00:00+08:00">2019-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-07 11:38:18" itemprop="dateModified" datetime="2022-09-07T11:38:18+08:00">2022-09-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>2 月 14 日 Codeforces Global Round 1 题目链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1110">https://codeforces.com/contest/1110</a></p>
-<h3 id="F-Nearest-Leaf"><a href="#F-Nearest-Leaf" class="headerlink" title="F - Nearest Leaf"></a>F - Nearest Leaf</h3><p><strong>思路：</strong></p>
-<p>考虑用线段树维护当前点到叶子节点的距离，那么对于询问就是查询区间最小值。我们从根节点开始，按照 dfs 序依次维护在每一个点上的线段树。当从点 $x$ 走到点 $son_x$ 且边权为 $dis$ 时，$son_x$ 子树内点的距离减少了 $dis$，其余点点距离增加了 $dis$，由于一棵子树的 dfs 序是连续的，因此就对应于线段树的区间修改。</p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/F.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="G-Tree-Tac-Toe"><a href="#G-Tree-Tac-Toe" class="headerlink" title="G - Tree-Tac-Toe"></a>G - Tree-Tac-Toe</h3><p><strong>思路：</strong></p>
-<p>首先发现黑色是不可能赢的。为了简化情况，我们先假设所有点都是没有涂色的，然后考虑有哪些情况白色必定赢。比较简单的一种就是存在度数大于 4 的节点，然后发现如果一个点度数为 3 且有两个相邻的非叶节点时，白色也同样必胜。排除掉这两种情况后，剩下的树的形态就比较简单了。如下图一样，就是中间一条长链，两端可能会有度数为 3 的点，当然也可能没有度数为3的点。</p>
-<p><img src="/images/5c83806ef22f2.png" alt="Tree-Tac-Toe 1" title="Tree-Tac-Toe 1"></p>
-<p>然后考虑这种情况下白色怎样才能获胜，可以发现只有两端都有度数为 3 的端点且链长为偶数时，白色才能获胜。然后其余的所有情况都会是平局。</p>
-<p>如果一开始树上有些点已经是白色了，考虑如何处理这种情况。比较巧妙的方式就是将一个白点按照下图的方式，拆成 4 个无色的点，可以发现这两种是完全等价的。然后就按照开始所讲的情况进行讨论即可。</p>
-<p><img src="/images/5c8383e9b7097.png" alt="Tree-Tac-Toe 2" title="Tree-Tac-Toe 2"></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/G.cpp" title="代码链接">代码链接</a></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -640,7 +635,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -680,7 +675,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

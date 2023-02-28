@@ -155,6 +155,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/28/2018/07/codeforces-round-498/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/28/2018/07/codeforces-round-498/index/" class="post-title-link" itemprop="url">Codeforces Round #498</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-07-28 08:00:00" itemprop="dateCreated datePublished" datetime="2018-07-28T08:00:00+08:00">2018-07-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>7月28日 Codeforces Round #498 题目链接：<a target="_blank" rel="noopener" href="http://codeforces.com/contest/1006">http://codeforces.com/contest/1006</a></p>
+<h3 id="A-Adjacent-Replacements-amp-B-Polycarp’s-Practice"><a href="#A-Adjacent-Replacements-amp-B-Polycarp’s-Practice" class="headerlink" title="A - Adjacent Replacements &amp; B - Polycarp’s Practice"></a>A - Adjacent Replacements &amp; B - Polycarp’s Practice</h3><p>比较水呢。。不说</p>
+<h3 id="C-Three-Parts-of-the-Array"><a href="#C-Three-Parts-of-the-Array" class="headerlink" title="C- Three Parts of the Array"></a>C- Three Parts of the Array</h3><p><strong>思路：</strong> 也很水呢。。。就是一个双指针，记录两边的和就好了。其余的看代码。。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, l, r;</span><br><span class="line">LL lsum, rsum, a[<span class="number">1000005</span>], ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[i]);</span><br><span class="line">    l=<span class="number">1</span>, r=n;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(lsum==rsum) ans=lsum;</span><br><span class="line">        <span class="keyword">if</span>(lsum&lt;=rsum) lsum+=a[l], l++;</span><br><span class="line">        <span class="keyword">else</span> rsum+=a[r], r--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(lsum==rsum) ans=lsum;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="D-Two-Strings-Swaps"><a href="#D-Two-Strings-Swaps" class="headerlink" title="D - Two Strings Swaps"></a>D - Two Strings Swaps</h3><p><strong>思路：</strong> 毒瘤，卡了超级久。。。首先思路很简单，因为$a_i$, $a_{n+1-i}$, $b_i$, $b_{n+1-i}$直间能够任意交换，所以我们可以把这4个元素看成一块，计算出要改几个字符。</p>
+<p>关于答案的的计算方法很毒瘤，就是分类讨论！！有很多情况，也有很多细节，在讨论过程中思路一定要清晰，千万不要漏情况了。。我就漏了QWQ</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, ans;</span><br><span class="line"><span class="type">char</span> a[<span class="number">100005</span>], b[<span class="number">100005</span>];</span><br><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, a+<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, b+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=(n+<span class="number">1</span>)/<span class="number">2</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i+i==n+<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]!=b[i]) ans++;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mp.<span class="built_in">clear</span>();</span><br><span class="line">        mp[a[i]]++, mp[a[n+<span class="number">1</span>-i]]++;</span><br><span class="line">        mp[b[i]]++, mp[b[n+<span class="number">1</span>-i]]++;</span><br><span class="line">        <span class="keyword">if</span>(mp.<span class="built_in">size</span>()==<span class="number">2</span> &amp;&amp; mp[a[i]]!=<span class="number">2</span>) ans++;</span><br><span class="line">        <span class="keyword">if</span>(mp.<span class="built_in">size</span>()==<span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i]==a[n+<span class="number">1</span>-i]) ans+=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">else</span> ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(mp.<span class="built_in">size</span>()==<span class="number">4</span>) ans+=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="E-Military-Problem"><a href="#E-Military-Problem" class="headerlink" title="E - Military Problem"></a>E - Military Problem</h3><p><strong>思路：</strong> 首先一棵子树在DFS序上是连续的，我们可以利用这个性质，然后这道题就是水题了。我们只要一遍DFS处理处子树大小和整棵树的DFS序，如果$k$大于了$x$的子树大小，那么答案就是-1，否则就是DFS序在$x$后$k-1$个对应的节点。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 200005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, q, cnt, id, siz[MAXN],ver[MAXN], dfn[MAXN], head[MAXN];</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; g[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    siz[x]=<span class="number">1</span>;</span><br><span class="line">    dfn[x]=++id; ver[id]=x;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;g[x].<span class="built_in">size</span>(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> to=g[x][i];</span><br><span class="line">        <span class="keyword">if</span>(to==fa) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(to, x);</span><br><span class="line">        siz[x]+=siz[to];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;q);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> temp;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;temp);</span><br><span class="line">        g[i].<span class="built_in">push_back</span>(temp);</span><br><span class="line">        g[temp].<span class="built_in">push_back</span>(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=q; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, k;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;x, &amp;k);</span><br><span class="line">        <span class="keyword">if</span>(k&gt;siz[x]) <span class="built_in">printf</span>(<span class="string">&quot;-1\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ver[dfn[x]+k<span class="number">-1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="F-Xor-Paths"><a href="#F-Xor-Paths" class="headerlink" title="F - Xor-Paths"></a>F - Xor-Paths</h3><p><strong>思路：</strong> 看范围就知道是双向爆搜。。。然后就直接码就好了，然后就是中间相交处理答案时有一些细节要注意。中间的那一条是计算过两次的，所以在更新$cnt$数组是还要异或一下那个数字。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line">LL k, ans, a[<span class="number">35</span>][<span class="number">35</span>];</span><br><span class="line">map&lt;LL, LL&gt; cnt[<span class="number">35</span>][<span class="number">35</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs1</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, LL num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(x+y==(n+m)/<span class="number">2</span>+<span class="number">1</span>) &#123;cnt[x][y][num^a[x][y]]++; <span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;n) <span class="built_in">dfs1</span>(x+<span class="number">1</span>, y, num^a[x+<span class="number">1</span>][y]);</span><br><span class="line">    <span class="keyword">if</span>(y&lt;m) <span class="built_in">dfs1</span>(x, y+<span class="number">1</span>, num^a[x][y+<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs2</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, LL num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(x+y==(n+m)/<span class="number">2</span>+<span class="number">1</span>) &#123;ans+=cnt[x][y][num^k]; <span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">1</span>) <span class="built_in">dfs2</span>(x<span class="number">-1</span>, y, num^a[x<span class="number">-1</span>][y]);</span><br><span class="line">    <span class="keyword">if</span>(y&gt;<span class="number">1</span>) <span class="built_in">dfs2</span>(x, y<span class="number">-1</span>, num^a[x][y<span class="number">-1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%lld&quot;</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=m; j++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[i][j]);</span><br><span class="line">    <span class="built_in">dfs1</span>(<span class="number">1</span>, <span class="number">1</span>, a[<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">    <span class="built_in">dfs2</span>(n, m, a[n][m]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/26/2018/07/educational-codeforces-round-47-%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -480,87 +568,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/23/2018/07/poj2891-strange-way-to-express-integers-%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/23/2018/07/poj2891-strange-way-to-express-integers-%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/index/" class="post-title-link" itemprop="url">POJ2891 Strange Way to Express Integers [扩展中国剩余定理]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-07-23 08:00:00" itemprop="dateCreated datePublished" datetime="2018-07-23T08:00:00+08:00">2018-07-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>给你一组形如下图的方程组： <a target="_blank" rel="noopener" href="https://i.loli.net/2018/07/24/5b570297c8987.png" title="EXCRT"><img src="images/5b570297c8987.png" alt="EXCRT" title="EXCRT"></a></p>
-<p>你需要解出最小的$x$。</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>有多组数据，每组数据以$n$开始，表示有$n$个方程组 接下来n行分别表示$a_1$，$m_i$</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>输出最小的$x$</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这就是扩展中国剩余定理的模板题了。如果$m_i$都两两互质，那么就是直接中国剩余定理就好了。但这里$m_i$是随机的，所以要用到一些其他的处理手法。</p>
-<p>这里我们可以先用扩展欧几里得求出第一组方程：$x+y*m_1=a_1$。这样，我们得到了一组通解$x=x_0+t*m_1$。我们利用这组通解带入第二组方程，得到：<script type="math/tex">x\_0+t\*m\_1 \\equiv a\_2 (mod m\_2)</script>变形为：<script type="math/tex">t\*m\_1 \\equiv a\_2-x\_0 (mod m\_2)</script>于是我们得到了另一个线性同余方程，并且可以解出$t$的通解。利用这个通解又可以代入下一个方程。于是我们可以这样推出整个方程的解。</p>
-<p>用数学归纳法再严谨地说一遍做法：设已经求出了$k$组方程，$ m_0= \\prod_{i=1}^{k} m_i$，前$k$组方程的通解为$x=x_0+t*m_0$。那么我们可以将通解代入第$k+1$组方程中，得到<script type="math/tex">t\*m\_0 \\equiv a\_{k+1}-x\_0 (mod m\_{k+1})</script> 再利用扩展欧几里得解出新方程的通解。于是，我们可以利用$n$次扩展欧几里得解出计算出答案。</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">LL n, a[<span class="number">10000005</span>], r[<span class="number">10000005</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">exgcd</span><span class="params">(LL a, LL b, LL &amp;x, LL &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=<span class="number">1</span>; y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    LL d=<span class="built_in">exgcd</span>(b, a%b, x, y);</span><br><span class="line">    LL z=x; x=y; y=z-y*(a/b);</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL x=<span class="number">0</span>, y=<span class="number">0</span>, x0=<span class="number">0</span>, m0=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        LL d=<span class="built_in">exgcd</span>(m0, a[i], x, y);</span><br><span class="line">        <span class="keyword">if</span>((r[i]-x0)%d) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        x=(r[i]-x0)/d*x%a[i];</span><br><span class="line">        x0=(x0+x*m0)%(m0/d*a[i]);</span><br><span class="line">        m0=m0/d*a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (x0+m0)%m0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;n)!=EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>, &amp;a[i], &amp;r[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="built_in">solve</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -630,7 +637,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -670,7 +677,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

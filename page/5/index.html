@@ -155,6 +155,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CrazyDave">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dave's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/15/2019/02/codeforces-global-round-1/index/" class="post-title-link" itemprop="url">Codeforces Global Round 1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-15 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-15T08:00:00+08:00">2019-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 11:38:18" itemprop="dateModified" datetime="2022-09-07T11:38:18+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2 月 14 日 Codeforces Global Round 1 题目链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1110">https://codeforces.com/contest/1110</a></p>
+<h3 id="F-Nearest-Leaf"><a href="#F-Nearest-Leaf" class="headerlink" title="F - Nearest Leaf"></a>F - Nearest Leaf</h3><p><strong>思路：</strong></p>
+<p>考虑用线段树维护当前点到叶子节点的距离，那么对于询问就是查询区间最小值。我们从根节点开始，按照 dfs 序依次维护在每一个点上的线段树。当从点 $x$ 走到点 $son_x$ 且边权为 $dis$ 时，$son_x$ 子树内点的距离减少了 $dis$，其余点点距离增加了 $dis$，由于一棵子树的 dfs 序是连续的，因此就对应于线段树的区间修改。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/F.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="G-Tree-Tac-Toe"><a href="#G-Tree-Tac-Toe" class="headerlink" title="G - Tree-Tac-Toe"></a>G - Tree-Tac-Toe</h3><p><strong>思路：</strong></p>
+<p>首先发现黑色是不可能赢的。为了简化情况，我们先假设所有点都是没有涂色的，然后考虑有哪些情况白色必定赢。比较简单的一种就是存在度数大于 4 的节点，然后发现如果一个点度数为 3 且有两个相邻的非叶节点时，白色也同样必胜。排除掉这两种情况后，剩下的树的形态就比较简单了。如下图一样，就是中间一条长链，两端可能会有度数为 3 的点，当然也可能没有度数为3的点。</p>
+<p><img src="/images/5c83806ef22f2.png" alt="Tree-Tac-Toe 1" title="Tree-Tac-Toe 1"></p>
+<p>然后考虑这种情况下白色怎样才能获胜，可以发现只有两端都有度数为 3 的端点且链长为偶数时，白色才能获胜。然后其余的所有情况都会是平局。</p>
+<p>如果一开始树上有些点已经是白色了，考虑如何处理这种情况。比较巧妙的方式就是将一个白点按照下图的方式，拆成 4 个无色的点，可以发现这两种是完全等价的。然后就按照开始所讲的情况进行讨论即可。</p>
+<p><img src="/images/5c8383e9b7097.png" alt="Tree-Tac-Toe 2" title="Tree-Tac-Toe 2"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/G.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/09/2019/02/bzoj1145-%E5%9B%BE%E8%85%BE-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -478,93 +562,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/24/2019/01/%E7%82%B9%E5%88%86%E6%B2%BB%E5%B0%8F%E7%BB%93/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CrazyDave">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dave's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/24/2019/01/%E7%82%B9%E5%88%86%E6%B2%BB%E5%B0%8F%E7%BB%93/index/" class="post-title-link" itemprop="url">点分治小结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-24 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-24T08:00:00+08:00">2019-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习小结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、点分治"><a href="#一、点分治" class="headerlink" title="一、点分治"></a>一、点分治</h3><p><strong>1.BZOJ2599 Race</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ2599%20Race.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>2.BZOJ1468 Tree</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ1468%20Tree.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>3.BZOJ2152 聪聪可可</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ2152%20%E8%81%AA%E8%81%AA%E5%8F%AF%E5%8F%AF.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>4.BZOJ5186 Cow at Large</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ5186%20Cow%20at%20Large.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="二、点分树"><a href="#二、点分树" class="headerlink" title="二、点分树"></a>二、点分树</h3><p><strong>1.BZOJ4012 开店</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ4012%20%E5%BC%80%E5%BA%97.cpp" title="代码链接">代码链接</a></strong></p>
-<p>2.BZOJ3924 幻想乡战略游戏 （坑）</p>
-<h3 id="三、点分治序"><a href="#三、点分治序" class="headerlink" title="三、点分治序"></a>三、点分治序</h3><p><strong>1.BZOJ3784 树上的路径</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ3784%20%E6%A0%91%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="四、动态点分治"><a href="#四、动态点分治" class="headerlink" title="四、动态点分治"></a>四、动态点分治</h3><p>（坑）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -634,7 +631,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">126</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -674,7 +671,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
