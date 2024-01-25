@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -151,6 +151,93 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/" class="post-title-link" itemprop="url">斯特林数小结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-03-26 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-26T08:00:00+08:00">2019-03-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 16:26:59" itemprop="dateModified" datetime="2022-09-07T16:26:59+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习小结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="第一类斯特林数"><a href="#第一类斯特林数" class="headerlink" title="第一类斯特林数"></a>第一类斯特林数</h3><p><strong>定义：</strong></p>
+<p>表示 $n$ 个不同元素形成 $m$ 个圆排列的方案数，记为 $\begin{bmatrix} n \\ m \end{bmatrix}$。</p>
+<p><strong>性质：</strong></p>
+<p>首先考虑这个怎么求，可以枚举第 $n$ 个元素，它可以自己形成一个新的环，方案数为 $\begin{bmatrix} n-1 \\ m-1 \end{bmatrix}$；它也可以放在已有的 $n-1$ 个元素中一个的后面，方案数为 $(n-1)\begin{bmatrix} n-1 \\ m \end{bmatrix}$，从而得出递推式:</p>
+<script type="math/tex; mode=display">\begin{bmatrix} n \\ m \end{bmatrix} = \begin{bmatrix} n-1 \\ m-1 \end{bmatrix} + (n-1)\begin{bmatrix} n-1 \\ m \end{bmatrix}</script><p>我们设 $f_n(x)$ 为 $\begin{bmatrix} n \\ x \end{bmatrix}$ 的生成函数。根据上面式子可以写出它的生成函数</p>
+<script type="math/tex; mode=display">f_n(x)=\prod_{i=0}^{n-1} (x+i)</script><p>而这个可以直接套用分治 FFT 在 $O ( n \log^2 n )$ 内求出，但我们还可以在它的基础上优化。考虑你目前分治到区间 $(l,r)$，在这之前已经计算出了区间 $(l, mid)$ 的卷积，这个时候应该要递归的计算 $(mid+1, r)$ 的卷积，但其实发现如果你设 $(l, mid)$ 的卷积为 $g(x)$，那么 $(mid+1,r)$ 的卷积就是 $g(x+mid)$。将式子如下化简：</p>
+<script type="math/tex; mode=display">\begin{aligned} g(x+mid)=&\sum_{i=0}^{n} a_i(x+mid)^i\\ =&\sum_{i=0}^{n} a_i\sum_{j=0}^i {i\choose j}mid^{i-j}x^j\\ =&\sum_{i=0}^{n} x^i \sum_{j=i}^{n}{i\choose j}mid^{j-i}a_j\\ =&\sum_{i=0}^{n} \frac{x^i}{i!} \sum_{j=i}^{n}\frac{mid^{j-i}}{(j-i)!}a_j\cdot j! \end{aligned}</script><p>你发现后面的那一块有点像卷积的形式，将其中一项反转后就可以卷起来了，这样我们做到 $O(n \log n)$ 的复杂度</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/26/2019/03/%E6%96%AF%E7%89%B9%E6%9E%97%E6%95%B0%E5%B0%8F%E7%BB%93/index/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -484,88 +571,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/20/2019/02/educational-codeforces-round-60/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/20/2019/02/educational-codeforces-round-60/index/" class="post-title-link" itemprop="url">Educational Codeforces Round 60</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-02-20 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-20T08:00:00+08:00">2019-02-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>2 月 19 日 Educational Codeforces Round 60 比赛链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1117">https://codeforces.com/contest/1117</a></p>
-<h3 id="F-Crisp-String"><a href="#F-Crisp-String" class="headerlink" title="F - Crisp String"></a>F - Crisp String</h3><p><strong>思路：</strong></p>
-<p>首先我们考虑删去哪些字符集是合法的。有一种很直观的做法就是枚举字符集，然后再用 $O(n)$ 判断是否合法，但这复杂度显然是不符合要求的。考虑统计非法的情况，可以对于每一个字母枚举与它产生矛盾的字符对，那么让这两个字母相邻的所有字符集都是非法的。这个的可以 $O(nq^2)$ 预处理，$(2^qq^2)$ 统计得到。</p>
-<p>知道了那些字符集合法后，我们就需要计算出经过题目所给操作，能得到的答案最小的字符集。这个对合法字符集进行简单的 DP 即可得到。</p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Educational%20Codeforces%20Round%2060/F.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="G-Recursive-Queries"><a href="#G-Recursive-Queries" class="headerlink" title="G - Recursive Queries"></a>G - Recursive Queries</h3><p><strong>思路：</strong></p>
-<p>每一个询问其实要求的就是 $\\sum_{i=l}^r(max(l_i, l)+min(r_i, r))$，$l,r$ 就是该询问的左右端点，$l_i,r_i$ 表示一个过点 $i$ 的一个极长区间，该区间的所有元素都小于等于 $p_i$。</p>
-<p>发现这个东西不好维护，但我们可以换一个角度，考虑每个点对询问的贡献。那么对于询问 $l,r$，答案应该就是 $l \\sim r$ 中每一个点对 $r$ 的贡献减去对 $l$ 的贡献之和。我们考虑点 $i$ 对于位置 $pos$ 的贡献，如果$pos &lt; l_i$ 贡献为 $l_i$；如果$l_i &lt; pos &lt; r_i$ 贡献为 $pos$；如果$r_i &lt; pos$ 贡献为 $r_i$。于是我们用线段树维护这个的和就可以在 $O(n \\log n)$ 内得出答案。</p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Educational%20Codeforces%20Round%2060/G.cpp" title="代码链接">代码链接</a></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -635,7 +640,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -675,7 +680,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

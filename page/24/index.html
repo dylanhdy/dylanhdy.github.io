@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -151,6 +151,86 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/26/2018/05/poj2248-addition-chains-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/26/2018/05/poj2248-addition-chains-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/index/" class="post-title-link" itemprop="url">POJ2248 Addition Chains [迭代加深]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-05-26 08:00:00" itemprop="dateCreated datePublished" datetime="2018-05-26T08:00:00+08:00">2018-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:19" itemprop="dateModified" datetime="2022-06-05T22:30:19+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>满足如下条件的序列X被称为“Addition Chains”： 1.$X[1]=1$ 2.$X[m]=n$ 3.$X[1]&lt;X[2]&lt;…&lt;X[m-1]&lt;X[m]$ 4.对于每个k(2&lt;=k&lt;=m)都存在两个整数i,j（i,j可以相等），使得$X[k]=X[i]+X[j]$ 给定一个整数n,找出符合条件长度最短的”Addition Chains”（有SPJ，输出符合要求即可)</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>有多组数据，每组数据一个数n（n&lt;=100)。以n=0结束输入</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>每组数据一行，输出长度最短的“addition chains”。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>迭代加深搜索应该不难想到，这里就讲一下剪枝。</p>
+<p>可以开一个vis数组记录某个数值有没有访问过，这样可以避免重复搜索某个数组。</p>
+<p>还有另一个剪枝（但是我没有用），枚举i,j时可以从大到小枚举，这样可以优化搜索顺序，使序列中是数尽快逼近n。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 105</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, num[MAXN];</span><br><span class="line"><span class="type">bool</span> vis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x==m)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(num[x]==n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=x; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=i; j&lt;=x; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> temp=num[i]+num[j];</span><br><span class="line">            <span class="keyword">if</span>(temp</span><br><span class="line"><span class="type">int</span> <span class="built_in">main</span>()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(m=<span class="number">1</span>; ; m++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">memset</span>(num, <span class="number">0</span>, <span class="built_in">sizeof</span>(num));</span><br><span class="line">            <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">            num[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">dfs</span>(<span class="number">1</span>)) <span class="keyword">break</span>;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, num[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;   </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -476,92 +556,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/05/20/2018/05/poj1639-picnic-planning-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/20/2018/05/poj1639-picnic-planning-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/index/" class="post-title-link" itemprop="url">POJ1639 Picnic Planning [最小生成树]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-05-20 08:00:00" itemprop="dateCreated datePublished" datetime="2018-05-20T08:00:00+08:00">2018-05-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:18" itemprop="dateModified" datetime="2022-06-05T22:30:18+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给你一张含有n个点m条边的无向图，求出一个最小生成树，满足1号节点的度数不超过给定整数s。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行给出一个整数m,表示有m条边。 接下来m行，每一行有两个字符串表示节点以及它们之间的距离。 最后一行给出整数s。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出一行：Total miles driven: xxx xxx 表示最小生成树的边权之和。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>其实这个东西说的高大上一点是度限制生成树,但是本身并不难理解。</p>
-<p>首先是用常规的Kruskal建一个最小生成树，然后把这棵生成树去掉1号节点。统计有多少个联通块，联通块个数记为t，然后从1号点和每一个联通块连一条最短的边。这样一来我们就得出了一个一号节点度数为t的最小生成树。</p>
-<p>如果t大于s，则不存在题目要求的树（当然本题不包含这种情况）。 如果t等于s，则不需要其他操作，直接输出边权之和就好了。 如果t小于s，则我们需要调整这棵树，使它的边权之和更小。</p>
-<p>调整这棵树，我们可以改动s-t条边（或者更少）。考虑从1号节点出发的每一条边，设它的到达节点x，边权为z。如果该边不在生成树中，则我们可以找出从1号点到x号点树上路径的最长边，设该边边权为y（这个我们可以通过一次dfs预处理出来)。那么我们可以找出一个节点x，使它的z-y最大。z-y就是这次调整能够减少的最大边权（把最长边去掉，加上从1出发到达x的这条边)。重复这次操作s-t次，就可以得到题目要求的最小生成树。</p>
-<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ol>
-<li>如果上文中的z-y为负数，则以后不进行任何操作，输出答案即可</li>
-<li>树和图要分开来存，进行调整时不要搞混了</li>
-<li>反正代码很难打QWQ，思路一定要清晰</li>
-</ol>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 35</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n=<span class="number">1</span>, m, t, s, z, tree[MAXN][MAXN], graph[MAXN][MAXN], ans;</span><br><span class="line"><span class="type">int</span> f[MAXN], min_dis[MAXN], min_to[MAXN];</span><br><span class="line">string x, y;</span><br><span class="line">map &lt;string, <span class="type">int</span>&gt; mmp;</span><br><span class="line">pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; edge[MAXN*MAXN], maxe[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CMP</span><span class="params">(pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; x, pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> graph[x.first][x.second]&lt;graph[y.first][y.second];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    mmp[<span class="string">&quot;Park&quot;</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">memset</span>(graph, <span class="number">0x3f</span>, <span class="built_in">sizeof</span>(graph));</span><br><span class="line">    <span class="built_in">memset</span>(tree, <span class="number">-1</span>, <span class="built_in">sizeof</span>(tree));</span><br><span class="line">    <span class="built_in">memset</span>(min_dis, <span class="number">0x3f</span>, <span class="built_in">sizeof</span>(min_dis));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;MAXN; i++) f[i]=i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f[x]!=x) f[x]=<span class="built_in">find</span>(f[x]);</span><br><span class="line">    <span class="keyword">return</span> f[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) f[i]=i;</span><br><span class="line">    <span class="built_in">sort</span>(edge+<span class="number">1</span>, edge+m+<span class="number">1</span>, CMP);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x=edge[i].first, y=edge[i].second;</span><br><span class="line">        <span class="type">int</span> fx=<span class="built_in">find</span>(x), fy=<span class="built_in">find</span>(y);</span><br><span class="line">        <span class="keyword">if</span>(fx==fy || x==<span class="number">1</span> || y==<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        f[fx]=fy;</span><br><span class="line">        tree[y][x]=tree[x][y]=graph[x][y];</span><br><span class="line">        ans+=graph[x][y];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> fa)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i==fa || tree[x][i]==<span class="number">-1</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> u=maxe[x].first, v=maxe[x].second;</span><br><span class="line">        <span class="keyword">if</span>(tree[u][v]&gt;tree[x][i]) maxe[i]=<span class="built_in">make_pair</span>(u, v);</span><br><span class="line">        <span class="keyword">else</span> maxe[i]=<span class="built_in">make_pair</span>(x, i);</span><br><span class="line">        <span class="built_in">dfs</span>(i, x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">        <span class="keyword">if</span>(mmp[x]==<span class="number">0</span>) mmp[x]= ++n;</span><br><span class="line">        <span class="keyword">if</span>(mmp[y]==<span class="number">0</span>) mmp[y]= ++n;</span><br><span class="line">        graph[mmp[x]][mmp[y]]=z;</span><br><span class="line">        graph[mmp[y]][mmp[x]]=z;</span><br><span class="line">        edge[i]=<span class="built_in">make_pair</span>(mmp[x], mmp[y]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;s);</span><br><span class="line">    <span class="built_in">Kruskal</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x=<span class="built_in">find</span>(i);</span><br><span class="line">        <span class="keyword">if</span>(min_dis[x]&gt;graph[<span class="number">1</span>][i])</span><br><span class="line">        &#123;</span><br><span class="line">            min_dis[x]=graph[<span class="number">1</span>][i];</span><br><span class="line">            min_to[x]=i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(min_dis[i]==INF) <span class="keyword">continue</span>;</span><br><span class="line">        tree[<span class="number">1</span>][min_to[i]]=min_dis[i];</span><br><span class="line">        tree[min_to[i]][<span class="number">1</span>]=min_dis[i];</span><br><span class="line">        ans+=min_dis[i]; t++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=t+<span class="number">1</span>; i&lt;=s; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> minn=INF, to, u, v;</span><br><span class="line">        <span class="built_in">memset</span>(maxe, <span class="number">0</span>, <span class="built_in">sizeof</span>(maxe));</span><br><span class="line">        <span class="built_in">dfs</span>(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">2</span>; j&lt;=n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> x=maxe[j].first, y=maxe[j].second;</span><br><span class="line">            <span class="keyword">if</span>(minn&lt;graph[<span class="number">1</span>][j]-tree[x][y]) <span class="keyword">continue</span>;</span><br><span class="line">            minn=graph[<span class="number">1</span>][j]-tree[x][y];</span><br><span class="line">            to=j; u=x, v=y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(minn&gt;=<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        tree[<span class="number">1</span>][to]=tree[to][<span class="number">1</span>]=graph[<span class="number">1</span>][to];</span><br><span class="line">        tree[u][v]=tree[v][u]=<span class="number">-1</span>;</span><br><span class="line">        ans+=minn;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Total miles driven: %d\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -631,7 +625,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -671,7 +665,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

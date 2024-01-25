@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.2.0">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -151,6 +151,88 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/20/2019/02/educational-codeforces-round-60/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/20/2019/02/educational-codeforces-round-60/index/" class="post-title-link" itemprop="url">Educational Codeforces Round 60</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-20 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-20T08:00:00+08:00">2019-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2 月 19 日 Educational Codeforces Round 60 比赛链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1117">https://codeforces.com/contest/1117</a></p>
+<h3 id="F-Crisp-String"><a href="#F-Crisp-String" class="headerlink" title="F - Crisp String"></a>F - Crisp String</h3><p><strong>思路：</strong></p>
+<p>首先我们考虑删去哪些字符集是合法的。有一种很直观的做法就是枚举字符集，然后再用 $O(n)$ 判断是否合法，但这复杂度显然是不符合要求的。考虑统计非法的情况，可以对于每一个字母枚举与它产生矛盾的字符对，那么让这两个字母相邻的所有字符集都是非法的。这个的可以 $O(nq^2)$ 预处理，$(2^qq^2)$ 统计得到。</p>
+<p>知道了那些字符集合法后，我们就需要计算出经过题目所给操作，能得到的答案最小的字符集。这个对合法字符集进行简单的 DP 即可得到。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Educational%20Codeforces%20Round%2060/F.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="G-Recursive-Queries"><a href="#G-Recursive-Queries" class="headerlink" title="G - Recursive Queries"></a>G - Recursive Queries</h3><p><strong>思路：</strong></p>
+<p>每一个询问其实要求的就是 $\\sum_{i=l}^r(max(l_i, l)+min(r_i, r))$，$l,r$ 就是该询问的左右端点，$l_i,r_i$ 表示一个过点 $i$ 的一个极长区间，该区间的所有元素都小于等于 $p_i$。</p>
+<p>发现这个东西不好维护，但我们可以换一个角度，考虑每个点对询问的贡献。那么对于询问 $l,r$，答案应该就是 $l \\sim r$ 中每一个点对 $r$ 的贡献减去对 $l$ 的贡献之和。我们考虑点 $i$ 对于位置 $pos$ 的贡献，如果$pos &lt; l_i$ 贡献为 $l_i$；如果$l_i &lt; pos &lt; r_i$ 贡献为 $pos$；如果$r_i &lt; pos$ 贡献为 $r_i$。于是我们用线段树维护这个的和就可以在 $O(n \\log n)$ 内得出答案。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Educational%20Codeforces%20Round%2060/G.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -483,85 +565,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/25/2019/01/usaco18open-train-tracking-%E5%88%86%E5%9D%97%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/25/2019/01/usaco18open-train-tracking-%E5%88%86%E5%9D%97%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/index/" class="post-title-link" itemprop="url">USACO18OPEN Train Tracking [分块+单调队列]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-25 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-25T08:00:00+08:00">2019-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>简单来说就是限制空间，给你一个大小为 $5500$ 的数组，除该数组外不能调用其他储存。</p>
-<p>然后有一辆长度为 $n$ 的火车，第 $i$ 节车厢上有编号 $c_i$，你需要按顺序输出每 $k$ 节车厢中的最小编号。</p>
-<h3 id="输入-amp-输出"><a href="#输入-amp-输出" class="headerlink" title="输入 &amp; 输出"></a>输入 &amp; 输出</h3><p>因为交互题，内容较多，详细内容见链接 <a target="_blank" rel="noopener" href="http://usaco.org/index.php?page=viewproblem2&amp;cpid=841" title="Train Tracking 题面">Train Tracking 题面</a>。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>我们设 $f_i$ 为 从 $i-k+1$ 到 $i$ 中最小值的下标，对于 $f$ 不难想到用单调队列去优化，但是显然是不能将所有元素加入队列中，这时我们就可以利用分块。我们设 $siz$ 为块的大小，第一遍扫过去时只计算 $f_{x*siz+k}$，这样就只需要把每一个块中的最小值放入队列中，并记录下 $f_{x*siz+k}$ 给第二遍的时候用。</p>
-<p>第二遍时我们就需要根据 $f_{x*siz+k}$ 计算出所有的 $f$。我首先可以先忽略掉下标小于 $f_0$ 的元素，然后用一个大小同为 $siz$ 的单调队列维护最前的一段，后面的只需要记录下最小值就行了。如果当前扫到的位置是所在块的最小值，那么就可以先输出这一块之前的答案，并建立新的单调队列。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;grader.h&quot;</span></span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include &lt;cstdio&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int n, k, curcar, curpas, sub[5505], a[1000006];</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int get(int id)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    return sub[id];</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void set(int id, int val)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    sub[id]=val;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">void shoutMinimum(int x)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    printf(&quot;%d\n&quot;, x);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int getTrainLength()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    return n;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int getWindowLength()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    return k;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int getCurrentCarIndex()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    return curcar;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int getCurrentPassIndex()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    return curpas;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">helpBessie</span><span class="params">(<span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> op=<span class="built_in">getCurrentPassIndex</span>();</span><br><span class="line">    <span class="type">int</span> k=<span class="built_in">getWindowLength</span>();</span><br><span class="line">    <span class="type">int</span> n=<span class="built_in">getTrainLength</span>();</span><br><span class="line">    <span class="type">int</span> i=<span class="built_in">getCurrentCarIndex</span>();</span><br><span class="line">    <span class="type">int</span> siz=<span class="number">1000</span>, QWQ=<span class="number">4400</span>, INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line">    <span class="keyword">if</span>(!op)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>) <span class="built_in">set</span>(<span class="number">0</span>, <span class="number">0</span>), <span class="built_in">set</span>(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">        <span class="type">int</span> head=<span class="built_in">get</span>(<span class="number">1</span>), tail=<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(i%siz==<span class="number">0</span> || (i&gt;=k &amp;&amp; (i-k)%siz==<span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(<span class="number">2</span>*head+<span class="number">3</span>)&gt;=val) head--;</span><br><span class="line">            head++;</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">2</span>, i);</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">3</span>, val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> headval=<span class="built_in">get</span>(head*<span class="number">2</span>+<span class="number">3</span>);</span><br><span class="line">            <span class="keyword">if</span>(val&lt;=headval)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(<span class="number">2</span>*head+<span class="number">3</span>)&gt;=val) head--;</span><br><span class="line">                head++;</span><br><span class="line">                <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">2</span>, i);</span><br><span class="line">                <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">3</span>, val);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=k<span class="number">-1</span> &amp;&amp; (i+<span class="number">1</span>-k)%siz==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(tail*<span class="number">2</span>+<span class="number">2</span>)&lt;=i-k) tail++;</span><br><span class="line">            <span class="built_in">set</span>(QWQ+(i+<span class="number">1</span>-k)/siz, <span class="built_in">get</span>(tail*<span class="number">2</span>+<span class="number">2</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">set</span>(<span class="number">0</span>, tail), <span class="built_in">set</span>(<span class="number">1</span>, head);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="built_in">get</span>(QWQ)) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="built_in">get</span>(QWQ))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">0</span>, <span class="number">0</span>), <span class="built_in">set</span>(<span class="number">1</span>, <span class="number">-1</span>);</span><br><span class="line">            <span class="built_in">set</span>(QWQ<span class="number">-1</span>, <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">set</span>(QWQ<span class="number">-2</span>, INF);</span><br><span class="line">            <span class="built_in">set</span>(QWQ<span class="number">-3</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> block=<span class="built_in">get</span>(QWQ<span class="number">-1</span>), l=<span class="built_in">get</span>(QWQ<span class="number">-3</span>);</span><br><span class="line">        <span class="type">int</span> head=<span class="built_in">get</span>(<span class="number">1</span>), tail=<span class="built_in">get</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span>(i-<span class="built_in">get</span>(QWQ+block<span class="number">-1</span>)&lt;=siz)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(<span class="number">2</span>*head+<span class="number">3</span>)&gt;=val) head--;</span><br><span class="line">            head++;</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">2</span>, i);</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">3</span>, val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> minnum=<span class="built_in">get</span>(QWQ<span class="number">-2</span>);</span><br><span class="line">            <span class="keyword">if</span>(val&lt;minnum) <span class="built_in">set</span>(QWQ<span class="number">-2</span>, val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(l+k<span class="number">-1</span>==i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(tail*<span class="number">2</span>+<span class="number">2</span>)&lt;l) tail++;</span><br><span class="line">            <span class="type">int</span> a=<span class="built_in">get</span>(QWQ<span class="number">-2</span>), b=<span class="built_in">get</span>(<span class="number">2</span>*tail+<span class="number">3</span>);</span><br><span class="line">            <span class="built_in">shoutMinimum</span>(a&lt;b?a:b);</span><br><span class="line">            l++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(siz*block+k<span class="number">-1</span>&lt;n &amp;&amp; <span class="built_in">get</span>(QWQ+block)==i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;=siz*block)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">while</span>(head&gt;=tail &amp;&amp; <span class="built_in">get</span>(tail*<span class="number">2</span>+<span class="number">2</span>)&lt;l) tail++;</span><br><span class="line">                <span class="type">int</span> a=<span class="built_in">get</span>(QWQ<span class="number">-2</span>), b=<span class="built_in">get</span>(<span class="number">2</span>*tail+<span class="number">3</span>);</span><br><span class="line">                <span class="built_in">shoutMinimum</span>(a&lt;b?a:b);</span><br><span class="line">                l++;</span><br><span class="line">            &#125;</span><br><span class="line">            block++;</span><br><span class="line">            <span class="built_in">set</span>(QWQ<span class="number">-2</span>, INF);</span><br><span class="line">            head=tail=<span class="number">0</span>;</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">2</span>, i);</span><br><span class="line">            <span class="built_in">set</span>(<span class="number">2</span>*head+<span class="number">3</span>, val);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">set</span>(QWQ<span class="number">-1</span>, block), <span class="built_in">set</span>(QWQ<span class="number">-3</span>, l);</span><br><span class="line">        <span class="built_in">set</span>(<span class="number">0</span>, tail), <span class="built_in">set</span>(<span class="number">1</span>, head);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">int main()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    scanf(&quot;%d%d&quot;, &amp;n, &amp;k);</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;n; ++i)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        scanf(&quot;%d&quot;, &amp;a[i]);</span></span><br><span class="line"><span class="comment">        curcar=i, curpas=0;</span></span><br><span class="line"><span class="comment">        helpBessie(a[i]);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;n; ++i)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        curcar=i, curpas=1;</span></span><br><span class="line"><span class="comment">        helpBessie(a[i]);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -631,7 +634,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -671,7 +674,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
