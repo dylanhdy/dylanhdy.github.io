@@ -155,6 +155,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/07/2018/08/cf559c-gerald-and-giant-chess-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/07/2018/08/cf559c-gerald-and-giant-chess-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/" class="post-title-link" itemprop="url">CF559C Gerald and Giant Chess [计数类DP]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-08-07 08:00:00" itemprop="dateCreated datePublished" datetime="2018-08-07T08:00:00+08:00">2018-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>给你一个$h*w$的网格，其中有$n$个黑色的格子，它们的位置为$(x_i, y_i)$。你从左上角开始，每一步只能向左或者下移动，并且不能经过黑色格子，问你有多少种到达右下角的方案。</p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行给你三个数$h, w, n$（$1&lt;=h, n&lt;=10^5, 1&lt;=n&lt;=200$）</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>输出对$10^9+7$取模的方案数</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>感觉JXOI很喜欢考计数类DP，然而自己菜的一比。。。</p>
+<p>首先我们就是要考虑如何设计一个状态，能够统计DP时的信息，并且能够根据这个状态不重不漏地进行DP（我觉得计数类DP就是这个难，状态转移反而容易一些）。因为黑色格子不多，所以我们的复杂度应该和黑色的格子有关。我们可以先将黑色格子按照横纵坐标排序，然后设$f[i]$为到达$i$个黑色格子且不经过前$i-1$个黑色格子的可能路径数。特别的，设$f[n+1]$的坐标为$(h+1, w+1)$，那么答案就是$f[n+1]$了。</p>
+<p>接下来我们考虑如何计算和转移。我们可以先计算出到达第$i$个黑色格子所有路径，这个的数量为$C_{x_i+y_i-2}^{x_i-1}$，原因是一共要向下或向左走$x_i+y_i-2$步，然后其中要任选$x_i-1$步向左走。然后还要减去经过前面黑色格子的路径数，因此我们可以推出DP方程为:<script type="math/tex">f\[i\]=C\_{x-i+y\_i-2}^{x\_i-1}-\\sum\_{j=0}^{i-1} f\[j\]\*C\_{x\_i+y\_i-x\_j-y\_j}^{x\_i-x\_j}</script> 还要特别注意的是如果$x_j&gt;x_i$或者$y_j&gt;y_i$时，这一项是不用减去的。</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 300005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> p 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> h, w, n;</span><br><span class="line">LL f[MAXN], fac[MAXN], inv[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;<span class="type">int</span> x, y;&#125; a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CMP</span><span class="params">(Node x, Node y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x.x==y.x) <span class="keyword">return</span> x.y&lt;y.y;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> x.x&lt;y.x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">comb</span><span class="params">(LL n, LL m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fac[n]*inv[n-m]%p*inv[m]%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    inv[<span class="number">0</span>]=fac[<span class="number">0</span>]=fac[<span class="number">1</span>]=inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=MAXN<span class="number">-5</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        fac[i]=(fac[i<span class="number">-1</span>]*i)%p;</span><br><span class="line">        inv[i]=inv[p%i]*(p-p/i)%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i&lt;=MAXN<span class="number">-5</span>; i++) inv[i]=(inv[i]*inv[i<span class="number">-1</span>])%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;h, &amp;w, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a[i].x, &amp;a[i].y);</span><br><span class="line">    <span class="built_in">sort</span>(a+<span class="number">1</span>, a+n+<span class="number">1</span>, CMP);</span><br><span class="line">    a[n+<span class="number">1</span>].x=h; a[n+<span class="number">1</span>].y=w;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n+<span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        f[i]=<span class="built_in">comb</span>(a[i].x+a[i].y<span class="number">-2</span>, a[i].x<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;i; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[j].x&gt;a[i].x || a[j].y&gt;a[i].y) <span class="keyword">continue</span>;</span><br><span class="line">            f[i]=(f[i]-f[j]*<span class="built_in">comb</span>(a[i].x+a[i].y-a[j].x-a[j].y, a[i].x-a[j].x))%p;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, (f[n+<span class="number">1</span>]+p)%p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/07/2018/08/codeforces24d-broken-robot-%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9Bdp%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -292,10 +372,10 @@
 <h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行包含一个正整数$n$，表示一共有$n$组数据$（1&lt;=n&lt;= 50000）$ 接下来$n$行，每行表示一个询问。每行三个正整数，分别为$a,b,d$（$1&lt;=d&lt;=a,b&lt;=50000$）</p>
 <h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>对于每组询问，输出一个正整数，表示满足条件的整数对数</p>
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这是一个莫比乌斯反演的模版题，莫比乌斯反演虽然听起来很高级但内容还是比较好理解的。</p>
-<p>首先是莫比乌斯函数$\\mu(n)$，这是一个表示容斥系数的函数。它的定义是这样的：当n有相等的质因子$\\mu(n)=0$；当n没有相等质因子且质因子个数为偶数$\\mu(n)=1$；当$n$没有相等质因子且质因子个数为奇数$\\mu(n)=-1$。</p>
+<p>首先是莫比乌斯函数$\mu(n)$，这是一个表示容斥系数的函数。它的定义是这样的：当n有相等的质因子$\mu(n)=0$；当n没有相等质因子且质因子个数为偶数$\mu(n)=1$；当$n$没有相等质因子且质因子个数为奇数$\mu(n)=-1$。</p>
 <p>然后关于莫比乌斯反演有下面两个形式：我们设存在两个函数$F(n), f(n)$</p>
 <p>形式一：如果满足条件<script type="math/tex">F(n)=\\sum\_{d|n}f(d)</script> 那么就有：<script type="math/tex">f(n)=\\sum\_{d|n}\\mu(d)F(\\lfloor\\frac{n}{d}\\rfloor)</script> 形式二：如果满足条件<script type="math/tex">F(n)=\\sum\_{n|d}f(d)</script> 那么就有：<script type="math/tex">f(n)=\\sum\_{n|d}\\mu(\\frac{d}{n})F(d)</script> 关于证明，我这么菜自然是不懂的。</p>
-<p>对于这道题，设$x=\\lfloor a/d\\rfloor$， $y=\\lfloor b/d \\rfloor$。显然可以将题目转化为求这样一个式子： <script type="math/tex">ans=\\sum\_{i=1}^{x} \\sum\_{j=1}^{y} \[gcd(i, j)==1\]</script> 然后我们设$f(n)$为在范围内$gcd(i,j)=n$的的个数，设$F(n)$为在范围内$n|gcd(i,j)$的个数，因此 <script type="math/tex">F(n)=\\lfloor x/n\\rfloor\*\\lfloor y/n\\rfloor</script> 那么很显然，函数$f(d),F(n)$满足反演的第二种形式且$f(1)$就是我们所求答案。于是利用反演得到： <script type="math/tex">f(1)=\\sum\_{d=1}^{min(x, y)}\\mu(d)F(d)</script></p>
+<p>对于这道题，设$x=\lfloor a/d\rfloor$， $y=\lfloor b/d \rfloor$。显然可以将题目转化为求这样一个式子： <script type="math/tex">ans=\\sum\_{i=1}^{x} \\sum\_{j=1}^{y} \[gcd(i, j)==1\]</script> 然后我们设$f(n)$为在范围内$gcd(i,j)=n$的的个数，设$F(n)$为在范围内$n|gcd(i,j)$的个数，因此 <script type="math/tex">F(n)=\\lfloor x/n\\rfloor\*\\lfloor y/n\\rfloor</script> 那么很显然，函数$f(d),F(n)$满足反演的第二种形式且$f(1)$就是我们所求答案。于是利用反演得到： <script type="math/tex">f(1)=\\sum\_{d=1}^{min(x, y)}\\mu(d)F(d)</script></p>
 <p>于是直接计算就是这样的（实测70分）:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=<span class="built_in">min</span>(a, b); j++) ans+=mob[j]*(a/j)*(b/j);</span><br><span class="line"><span class="comment">//注意这里的mob是未经前缀和处理的</span></span><br></pre></td></tr></table></figure>
 <p>然后可以发现$a/j, b/j$的取值是一段一段的，所以我们利用数论分块的方法进行优化。数论分块可以看这道题:<a target="_blank" rel="noopener" href="https://www.crazydave.top/?p=716" title="BZOJ1257 余数之和">BZOJ1257 余数之和</a>，然后代码是这样的：</p>
@@ -375,14 +455,14 @@
 
       
           <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给你 $n$ 个盒子，第 $i$ 个盒子中有 $a_i$ 枝花，同一盒子内花颜色相同，不同盒子内花颜色不同，你需要从中选出 $s$ 枝花，问你有多少中不同的方案。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行两个数$n$，$s$ ($n \\leq 20, s \\leq 10^{14}$) 第二行 $n$ 个数，第 $i$ 个数表示 $a_i$ ($a_i \\leq 10^{12}$)</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行两个数$n$，$s$ ($n \leq 20, s \leq 10^{14}$) 第二行 $n$ 个数，第 $i$ 个数表示 $a_i$ ($a_i \leq 10^{12}$)</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出方案数对 $1000000007$ 取模的值</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这个就是多重集的组合数，当 $\\forall a_i$ 都 $a_i&gt;s$ 时根据「插板法」可以知道答案是 ${s+n-1} \\choose {n-1}$。但当 $s$ 较大时，会有 $s&gt;a_i$ 的情况出现，这时可以比较自然地想到利用容斥原理计算合法的方案数。我们可以枚举出现这种情况的集合 $S$，然后套上容斥，最终的答案就是：</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这个就是多重集的组合数，当 $\forall a_i$ 都 $a_i&gt;s$ 时根据「插板法」可以知道答案是 ${s+n-1} \choose {n-1}$。但当 $s$ 较大时，会有 $s&gt;a_i$ 的情况出现，这时可以比较自然地想到利用容斥原理计算合法的方案数。我们可以枚举出现这种情况的集合 $S$，然后套上容斥，最终的答案就是：</p>
 <script type="math/tex; mode=display">\\sum\_S (-1)^{|S|} { s+n-1-\\sum\_{i \\in S} (a\_i+1) \\choose n-1}</script><p>需要注意的是计算组合数时，要用 Lucas 定理对组合数取模，防止爆 longlong。</p>
 <p>对于这种组合问题，也可以从生成函数的角度去看，可以推出和上面一样的式子。我们将它的生成函数写出来： <script type="math/tex">g(x)=\\prod\_{i=1}^n(1+x+x^2+...+x^{a\_i})</script></p>
 <p>然后利用等比数列求和公式化简为：</p>
 <script type="math/tex; mode=display">g(x)=\\prod\_{i=1}^{n}(1-x^{a\_i+1})\*(1-x)^{-n}</script><p>将原式后半部分泰勒展开：</p>
-<script type="math/tex; mode=display">g(x)=\\prod\_{i=1}^n (1-x^{a\_i+1}) \* (\\prod\_{i=0}^{\\infty} x^i)^n</script><p>这个式子的第 $x^s$ 项的系数就是我们要的答案。对于后半部分，它又是一个生成函数，根据它的组合意义我们同样根据「插板法」可以知道 $x^s$ 的系数是 ${s+n-1} \\choose {n-1}$。而前半部分，我们可以将这 $n$ 项暴力拆分，并分别计算它对 $x^s$ 项系数的贡献。将这些加起来，就刚好与用容斥原理推出的式子一样。</p>
+<script type="math/tex; mode=display">g(x)=\\prod\_{i=1}^n (1-x^{a\_i+1}) \* (\\prod\_{i=0}^{\\infty} x^i)^n</script><p>这个式子的第 $x^s$ 项的系数就是我们要的答案。对于后半部分，它又是一个生成函数，根据它的组合意义我们同样根据「插板法」可以知道 $x^s$ 的系数是 ${s+n-1} \choose {n-1}$。而前半部分，我们可以将这 $n$ 项暴力拆分，并分别计算它对 $x^s$ 项系数的贡献。将这些加起来，就刚好与用容斥原理推出的式子一样。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 25</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 1000000007</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, ans, inv[MAXN];</span><br><span class="line">LL s, a[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">comb</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;y) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;y; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=<span class="number">1LL</span>*ans*(x-i)%P;</span><br><span class="line">        ans=<span class="number">1LL</span>*ans*inv[i+<span class="number">1</span>]%P;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%lld&quot;</span>, &amp;n, &amp;s);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>, &amp;a[i]);</span><br><span class="line">    inv[<span class="number">0</span>]=inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i) inv[i]=<span class="number">1LL</span>*inv[P%i]*(P-P/i)%P;</span><br><span class="line">    <span class="keyword">for</span>(rint sta=<span class="number">0</span>; sta&lt;(<span class="number">1</span>&lt;&lt;n); ++sta)</span><br><span class="line">    &#123;</span><br><span class="line">        LL num=s, cnt=<span class="number">0</span>;;</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">            <span class="keyword">if</span>((sta&gt;&gt;i)&amp;<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                cnt++;</span><br><span class="line">                num-=(a[i]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt&amp;<span class="number">1</span>) ans=(ans-<span class="built_in">comb</span>((num+n<span class="number">-1</span>)%P, n<span class="number">-1</span>)+P)%P;</span><br><span class="line">        <span class="keyword">else</span> ans=(ans+<span class="built_in">comb</span>((num+n<span class="number">-1</span>)%P, n<span class="number">-1</span>))%P;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -489,86 +569,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/08/01/2018/08/bzoj3036-%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF-%E6%9C%9F%E6%9C%9Bdp/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/01/2018/08/bzoj3036-%E7%BB%BF%E8%B1%86%E8%9B%99%E7%9A%84%E5%BD%92%E5%AE%BF-%E6%9C%9F%E6%9C%9Bdp/index/" class="post-title-link" itemprop="url">BZOJ3036 绿豆蛙的归宿 [概率期望DP]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-01 08:00:00" itemprop="dateCreated datePublished" datetime="2018-08-01T08:00:00+08:00">2018-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>给出一个有向无环的连通图，起点为$1$终点为$N$，每条边都有一个长度。绿豆蛙从起点出发，走向终点。</p>
-<p>到达每一个顶点时，如果有$K$条离开该点的道路，绿豆蛙可以选择任意一条道路离开该点，并且走向每条路的概率为 $1/K$ 。</p>
-<p>现在绿豆蛙想知道，从起点走到终点的所经过的路径总长度期望是多少？</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行: 两个整数 $N$,$M$，代表图中有$N$个点、$M$条边 第二行到第$1+M$行: 每行3个整数$a,b,c$，代表从$a$到$b$有一条长度为$c$的有向边</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>从起点到终点路径总长度的期望值，四舍五入保留两位小数</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这个的期望按照套路应该反着求，所以我们反向建边，从终点开始进行概率DP。对于DAG上的DP当然要基于拓扑排序啦，然后DP之类的都很简单，看代码就好了。</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 200005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, cnt, head[MAXN], deg[MAXN],temp[MAXN];</span><br><span class="line"><span class="type">double</span> dis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edge</span> &#123;<span class="type">int</span> next, to, dis;&#125; edge[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">addedge</span><span class="params">(<span class="type">int</span> from, <span class="type">int</span> to, <span class="type">int</span> dis)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    edge[++cnt].next=head[from];</span><br><span class="line">    edge[cnt].to=to;</span><br><span class="line">    edge[cnt].dis=dis;</span><br><span class="line">    deg[to]++;</span><br><span class="line">    head[from]=cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">topsort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(n);</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> tot=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> x=q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=head[x]; i; i=edge[i].next)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> to=edge[i].to;</span><br><span class="line">            dis[to]+=(dis[x]+edge[i].dis)/temp[to];</span><br><span class="line">            <span class="comment">//printf(&quot;%d %d %lf %lf!!!\n&quot;, x, to, temp[to], dis[to]);</span></span><br><span class="line">            <span class="keyword">if</span>(deg[to]&lt;=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            deg[to]--;</span><br><span class="line">            <span class="keyword">if</span>(!deg[to]) q.<span class="built_in">push</span>(to);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> x, y, z;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;x, &amp;y, &amp;z);</span><br><span class="line">        <span class="built_in">addedge</span>(y, x, z);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memcpy</span>(temp, deg, <span class="built_in">sizeof</span>(deg));</span><br><span class="line">    <span class="built_in">topsort</span>();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.2lf\n&quot;</span>, dis[<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -638,7 +638,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

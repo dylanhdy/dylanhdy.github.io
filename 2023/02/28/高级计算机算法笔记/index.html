@@ -28,7 +28,7 @@
 <meta property="og:description" content="基础概念 问题 $\pi$，最大化或最小化问题 实例(instance) $I$ $I$ 的可行解集合 $S(I)$，需满足 可行解 $s$ 大小为 $|I|$ 的多项式($|s|\in poly(|I|)$) 多项式时间能判断解 $s$ 是否可行($s\in S(I)$)   目标函数(objective function) $obj(I, s)$，需满足 $obj(I, s) \geq 0$">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-02-28T08:46:44.000Z">
-<meta property="article:modified_time" content="2023-02-28T09:20:42.636Z">
+<meta property="article:modified_time" content="2023-02-28T09:20:42.000Z">
 <meta property="article:author" content="Dylan">
 <meta name="twitter:card" content="summary">
 
@@ -219,8 +219,8 @@
 <p><strong>近似比</strong><br>匹配中每条边都至少需要一个端点去覆盖 $OPT \geq |M|$</p>
 <p>$ALG \leq 2\cdot |M| \leq 2\cdot OPT$</p>
 <h2 id="Set-Cover-Greedy"><a href="#Set-Cover-Greedy" class="headerlink" title="Set Cover Greedy"></a>Set Cover Greedy</h2><p><strong>算法</strong><br>每次贪心选性价比最高的集合<br>[alg2]</p>
-<p><strong>近似比</strong><br>对于任意一个集合 $S$，将集合中元素按照算法的覆盖顺序进行排序，得到 $u_1,…,u_{|S|}$。当 $u_j$ 被覆盖时，$S$ 中未被覆盖的元素数量大于 $|S|-k+1$，此时 $S$ 性价比为 $C(S)/(|S|-j+1)$。$price(u_j)$ 为最优性价比，不大于 $C(S)/(|S|-j+1)$。</p>
-<p>假设最大集合大小为 $k$，令 $H_j = \sum_{i=1}^{j} \frac{1}{j}$，假设最优解选取集合 $S_1,…,S_m$。$ALG=\sum_{u\in U} price(u) \leq \sum_{i=1}^{m} \sum_{j=1}^{|S_i|} price(u_j) \leq \sum_{i=1}^{m} C(S_i) \cdot H_{|S_i|} \leq OPT \cdot H_k$</p>
+<p><strong>近似比</strong><br>对于任意一个集合 $S$，将集合中元素按照算法的覆盖顺序进行排序，得到 $u<em>1,…,u</em>{|S|}$。当 $u_j$ 被覆盖时，$S$ 中未被覆盖的元素数量大于 $|S|-k+1$，此时 $S$ 性价比为 $C(S)/(|S|-j+1)$。$price(u_j)$ 为最优性价比，不大于 $C(S)/(|S|-j+1)$。</p>
+<p>假设最大集合大小为 $k$，令 $H<em>j = \sum</em>{i=1}^{j} \frac{1}{j}$，假设最优解选取集合 $S<em>1,…,S_m$。$ALG=\sum</em>{u\in U} price(u) \leq \sum<em>{i=1}^{m} \sum</em>{j=1}^{|S<em>i|} price(u_j) \leq \sum</em>{i=1}^{m} C(S<em>i) \cdot H</em>{|S_i|} \leq OPT \cdot H_k$</p>
 <p><strong>tight analysis</strong><br>[tight1]</p>
 <h2 id="Steiner-Tree"><a href="#Steiner-Tree" class="headerlink" title="Steiner Tree"></a>Steiner Tree</h2><p><strong>Metric Steiner Tree Problem</strong><br>在原有问题上限制了图需要满足两个性质：</p>
 <ul>
@@ -240,7 +240,7 @@
 <p>[alg3]</p>
 <p><strong>近似比</strong></p>
 <p>设最优解为 $A$，令 $K_i$ 为割去 $A$ 后 $t_i$ 所在的连通块， $A_i$ 为 A 中与 $K_i$ 相连的边。根据最小 isolating cut 的定义，有 $c(C_i) \leq c(A_i)$。因为 $A$ 中每条边都跨过两个连通块并被计算两次，有 $\sum c(A_i) = 2*c(A)$。</p>
-<p>假设代价最大的 cut 为 $C_1$，那么有 $ALG= \sum_{i=2}^{k} c(C_i) \leq (1-\frac{1}{k}) \sum c(C_i)$</p>
+<p>假设代价最大的 cut 为 $C<em>1$，那么有 $ALG= \sum</em>{i=2}^{k} c(C_i) \leq (1-\frac{1}{k}) \sum c(C_i)$</p>
 <script type="math/tex; mode=display">ALG \leq (1-\frac{1}{k}) \sum c(C_i) \leq (1-\frac{1}{k}) \sum c(A_i) = (2-\frac{2}{k}) \cdot OPT</script><p><strong>tight analysis</strong><br>构造 k 阶完全图，并在每条边中间加一个节点。<br>[tight3]</p>
 <h1 id="LP-base-algorithm"><a href="#LP-base-algorithm" class="headerlink" title="LP-base algorithm"></a>LP-base algorithm</h1><h2 id="Linear-Programs-相关概念"><a href="#Linear-Programs-相关概念" class="headerlink" title="Linear Programs 相关概念"></a>Linear Programs 相关概念</h2><p>在多个线性不等式的限制下对线性目标函数进行优化。</p>
 <p><strong>一般形式</strong><br>假设 prime program 为最小化问题</p>
@@ -252,12 +252,12 @@ x \geq 0</script><p><strong>dual program</strong></p>
 <script type="math/tex; mode=display">
 A^{T}y \leq c \\
 y \geq 0</script><p><strong>LP-Duality</strong></p>
-<p>如果 $x^<em>$ 为 primal program 的最优解，$y^</em>$ 为 dual program 的最优解，那么有$\sum_{j=1}^{n} c_j x^{<em>}_{j} = \sum_{i=1}^{m} b_i y^{</em>}_{i}$。</p>
+<p>如果 $x^<em>$ 为 primal program 的最优解，$y^</em>$ 为 dual program 的最优解，那么有$\sum<em>{j=1}^{n} c_j x^{*}</em>{j} = \sum<em>{i=1}^{m} b_i y^{*}</em>{i}$。</p>
 <p><strong>weak LP-Duality:</strong></p>
-<p>如果 $x$ 为 primal program 的可行解，$y$ 为 dual program 的可行解，那么有$\sum_{j=1}^{n} c_j x_{j} \geq \sum_{i=1}^{m} b_i y_{i}$。</p>
+<p>如果 $x$ 为 primal program 的可行解，$y$ 为 dual program 的可行解，那么有$\sum<em>{j=1}^{n} c_j x</em>{j} \geq \sum<em>{i=1}^{m} b_i y</em>{i}$。</p>
 <p>证明：</p>
 <script type="math/tex; mode=display">\sum_{j=1}^n c_jx_j \geq \sum_{j=1}^n(\sum_{i=1}^m a_{ij}y_i)x_j = \sum_{i=1}^m(\sum_{j=1}^n a_{ij}x_j)y_i \geq \sum_{i=1}^m b_i y_i</script><p><strong>Complementary Slackness</strong></p>
-<p>如果 $x$ 为 primal program 的最优解，$y$ 为 dual program 的最优解，当且仅当：<br>Primal CS: 对于每个 $j=1,…,n$，满足 $x_j=0$ 或 $\sum_{i=1}^{m} a_{ij} y_i =c_j$。<br>Dual CS: 对于每个 $i=1,…,m$，满足 $y_i=0$ 或 $\sum_{j=1}^{n} a_{ij} x_j =c_j$。</p>
+<p>如果 $x$ 为 primal program 的最优解，$y$ 为 dual program 的最优解，当且仅当：<br>Primal CS: 对于每个 $j=1,…,n$，满足 $x<em>j=0$ 或 $\sum</em>{i=1}^{m} a<em>{ij} y_i =c_j$。<br>Dual CS: 对于每个 $i=1,…,m$，满足 $y_i=0$ 或 $\sum</em>{j=1}^{n} a_{ij} x_j =c_j$。</p>
 <p><strong>Relaxing Complementary Slackness</strong></p>
 <h2 id="Max-Flow-Min-Cut-Theorem"><a href="#Max-Flow-Min-Cut-Theorem" class="headerlink" title="Max-Flow Min-Cut Theorem"></a>Max-Flow Min-Cut Theorem</h2><p><strong>最大流</strong></p>
 <p>构造一个从 $t$ 到 $s$ 容量无穷大的虚边</p>
@@ -266,35 +266,35 @@ y \geq 0</script><p><strong>LP-Duality</strong></p>
 f_{uv} \leq c_{uv} \quad (u,v) \in E \\
 \sum_{(u,v)\in E} f_{uv} - \sum_{ (v,z) \in E} f_{vz} \leq 0 \quad v \in V \\
 f_{uv} \geq 0 \quad (u,v) \in E</script><p><strong>最小割</strong></p>
-<p>minimize $\sum_{(u,v)\in E} d_{uv} c_{uv}$<br>subject to</p>
+<p>minimize $\sum<em>{(u,v)\in E} d</em>{uv} c_{uv}$<br>subject to</p>
 <script type="math/tex; mode=display">
 d_{uv} - p_{u} + p_{v} \geq 0 \\
 p_{s} - p_{t} \geq 1 \\
 d_{uv} \geq 0 \\
-p_{v} \geq 0</script><p>第一行不等式系数为 $d_{uv}$，为 $1$ 表示割开，为 $0$ 表示不割<br>第二行不等式系数为 $p_{v}$，为 $1$ 表示与 $s$ 连通，为 $0$ 表示与 $t$ 连通</p>
+p_{v} \geq 0</script><p>第一行不等式系数为 $d<em>{uv}$，为 $1$ 表示割开，为 $0$ 表示不割<br>第二行不等式系数为 $p</em>{v}$，为 $1$ 表示与 $s$ 连通，为 $0$ 表示与 $t$ 连通</p>
 <h2 id="set-cover-LP-Rounding"><a href="#set-cover-LP-Rounding" class="headerlink" title="set cover LP-Rounding"></a>set cover LP-Rounding</h2><p><strong>ILP 形式</strong></p>
 <p>minimize $\sum_{S \in \mathcal{s}} C_S x_S$<br>subject to</p>
 <script type="math/tex; mode=display">
 \sum_{u\in S} x_S \geq 1 \quad u \in U \\
 x_{S} \in \{0, 1\} \quad S \in \mathcal{S}</script><p><strong>算法</strong><br>在实数域上进行对上述 ILP 做线性规划，设解为 $x$。令 $f$ 为最多的点在集合中的出现次数，如果 $x_j&lt; \frac{1}{f}$ 则设 $x_j$ 为 0，否则为 $1$。<br>[alg4]</p>
-<p>对于任意一个 $u$，一定存在一个 $S$ 满足 $u \in S$ 且在线性规划解中 $x_{S} \geq \frac{1}{f}$，所以在 rounding 之后依然能满足 $\sum_{u\in S} x_S \geq 1$。</p>
-<p><strong>近似比</strong><br>rounding 后每个 $x_S$ 最多在线性规划解上扩大 $f$ 倍，所以 $ALG = \sum_{S \in \mathcal{s}} C_S x_S \leq f \cdot OPT_{LP} \leq f \cdot OPT$</p>
+<p>对于任意一个 $u$，一定存在一个 $S$ 满足 $u \in S$ 且在线性规划解中 $x<em>{S} \geq \frac{1}{f}$，所以在 rounding 之后依然能满足 $\sum</em>{u\in S} x_S \geq 1$。</p>
+<p><strong>近似比</strong><br>rounding 后每个 $x<em>S$ 最多在线性规划解上扩大 $f$ 倍，所以 $ALG = \sum</em>{S \in \mathcal{s}} C<em>S x_S \leq f \cdot OPT</em>{LP} \leq f \cdot OPT$</p>
 <h2 id="set-cover-Prime-Dual-Schema"><a href="#set-cover-Prime-Dual-Schema" class="headerlink" title="set cover Prime Dual Schema"></a>set cover Prime Dual Schema</h2><p><strong>算法</strong><br>令 ILP 中第一行不等式系数为 y，每次任选一个未被覆盖的点 $u$，增加对应系数 $y_u$，直到有集合满足 Prime CS，并选择该集合。<br>[alg4]</p>
-<p><strong>近似比</strong><br>令 $f$ 为最多的点在集合中的出现次数，$\sum_{u \in S} x_S$ 表示点 $u$ 被集合覆盖次数，满足 $\sum_{u \in S} x_S \leq f$(Relaxed Dual CS)。</p>
-<p>$ALG= \sum_{S\in \mathcal{S}} x_S c_S = \sum_{S\in \mathcal{S}} x_S \sum_{u \in S}  y_u = \sum_{u \in U} y_u \sum_{u \in U} x_S \leq f \sum_{u\in U} y_u \leq f \cdot OPT_{LP} \leq f \cdot OPT$</p>
+<p><strong>近似比</strong><br>令 $f$ 为最多的点在集合中的出现次数，$\sum<em>{u \in S} x_S$ 表示点 $u$ 被集合覆盖次数，满足 $\sum</em>{u \in S} x_S \leq f$(Relaxed Dual CS)。</p>
+<p>$ALG= \sum<em>{S\in \mathcal{S}} x_S c_S = \sum</em>{S\in \mathcal{S}} x<em>S \sum</em>{u \in S}  y<em>u = \sum</em>{u \in U} y<em>u \sum</em>{u \in U} x<em>S \leq f \sum</em>{u\in U} y<em>u \leq f \cdot OPT</em>{LP} \leq f \cdot OPT$</p>
 <p><strong>tight analysis</strong><br>算法满足 tight 性质，证明略。</p>
 <h2 id="set-cover-Dual-Fitting"><a href="#set-cover-Dual-Fitting" class="headerlink" title="set cover Dual Fitting"></a>set cover Dual Fitting</h2><p><strong>算法</strong><br>同 set cover greedy 算法</p>
-<p><strong>近似比</strong><br>根据贪心策略选取 $y_u$，当 $y_u=price(u)$ 时不满足 dual 条件，但 $y_u=\frac{price(u)}{h_k}$ 时满足 dual 条件。根据贪心证明方法，$price(u_i)\leq \frac{c(S)}{|S|-i+1}$，有 $\sum_{i=1}^{|S|} y_{u_i} \leq \c(S)$。</p>
-<p>$ALG=\sum_{u \in U} price(u) = H_k \cdot \sum_{u \in U} y_u \leq H_k OPT_{LP} \leq H_k OPT$</p>
+<p><strong>近似比</strong><br>根据贪心策略选取 $y<em>u$，当 $y_u=price(u)$ 时不满足 dual 条件，但 $y_u=\frac{price(u)}{h_k}$ 时满足 dual 条件。根据贪心证明方法，$price(u_i)\leq \frac{c(S)}{|S|-i+1}$，有 $\sum</em>{i=1}^{|S|} y_{u_i} \leq \c(S)$。</p>
+<p>$ALG=\sum<em>{u \in U} price(u) = H_k \cdot \sum</em>{u \in U} y<em>u \leq H_k OPT</em>{LP} \leq H_k OPT$</p>
 <h2 id="scheduling-on-parallel-machines"><a href="#scheduling-on-parallel-machines" class="headerlink" title="scheduling on parallel machines"></a>scheduling on parallel machines</h2><p><strong>ILP 形式</strong><br>minimize $t$<br>subject to</p>
 <script type="math/tex; mode=display">
 \sum_{M_i \in \mathcal{M}} x_{ij} = 1 \quad J_j \in \mathcal{J}\\
 \sum_{J_j \in \mathcal{J}} x_{ij} p_{ij} \leq t \quad M_i \in \mathcal{M} \\
-x_{ij} \in {0,1} \quad M_i \in \mathcal{M}, J_j \in \mathcal{J}</script><p><strong>算法</strong><br>使用 parametre pruning 技巧，引入变量 $T$ 计算 OPT 的下界。定义 $S_T = \{(i, j) | p_{ij} \leq T\}$，定义 $LP(T)$ 为：</p>
+x_{ij} \in {0,1} \quad M_i \in \mathcal{M}, J_j \in \mathcal{J}</script><p><strong>算法</strong><br>使用 parametre pruning 技巧，引入变量 $T$ 计算 OPT 的下界。定义 $S<em>T = {(i, j) | p</em>{ij} \leq T}$，定义 $LP(T)$ 为：</p>
 <script type="math/tex; mode=display">
 \sum x_{ij} = 1 \quad J_j \in \mathcal{J} \\
 \sum x_{ij} p_{ij} \leq T \quad M_i \in \mathcal{M} \\
-x_{ij} \geq 0 \quad (i,j) \in S_T</script><p>算法二分出最小的满足 $LP(T)$ 有解的 $T$，记为 $T^{<em>}$。根据 $LP(T^{</em>})$ 的解构造答案，在点集 $J \cup M$ 上构造二分图 $H$，当 $x_{ij} \neq 0$ 时，将 $i,j$ 之间连边。令 $F$ 表示被分割过的 job 集合，在点集 $F \cup M$ 上构造二分图 $H$，当 $x_{ij} \in (0,1)$ 时，将 $i,j$ 之间连边。</p>
+x_{ij} \geq 0 \quad (i,j) \in S_T</script><p>算法二分出最小的满足 $LP(T)$ 有解的 $T$，记为 $T^{<em>}$。根据 $LP(T^{</em>})$ 的解构造答案，在点集 $J \cup M$ 上构造二分图 $H$，当 $x<em>{ij} \neq 0$ 时，将 $i,j$ 之间连边。令 $F$ 表示被分割过的 job 集合，在点集 $F \cup M$ 上构造二分图 $H$，当 $x</em>{ij} \in (0,1)$ 时，将 $i,j$ 之间连边。</p>
 <p>[alg15]</p>
 <p><strong>近似比</strong><br>当未被分割过的 job 被分配完后，此时满足 $LP(T^{<em>})$ 的限制，时间不超过 $T^{</em>}$。因为被分割过的 job 是按照图上的匹配进行分配，所以每个机器最多一个 job，并且 $p_{ij} \leq T^{<em>}$。所以 $ALG \leq 2 \cdot T^{</em>} \leq 2 \cdot OPT$。</p>
 <h2 id="Maximum-Satisfiability"><a href="#Maximum-Satisfiability" class="headerlink" title="Maximum Satisfiability"></a>Maximum Satisfiability</h2><p><strong>算法</strong></p>
@@ -321,17 +321,17 @@ z_j \in \{0, 1\} \quad j=1,...,m</script><p>假设 $(y^{<em>}, z^{</em>})$ 为�
 <ol>
 <li>随机算法</li>
 </ol>
-<p>令 $Y_j \in \{0, 1\}$ 表示子句 $C_j$ 是否为真，$l_j$ 表示子句 $C_j$ 的长度，$W$ 表示被满足子句的权值之和。$\mathbb{E}(Y_j) = 1-(1/2)^{l_j} \geq \frac{1}{2}$。</p>
-<p>$\mathbb{E}(ALG) = \mathbb{E}(\sum_{j=1}^{m} w_j Y_j) = \sum_{j=1}^{m} w_j\mathbb{E}(Y_j) \geq \frac{1}{2} \sum_{j=1}^{m} w_j \geq \frac{1}{2} OPT$</p>
+<p>令 $Y_j \in {0, 1}$ 表示子句 $C_j$ 是否为真，$l_j$ 表示子句 $C_j$ 的长度，$W$ 表示被满足子句的权值之和。$\mathbb{E}(Y_j) = 1-(1/2)^{l_j} \geq \frac{1}{2}$。</p>
+<p>$\mathbb{E}(ALG) = \mathbb{E}(\sum<em>{j=1}^{m} w_j Y_j) = \sum</em>{j=1}^{m} w<em>j\mathbb{E}(Y_j) \geq \frac{1}{2} \sum</em>{j=1}^{m} w_j \geq \frac{1}{2} OPT$</p>
 <ol>
 <li>去随机化技巧<br>假设 $x_i$ 被设为 $b_i$，有 $\mathbb{E}(W|x_1=b_1) \geq \mathbb{E}(W) \geq \frac{1}{2} OPT$。</li>
 </ol>
 <p>如果 $\mathbb{E}(W|x_1=b_1,…,x_i=b_i) \geq \frac{1}{2} OPT$，类似可以推导出 $\mathbb{E}(W|x_1=b_1,…,x_i+1=b_i+1) \geq \mathbb{E}(W|x_1=b_1,…,x_i=b_i) \geq \frac{1}{2} OPT$。使用数学归纳法即可证明。</p>
 <ol>
-<li>整数规划<br>$Pr(Y_j=0) = \prod_{i \in P_j} (1-y^{<em>}_i) \prod_{i \in N_j} y^{</em>}_i$。根据几何平均数小于算术平均数，有 $Pr(Y_j=0) \leq (\frac{1}{l_j}(\sum_{i \in P_j} (1-y^{<em>}_i)+\sum_{i \in N_j} y^{</em>}_i))^{l_j}=(1-\frac{1}{l_j}(\sum_{i \in P_j} y^{<em>}_i+\sum_{i \in N_j} (1-y^{</em>}_i))^{l_j}\leq (1-\frac{z_j^{*}}{l_j})^{l_j}$。</li>
+<li>整数规划<br>$Pr(Y<em>j=0) = \prod</em>{i \in P<em>j} (1-y^{*}_i) \prod</em>{i \in N<em>j} y^{*}_i$。根据几何平均数小于算术平均数，有 $Pr(Y_j=0) \leq (\frac{1}{l_j}(\sum</em>{i \in P<em>j} (1-y^{*}_i)+\sum</em>{i \in N<em>j} y^{*}_i))^{l_j}=(1-\frac{1}{l_j}(\sum</em>{i \in P<em>j} y^{*}_i+\sum</em>{i \in N_j} (1-y^{<em>}_i))^{l_j}\leq (1-\frac{z_j^{</em>}}{l_j})^{l_j}$。</li>
 </ol>
-<p>将 $Pr(Y_j=1)= 1- (1-\frac{z_j^{<em>}}{l_j})^{l_j}$ 写成函数形式 $f(z^{</em>}_j)$，该函数在 $[0, 1]$ 上为凸函数，有 $f(z_{j}^{<em>}) \geq f(1)\cdot z_{j}^{</em>} +f(0) \geq (1-(1-\frac{1}{l_j})^{l_j}) z_j^{<em>} \geq (1-\frac{1}{e}z^{</em>}_j)$。</p>
-<p>$\mathbb{E}(ALG) = \sum_{j=1}^{m} Pr(Y_j=1) \cdot w_j \geq (1-\frac{1}{e}) \sum_{j=1}^{m} w_j z^{*}_j = (1-\frac{1}{e}) OPT_{LP} \geq (1-\frac{1}{e}) OPT$</p>
+<p>将 $Pr(Y<em>j=1)= 1- (1-\frac{z_j^{<em>}}{l_j})^{l_j}$ 写成函数形式 $f(z^{</em>}_j)$，该函数在 $[0, 1]$ 上为凸函数，有 $f(z</em>{j}^{<em>}) \geq f(1)\cdot z_{j}^{</em>} +f(0) \geq (1-(1-\frac{1}{l_j})^{l_j}) z_j^{<em>} \geq (1-\frac{1}{e}z^{</em>}_j)$。</p>
+<p>$\mathbb{E}(ALG) = \sum<em>{j=1}^{m} Pr(Y_j=1) \cdot w_j \geq (1-\frac{1}{e}) \sum</em>{j=1}^{m} w<em>j z^{*}_j = (1-\frac{1}{e}) OPT</em>{LP} \geq (1-\frac{1}{e}) OPT$</p>
 <ol>
 <li>综合算法<br>[fml1]</li>
 </ol>
@@ -347,7 +347,7 @@ z_j \in \{0, 1\} \quad j=1,...,m</script><p>假设 $(y^{<em>}, z^{</em>})$ 为�
 <li>当 $f(A)&gt;f(B)$ 时，一定存在 $v \in B \A$ 满足 $f(B-v)-f(B) \geq \frac{1}{|B\A|} (f(A)-f(B))$</li>
 </ul>
 <p>假设 $S$ 为算法得到的局部最优解，$S^{<em>}$ 为最优解，根据引理有 $f(S) \geq f(S \cup S^{</em>})$ 和 $f(S) \geq f(S \cap S^{*})$。</p>
-<p>$2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S \cap S^{</em>}) + f(V\S)$。将后两项根据 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S) + f(V) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S)$。继续按照 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S^{*}) + f(\emptyset) \geq OPT$。根据鸽笼原理 $\max\{f(S), f(V\S) \} \geq OPT\3$。</p>
+<p>$2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S \cap S^{</em>}) + f(V\S)$。将后两项根据 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S) + f(V) \geq f(S \cup S^{<em>}) + f(S^{</em>}\S)$。继续按照 submodular 性质放缩，得到 $2f(S) +f(V\S) \geq f(S^{*}) + f(\emptyset) \geq OPT$。根据鸽笼原理 $\max{f(S), f(V\S) } \geq OPT\3$。</p>
 <p>当函数 $f$ 满足 symmetric 性质时，$2f(S) \geq f(S \cup S^{<em>}) + f(S \cap S^{</em>}) = f(S \cap S^{<em>}) + f(v \ (S \cup S^{</em>})) =  f(S \cap S^{<em>}) + f(S^{</em>} \ S) \geq f(S^{*}) + f(\emptyset) \geq OPT$。因此 $f(S) \geq OPT/2$</p>
 <h1 id="Polynomial-Time-Approximation-Scheme"><a href="#Polynomial-Time-Approximation-Scheme" class="headerlink" title="Polynomial Time Approximation Scheme"></a>Polynomial Time Approximation Scheme</h1><h2 id="PTAS-相关概念"><a href="#PTAS-相关概念" class="headerlink" title="PTAS 相关概念"></a>PTAS 相关概念</h2><p><strong>PTAS</strong></p>
 <p><strong>FPTAS</strong></p>
@@ -366,7 +366,7 @@ z_j \in \{0, 1\} \quad j=1,...,m</script><p>假设 $(y^{<em>}, z^{</em>})$ 为�
 <p>因为极大独立集属于支配集，所以该近似解合法。</p>
 <p>[alg6]</p>
 <p><strong>近似比</strong></p>
-<p>假设 $OPT=c_j$，构造 $G_j$ 的平方图 $G_j^2$（将原图所有距离小于 2 的点对连边），在 $G_j^2$ 中 $max_{e \in E} c(e) \leq 2 c_j$。</p>
+<p>假设 $OPT=c<em>j$，构造 $G_j$ 的平方图 $G_j^2$（将原图所有距离小于 2 的点对连边），在 $G_j^2$ 中 $max</em>{e \in E} c(e) \leq 2 c_j$。</p>
 <p>考虑每个 $G_j$ 最小支配集中的点 $v$，$v$ 与 $v$ 支配的点在 $G_j^2$ 中构成团。因为一个团中最多包含一个独立集中的点，所以在 $G_j^2$ 中的任意独立集都小于 $G_j$ 中的最小支配集。</p>
 <p>假设 $i$ 为满足 $c_(e_i) \leq 2 \cdot OPT$ 的最大整数，那么 $G_j^2 \subseteq G_i$。$G_i$ 的极大独立集 $\leq$ $G_j$ 的最小支配集 $\leq k$。</p>
 <p>$ALG \leq c(e_i) \leq 2 \cdot c(e_j) = 2 OPT$</p>
@@ -386,15 +386,15 @@ z_j \in \{0, 1\} \quad j=1,...,m</script><p>假设 $(y^{<em>}, z^{</em>})$ 为�
 </li>
 </ol>
 <p><strong>近似比</strong><br>Lloyd’s algorithm 结果与最优解没有近似关系，采用 $D^{2}$-sampling 的 Lloyd’s algorithm 近似比为 $8(\ln k + 2)$。证明略。</p>
-<h2 id="facility-location"><a href="#facility-location" class="headerlink" title="facility location"></a>facility location</h2><p><strong>ILP 形式</strong><br>minimize $\sum f_i y_i + \sum \sum d(i, j) x_{ij}$</p>
+<h2 id="facility-location"><a href="#facility-location" class="headerlink" title="facility location"></a>facility location</h2><p><strong>ILP 形式</strong><br>minimize $\sum f<em>i y_i + \sum \sum d(i, j) x</em>{ij}$</p>
 <p>subject to </p>
 <script type="math/tex; mode=display">
 \sum_{i} x_{ij} = 1 \\
 x_{ij} \leq y_i
 x, y \in \{0, 1\}</script><p><strong>算法</strong><br>[alg16]</p>
 <p><strong>近似比</strong><br>令 $B(j, d)$ 表示在 $j$ 点 $d$ 范围内的设施集合，$ALG_F, ALG_C$ 分别表示算法近似解中开启设施和连接设施的费用。</p>
-<p>引理1：$ALG_F \leq 2 \sum f_y y_i$。根据马尔可夫不等式，$\sum_{i\in B(j,\alpha_j/delta) y_i} \geq 1-\delta$。令 $\delta = \frac{1}{2}$，可以推出在 $B(j, 2\alpha_j)$ 中最便宜的设施 $cheap_{j}$ 一定有 $f_{cheap_{j}}\leq 2\sum 2\sum_{j\in B(j, 2\alpha_j)} f_i y_i$。因为对于每个 $i$，$y_i f_i$ 最多会被一个设施计算，所以 $ALG_F = 2 \sum f_y y_i$。</p>
-<p>引理2：$ALG_C leq 6 \sum \alpha_j$。考虑被分配到设施 $i$ 的点 $j’$，$d(i,j’) \leq 4 \alpha_j + 2\alpha_{j’} \leq 6\alpha j’$。 $ALG \leq 6 \sum_{j} \alpha_j$。</p>
+<p>引理1：$ALG<em>F \leq 2 \sum f_y y_i$。根据马尔可夫不等式，$\sum</em>{i\in B(j,\alpha<em>j/delta) y_i} \geq 1-\delta$。令 $\delta = \frac{1}{2}$，可以推出在 $B(j, 2\alpha_j)$ 中最便宜的设施 $cheap</em>{j}$ 一定有 $f<em>{cheap</em>{j}}\leq 2\sum 2\sum_{j\in B(j, 2\alpha_j)} f_i y_i$。因为对于每个 $i$，$y_i f_i$ 最多会被一个设施计算，所以 $ALG_F = 2 \sum f_y y_i$。</p>
+<p>引理2：$ALG<em>C leq 6 \sum \alpha_j$。考虑被分配到设施 $i$ 的点 $j’$，$d(i,j’) \leq 4 \alpha_j + 2\alpha</em>{j’} \leq 6\alpha j’$。 $ALG \leq 6 \sum_{j} \alpha_j$。</p>
 <p>综上，$ALG \leq 6 \cdot OPT_{LP} \leq 6 \cdot OPT$</p>
 
     </div>
@@ -415,8 +415,8 @@ x, y \in \{0, 1\}</script><p><strong>算法</strong><br>[alg16]</p>
       <i class="fa fa-chevron-left"></i> coevolutionary algorithm 研究报告
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/01/25/self-adjusting-evolutionary-algorithm-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="next" title="self-adjusting evolutionary algorithm 论文阅读">
-      self-adjusting evolutionary algorithm 论文阅读 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/10/13/submodular-optimization-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="next" title="submodular optimization 论文阅读">
+      submodular optimization 论文阅读 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -490,7 +490,7 @@ x, y \in \{0, 1\}</script><p><strong>算法</strong><br>[alg16]</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

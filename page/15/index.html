@@ -155,6 +155,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/29/2018/07/bzoj1951-%E5%8F%A4%E4%BB%A3%E7%8C%AA%E6%96%87-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E6%89%A9%E5%B1%95%E5%8D%A2%E5%8D%A1%E6%96%AF/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/29/2018/07/bzoj1951-%E5%8F%A4%E4%BB%A3%E7%8C%AA%E6%96%87-%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E6%89%A9%E5%B1%95%E5%8D%A2%E5%8D%A1%E6%96%AF/index/" class="post-title-link" itemprop="url">BZOJ1951 古代猪文 [欧拉定理+扩展卢卡斯]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-07-29 08:00:00" itemprop="dateCreated datePublished" datetime="2018-07-29T08:00:00+08:00">2018-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>简单来说就是让你计算：<script type="math/tex">G^{\\sum\_{d|n} C\_n^d} mod 999911659</script></p>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>两个数N、G</p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>一个数，表示答案除以999911659的余数</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>很好的一道题呢，涵盖了大部分数论知识点呢：欧拉定理、中国剩余定理，Lucas定理，组合数取模，逆元….</p>
+<p>不过思路不会很复杂。首先指数那么大，肯定不难想到利用欧拉定理将指数缩小，原理可以看<a target="_blank" rel="noopener" href="https://www.crazydave.top/?p=784" title="这篇文章">这篇文章</a>。所以我们可以将指数变为$\sum_{d|n}C_n^d mod 999911658$，求这个就是求组合数取模，用lucas定理。。。</p>
+<p>那么问题来了，我们普通的Lucas定理中模数要求是质数，但这题中模数不是质数，因此我们要用扩展Lucas。首先将模数质因数分解，分解为2，3，4679，35617四个质数。分别在模这四个质数的意义下求出我们要的结果$a_1, a_2, a_3, a_4$。这样答案就可以表示为： $ans \equiv a_1 (mod 2) $ $ans \equiv a_2 (mod 3) $ $ans \equiv a_3 (mod 4769) $ $ans \equiv a_4 (mod 35617) $ 那这样就是中国剩余定理的形式，解出$ans$并利用快速幂$G^{ans}$就好了。</p>
+<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> mod 999911659</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 40005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> LL prime[<span class="number">5</span>]=&#123;<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4679</span>, <span class="number">35617</span>&#125;;</span><br><span class="line"></span><br><span class="line">LL n, g, num[MAXN], fac[MAXN], inv[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">ksm</span><span class="params">(LL x, LL y, LL p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL sum=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>) sum=(sum*x)%p;</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>; x=(x*x)%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">comb</span><span class="params">(LL n, LL m, LL p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;m) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> fac[n]*inv[n-m]%p*inv[m]%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">lucas</span><span class="params">(LL n, LL m, LL p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(m==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">comb</span>(n%p, m%p, p)*<span class="built_in">lucas</span>(n/p, m/p, p)%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">crt</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        LL m=(mod<span class="number">-1</span>)/prime[i];</span><br><span class="line">        ans=(ans+num[i]*m%(mod<span class="number">-1</span>)*<span class="built_in">ksm</span>(m, prime[i]<span class="number">-2</span>, prime[i]))%(mod<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>, &amp;n, &amp;g);</span><br><span class="line">    <span class="keyword">if</span>(g==mod) &#123;<span class="built_in">printf</span>(<span class="string">&quot;0\n&quot;</span>); <span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        fac[<span class="number">0</span>]=fac[<span class="number">1</span>]=inv[<span class="number">0</span>]=inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">2</span>; j&lt;=prime[i]; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            fac[j]=fac[j<span class="number">-1</span>]*j%prime[i];</span><br><span class="line">            inv[j]=inv[prime[i]%j]*(prime[i]-prime[i]/j)%prime[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">2</span>; j&lt;=prime[i]; j++) inv[j]=inv[j<span class="number">-1</span>]*inv[j]%prime[i];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j*j&lt;=n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(n%j) <span class="keyword">continue</span>;</span><br><span class="line">            num[i]=(num[i]+<span class="built_in">lucas</span>(n, j, prime[i]))%prime[i];</span><br><span class="line">            <span class="keyword">if</span>(j*j==n) <span class="keyword">continue</span>;</span><br><span class="line">            num[i]=(num[i]+<span class="built_in">lucas</span>(n, n/j, prime[i]))%prime[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="built_in">ksm</span>(g, <span class="built_in">crt</span>(), mod));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/28/2018/07/bzoj4004-%E8%A3%85%E5%A4%87%E8%B4%AD%E4%B9%B0-%E7%BA%BF%E6%80%A7%E5%9F%BA/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -488,87 +568,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2018/07/25/2018/07/bzoj2973-%E7%9F%B3%E5%A4%B4%E6%B8%B8%E6%88%8F-%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E9%80%92%E6%8E%A8/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/25/2018/07/bzoj2973-%E7%9F%B3%E5%A4%B4%E6%B8%B8%E6%88%8F-%E7%9F%A9%E9%98%B5%E5%8A%A0%E9%80%9F%E9%80%92%E6%8E%A8/index/" class="post-title-link" itemprop="url">BZOJ2973 石头游戏 [矩阵加速递推]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-07-25 08:00:00" itemprop="dateCreated datePublished" datetime="2018-07-25T08:00:00+08:00">2018-07-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:20" itemprop="dateModified" datetime="2022-06-05T22:30:20+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>石头游戏在一个n行m列的方格阵上进行。每个格子对应了一个编号在0~9之间的操作序列。操作序列是一个长度不超过6且循环执行、每秒执行一个字符的字符串。它包括： 1. 数字0~9：拿0~9个石头到该格子。 2. NWSE：把这个格子内所有的石头推到相邻的格子。 3. D：拿走这个格子的石头。</p>
-<p>石头游戏的问题是：当这个石头游戏进行了t秒之后，所有方格中最多的格子有多少个石头。</p>
-<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行三个整数n, m, t, act。 接下来n行，每行m个字符，表示每个格子对应的操作序列。 最后act行，每行一个字符串，表示从0开始的每个操作序列。</p>
-<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><p>一个整数：游戏进行了t秒之后，所有方格中最多的格子有多少个石头。</p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这种矩阵加速递推的题重点是建模和构造矩阵。好有趣啊。。</p>
-<p>我们可以将方格阵的两位压到一维上，那么状态矩阵$f$就是一个$1*nm$的矩阵。因为操作序列的长度不超过6，所以操作最多60次一个循环，因此我们可以对于每一次设计一个转移矩阵。然后转移矩阵$a$的构造方法是： 1. 如果位置$i,j$的操作为”WENS”，那么我们就令$a[pos(i,j)][pos(i’,j’)]=1$。其中$i’,j’$为操作的对应位置。 2. 如果位置$i,j$的操作为数字$x$，那么我们就令$a[0][pos(i,j)]=x$。 3. 另外我们要保证$a[0][0]=1$</p>
-<p>这样我们就是把状态矩阵$f[0]$当成了石头来源，$a[0][0]=1$保证了$f[0]=1$。转移矩阵构造好以后就利用矩阵快速幂优化一下递推，这个就不多说了。主要还是构造转移矩阵，就像网络流主要是建图一样。</p>
-<h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pos(i, j) (i-1)*m+j</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, t, act, len[MAXN], op[MAXN][MAXN];</span><br><span class="line">LL maxn, ans[MAXN][MAXN], a[MAXN][MAXN][MAXN], b[MAXN][MAXN];</span><br><span class="line"><span class="type">char</span> opt[MAXN][MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ans[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;=<span class="built_in">pos</span>(n, m); i++) b[i][i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">60</span>; i++) a[i][<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">mul</span><span class="params">(LL x[MAXN][MAXN], LL y[MAXN][MAXN])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL c[MAXN][MAXN];</span><br><span class="line">    <span class="built_in">memset</span>(c, <span class="number">0</span>, <span class="built_in">sizeof</span>(c));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;=n*m; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>; j&lt;=n*m; j++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>; k&lt;=n*m; k++) c[i][j]+=x[i][k]*y[k][j];</span><br><span class="line">    <span class="built_in">memcpy</span>(x, c, <span class="built_in">sizeof</span>(c));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ksm</span><span class="params">(<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>) <span class="built_in">mul</span>(ans, b);</span><br><span class="line">        <span class="built_in">mul</span>(b, b); y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;t, &amp;act);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=m; j++) <span class="built_in">scanf</span>(<span class="string">&quot;%1d&quot;</span>, &amp;op[i][j]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;act; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, opt[i]);</span><br><span class="line">        len[i]=<span class="built_in">strlen</span>(opt[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>; k&lt;<span class="number">60</span>; k++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n; i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>; j&lt;=m; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">char</span> act=opt[op[i][j]][k%len[op[i][j]]];</span><br><span class="line">                <span class="keyword">if</span>(act==<span class="string">&#x27;E&#x27;</span> &amp;&amp; j&lt;m) a[k][<span class="built_in">pos</span>(i, j)][<span class="built_in">pos</span>(i, j+<span class="number">1</span>)]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(act==<span class="string">&#x27;N&#x27;</span> &amp;&amp; i&gt;<span class="number">1</span>) a[k][<span class="built_in">pos</span>(i, j)][<span class="built_in">pos</span>(i<span class="number">-1</span>, j)]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(act==<span class="string">&#x27;W&#x27;</span> &amp;&amp; j&gt;<span class="number">1</span>) a[k][<span class="built_in">pos</span>(i, j)][<span class="built_in">pos</span>(i, j<span class="number">-1</span>)]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(act==<span class="string">&#x27;S&#x27;</span> &amp;&amp; i&lt;n) a[k][<span class="built_in">pos</span>(i, j)][<span class="built_in">pos</span>(i+<span class="number">1</span>, j)]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(act&gt;=<span class="string">&#x27;0&#x27;</span> &amp;&amp; act&lt;=<span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    a[k][<span class="built_in">pos</span>(i, j)][<span class="built_in">pos</span>(i, j)]=<span class="number">1</span>;</span><br><span class="line">                    a[k][<span class="number">0</span>][<span class="built_in">pos</span>(i, j)]=act-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">        <span class="built_in">mul</span>(b, a[k]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">ksm</span>(t/<span class="number">60</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;t%<span class="number">60</span>; i++) <span class="built_in">mul</span>(ans, a[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>; i&lt;=n*m; i++) maxn=<span class="built_in">max</span>(maxn, ans[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, maxn);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -638,7 +637,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

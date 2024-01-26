@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="问题描述：我们定义某天的最小波动值为$min \\lbrace |$该天以前某一天的营业额$-$该天营业额$| \\rbrace $ 第一天的最小波动值为第一天的营业额 你的任务是编写一个程序帮助Tiger来计算这一个值：每一天的最小波动值之和。 输入：第一行为正整数$n(n&lt;&#x3D;32767)$，表示该公司从成立一直到现在的天数，接下来的$n$行每行有一个整数$ai(|ai|&lt;&#x3D;1000">
+  <meta name="description" content="问题描述：我们定义某天的最小波动值为$min \lbrace |$该天以前某一天的营业额$-$该天营业额$| \rbrace $ 第一天的最小波动值为第一天的营业额 你的任务是编写一个程序帮助Tiger来计算这一个值：每一天的最小波动值之和。 输入：第一行为正整数$n(n&lt;&#x3D;32767)$，表示该公司从成立一直到现在的天数，接下来的$n$行每行有一个整数$ai(|ai|&lt;&#x3D;100000">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BZOJ1588 营业额统计 [Splay&#x2F;权值线段树]">
 <meta property="og:url" content="http://example.com/2018/09/01/2018/09/bzoj1588-%E8%90%A5%E4%B8%9A%E9%A2%9D%E7%BB%9F%E8%AE%A1-splay-%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91/index/index.html">
 <meta property="og:site_name" content="Dylan&#39;s Blog">
-<meta property="og:description" content="问题描述：我们定义某天的最小波动值为$min \\lbrace |$该天以前某一天的营业额$-$该天营业额$| \\rbrace $ 第一天的最小波动值为第一天的营业额 你的任务是编写一个程序帮助Tiger来计算这一个值：每一天的最小波动值之和。 输入：第一行为正整数$n(n&lt;&#x3D;32767)$，表示该公司从成立一直到现在的天数，接下来的$n$行每行有一个整数$ai(|ai|&lt;&#x3D;1000">
+<meta property="og:description" content="问题描述：我们定义某天的最小波动值为$min \lbrace |$该天以前某一天的营业额$-$该天营业额$| \rbrace $ 第一天的最小波动值为第一天的营业额 你的任务是编写一个程序帮助Tiger来计算这一个值：每一天的最小波动值之和。 输入：第一行为正整数$n(n&lt;&#x3D;32767)$，表示该公司从成立一直到现在的天数，接下来的$n$行每行有一个整数$ai(|ai|&lt;&#x3D;100000">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-09-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-05T14:30:20.956Z">
+<meta property="article:modified_time" content="2022-06-05T14:30:20.000Z">
 <meta property="article:author" content="Dylan">
 <meta property="article:tag" content="线段树">
 <meta property="article:tag" content="splay">
@@ -215,7 +215,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>我们定义某天的最小波动值为$min \\lbrace |$该天以前某一天的营业额$-$该天营业额$| \\rbrace $</p>
+        <h3 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h3><p>我们定义某天的最小波动值为$min \lbrace |$该天以前某一天的营业额$-$该天营业额$| \rbrace $</p>
 <p>第一天的最小波动值为第一天的营业额</p>
 <p>你的任务是编写一个程序帮助Tiger来计算这一个值：每一天的最小波动值之和。</p>
 <h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><p>第一行为正整数$n(n&lt;=32767)$，表示该公司从成立一直到现在的天数，接下来的$n$行每行有一个整数$ai(|ai|&lt;=1000000)$，表示第$i$天公司的营业额，可能存在负数</p>
@@ -324,7 +324,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

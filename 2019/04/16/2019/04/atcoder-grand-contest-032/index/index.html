@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/images/5cb6817496ed0.png">
 <meta property="og:image" content="http://example.com/images/5cb6817495ccb.png">
 <meta property="article:published_time" content="2019-04-16T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-07T03:22:26.658Z">
+<meta property="article:modified_time" content="2022-09-07T03:22:26.000Z">
 <meta property="article:author" content="Dylan">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/5cb6817496ed0.png">
@@ -230,7 +230,7 @@
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/D.cpp" title="代码链接">代码链接</a></strong></p>
 <h3 id="E-Modulo-Pairing"><a href="#E-Modulo-Pairing" class="headerlink" title="E - Modulo Pairing"></a>E - Modulo Pairing</h3><p><strong>思路：</strong></p>
 <p>假设 $lim$ 已知，考虑对于数 $x$，我们要找到一个 $y$ 与它配对，使得 $x+y$ 在模 $m$ 意义下不超过 $lim$。 如果 $x+y &#60; m$，那么 $y$ 最大可以取 $lim-x-1$ ;如果 $x+y &#62; m$，那么 $y$ 最大可以取 $lim+m-x$。我们让 $y$ 在对应的取值范围内选尽量大的数一定不会更劣，所以假如对于一个 $x$，我们决定了与它配对的 $y$ 与 $m-x$ 的关系，那么 $y$ 的值我们也可以确定。</p>
-<p>考虑这样一个结论：将所有数排好序后，设最大值为 $x_{max}$，如果一个数 $x$ 大于 $m-x_{max}$，那么与它配对的 $y$ 就一定比 $m-x$ 大; 否则一定比 $m-x$ 小。这样以来我们就可以二分出一个位置 $pos$，在 $pos$ 左边的数两两配对小于 $m$，在 $pos$ 右边的数两两配对不小于 $m$。确定出 $pos$ 后，答案就可以跟着确定下来。</p>
+<p>考虑这样一个结论：将所有数排好序后，设最大值为 $x<em>{max}$，如果一个数 $x$ 大于 $m-x</em>{max}$，那么与它配对的 $y$ 就一定比 $m-x$ 大; 否则一定比 $m-x$ 小。这样以来我们就可以二分出一个位置 $pos$，在 $pos$ 左边的数两两配对小于 $m$，在 $pos$ 右边的数两两配对不小于 $m$。确定出 $pos$ 后，答案就可以跟着确定下来。</p>
 <p>对于结论的正确性，我们可以对所有情况进行讨论。设蓝色的线为小于 $m$ 的匹配，红色的线为不小于 $m$ 的匹配，根据下图可以发现该结论对于所有情况均成立：</p>
 <p><img src="/images/5cb6817495ccb.png" alt="AtCoder Grand Contest 032 解题报告 2" title="AtCoder Grand Contest 032 解题报告 2"></p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/E.cpp" title="代码链接">代码链接</a></strong></p>
@@ -328,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

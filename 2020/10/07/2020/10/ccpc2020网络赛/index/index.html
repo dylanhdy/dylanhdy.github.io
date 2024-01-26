@@ -28,7 +28,7 @@
 <meta property="og:description" content="比赛链接：http:&#x2F;&#x2F;acm.hdu.edu.cn&#x2F;contests&#x2F;contest_show.php?cid&#x3D;909 B - Graph Theory Class令 $f(n)$ 为小于等于 $n$ 的质数个数，答案其实就是 \sum_{i&#x3D;3}^{n+1}i+f(n+1)-1然后用 min_25 求 $f(n)$ 即可 代码链接 E - Lunch设只有一根长度为 $l_i$ 的巧克力局面的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-07T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-06T02:28:00.016Z">
+<meta property="article:modified_time" content="2022-06-06T02:28:00.000Z">
 <meta property="article:author" content="Dylan">
 <meta name="twitter:card" content="summary">
 
@@ -225,8 +225,8 @@
 <p>模拟其实用 DFS 和 BFS 均可，下面代码是我用 BFS 的写法。</p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
 <h3 id="M-Residual-Polynomial"><a href="#M-Residual-Polynomial" class="headerlink" title="M - Residual Polynomial"></a>M - Residual Polynomial</h3><p>对分治 FFT 的理解还不够到位，比赛时没有想出来。</p>
-<p>先考虑 $a_i$ 对 $w_{i-j}$ 的贡献。感性理解一下， $f_{1}$ 经过了 $j$ 次求导和 $n-j$ 次平移后，$a_i$ 的贡献才能加在 $w_{i-j}$ 上。因此我们令 $d_j$ 为 $\prod_{i=2}^{n}(b_ix+c_i)$ 的第 $j$ 项系数，那么 $a_i$ 对 $w_{i-j}$ 的贡献就为 $a_i\cdot d_j\cdot i!/(i-j)!$ 。</p>
-<p>令 $a_i\cdot i!$ 的母函数为 $f(x)$，$d_{n-i}$ 的母函数为 $g(x)$，那么 $f(x)\cdot g(x)$ 就是 $w_{i+n}\cdot i!$ 的母函数。</p>
+<p>先考虑 $a<em>i$ 对 $w</em>{i-j}$ 的贡献。感性理解一下， $f<em>{1}$ 经过了 $j$ 次求导和 $n-j$ 次平移后，$a_i$ 的贡献才能加在 $w</em>{i-j}$ 上。因此我们令 $d<em>j$ 为 $\prod</em>{i=2}^{n}(b<em>ix+c_i)$ 的第 $j$ 项系数，那么 $a_i$ 对 $w</em>{i-j}$ 的贡献就为 $a_i\cdot d_j\cdot i!/(i-j)!$ 。</p>
+<p>令 $a<em>i\cdot i!$ 的母函数为 $f(x)$，$d</em>{n-i}$ 的母函数为 $g(x)$，那么 $f(x)\cdot g(x)$ 就是 $w_{i+n}\cdot i!$ 的母函数。</p>
 <p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
 
     </div>
@@ -322,7 +322,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

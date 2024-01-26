@@ -28,7 +28,7 @@
 <meta property="og:description" content="问题描述九条可怜在玩一个很好玩的策略游戏：Slay the Spire，一开始九条可怜的卡组里有 $2n$ 张牌，每张牌上都写着一个数字 $w_i$,一共有两种类型的牌，每种类型各 $n$ 张： 攻击牌：打出后对对方造成等于牌上的数字的伤害。 强化牌：打出后，假设该强化牌上的数字为 $x$，则其他剩下的攻击牌的数字都会乘上 $x$。保证强化牌上的数字都大于 $1$。 现在九条可怜会等概率随机从卡组">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-10T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-05T14:30:21.306Z">
+<meta property="article:modified_time" content="2022-06-05T14:30:21.000Z">
 <meta property="article:author" content="Dylan">
 <meta property="article:tag" content="组合计数">
 <meta name="twitter:card" content="summary">
@@ -218,10 +218,10 @@
 <p>攻击牌：打出后对对方造成等于牌上的数字的伤害。</p>
 <p>强化牌：打出后，假设该强化牌上的数字为 $x$，则其他剩下的攻击牌的数字都会乘上 $x$。保证强化牌上的数字都大于 $1$。</p>
 <p>现在九条可怜会等概率随机从卡组中抽出 $m$ 张牌，由于费用限制，九条可怜最多打出 $k$ 张牌，假设九条可怜永远都会采取能造成最多伤害的策略，求她期望造成多少伤害。</p>
-<p>假设答案为 $ans$，你只需要输出 $ans * \\frac{(2n)!}{m!(2n-m)!} \\mod 998244353 $</p>
+<p>假设答案为 $ans$，你只需要输出 $ans * \frac{(2n)!}{m!(2n-m)!} \mod 998244353 $</p>
 <h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行一个正整数 $T$ 表示数据组数 接下来对于每组数据： 第一行三个正整数 $n,m,k$ 第二行 $n$ 个正整数 $w_i$，表示每张强化牌上的数值 第三行 $n$ 个正整数 $w_i$，表示每张攻击牌上的数值</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出 $T$ 行，每行一个非负整数表示每组数据的答案。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先题目要求的其实是所有 ${2n \\choose m}$ 种情况造成的伤害之和，是一个计数问题。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先题目要求的其实是所有 ${2n \choose m}$ 种情况造成的伤害之和，是一个计数问题。</p>
 <p>有一个很巧妙的条件是「强化牌上的数字是大于 1 的整数 」我们可以据此得出最优策略是：如果强化牌数量大于 $i$，那么就先用最大的 $k-1$ 张强化牌，再用最大的 $1$ 张攻击牌；否则就是先用掉所有强化牌，再用最大的 $k-i$ 张攻击牌。</p>
 <p>先将两种牌从大到小排序，设计状态 $f_{i,j}$ 为用了$i$ 张牌最小的牌为 $w_j$ 所有这种情况的强化倍数之和；$g_{i,j}$ 为用了$i$ 张牌最小的牌为 $w[j]$ 所有这种情况的总伤害之和。它们的转移方程分别为 <script type="math/tex">f\_{i,j}=w\_j \* \\sum\_{k=1}^{j-1} f\_{i-1,k}</script> <script type="math/tex">g\_{i,j}=w\_j\*{i-1 \\choose j-1}+ \\sum\_{k=1}^{j-1} g\_{i-1,k}</script> 但是这样还不够，我们还要考虑每一个状态所对应的情况数。设 $F_{i,j}$ 为抽到了 $i$ 张强化牌，并使用了其中 $j$ 张的情况的总强化倍数乘对应情况数；$G_{i,j}$ 为抽到了 $i$ 张攻击牌，并使用了其中 $j$ 张的情况的总伤害乘对应情况数。$F_{i,j},G_{i,j}$ 满足式子 <script type="math/tex">F\_{i,j}=\\sum\_{k=1}^{n} f\_{j,k}\*{n-k \\choose i-j}</script> <script type="math/tex">G\_{i,j}=\\sum\_{k=1}^{n} g\_{j,k}\*{n-k \\choose i-j}</script> 这时候我们最初提到的最优策略就要用到了，我们先枚举 $m$ 张牌的类型，然后根据最优策略算出对应的贡献。因此答案就是 <script type="math/tex">ans=\\sum\_{i=0}^{m-1} F\_{i,min(i,k-1)}\* G\_{m-i,max(k-i)}</script></p>
 <p>最后是实现的细节，我们先预处理 $f_{i,j}$ 和 $g_{i,j}$，利用前缀和可以做到 $O(n^2)$。然后我们可以在计算答案时对于每一个 $F_{i,j},G_{i,j}$ 用 $O(n)$ 计算出来，这样总复杂度就是 $O(n^2)$ 的。</p>
@@ -323,7 +323,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

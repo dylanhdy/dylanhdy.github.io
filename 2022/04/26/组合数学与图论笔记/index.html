@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"hide","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum _ {">
+  <meta name="description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum  {i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="组合数学与图论笔记">
 <meta property="og:url" content="http://example.com/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Dylan&#39;s Blog">
-<meta property="og:description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum _ {">
+<meta property="og:description" content="组合数学组合数 广义组合数 ${n \choose m} &#x3D; \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数 广义二项式定理 $(x+1)^\alpha &#x3D; \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数 单位根反演： $[n \mid k]&#x3D;\frac{1}{n}\sum  {i">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-04-26T08:22:46.000Z">
-<meta property="article:modified_time" content="2022-09-07T08:26:08.220Z">
+<meta property="article:modified_time" content="2022-09-07T08:26:08.000Z">
 <meta property="article:author" content="Dylan">
 <meta name="twitter:card" content="summary">
 
@@ -210,8 +210,8 @@
 <p>广义二项式定理</p>
 <p>$(x+1)^\alpha = \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数</p>
 <p>单位根反演：</p>
-<p>$[n \mid k]=\frac{1}{n}\sum _ {i=0}^{n-1} \omega _ {n}^{ik}$</p>
-<p>$[k \mod n \equiv j ]=\frac{1}{n}\sum _ {i=0}^{n-1} \omega _ {n}^{i(k-j)}$</p>
+<p>$[n \mid k]=\frac{1}{n}\sum <em> {i=0}^{n-1} \omega </em> {n}^{ik}$</p>
+<p>$[k \mod n \equiv j ]=\frac{1}{n}\sum <em> {i=0}^{n-1} \omega </em> {n}^{i(k-j)}$</p>
 <p>例：求 $\sum {n \choose 3i}$</p>
 <p>范德蒙恒等式</p>
 <p>${n+m\choose j} = \sum\limits_{0\leq i\leq j}{n\choose i} {m\choose j-i}$</p>
@@ -232,7 +232,7 @@
 <p><strong>集合论</strong></p>
 <p>反链</p>
 <p>sperner 定理</p>
-<p>若 $\mathcal{F}$  是一个反链，则 $max\{ \mathcal{F}\} = {n\choose \lceil \frac{n}{2}\rceil}$</p>
+<p>若 $\mathcal{F}$  是一个反链，则 $max{ \mathcal{F}} = {n\choose \lceil \frac{n}{2}\rceil}$</p>
 <p>相交集族</p>
 <p>最大 K 相交集族 =  ${n-1\choose k-1}$</p>
 <p>圆排列映射</p>
@@ -242,14 +242,14 @@
 <p>$P(n)=\frac{n+1}{n}P(n-1)+2$</p>
 <p>$P(n) = 2 \ln2$</p>
 <p>特征方程法</p>
-<p>已知 $af_n=bf_{n-1}+cf_{n-2}$</p>
+<p>已知 $af<em>n=bf</em>{n-1}+cf_{n-2}$</p>
 <p>令 $x_1, x_2$ 为方程 $ax^2=bx+c$ 两根，则 $f_n = c_1x_1^n+c_2x_2^n$</p>
 <p>$c_1, c_2$ 用待定系数法求出</p>
 <p>例：用 $1 × 2 $ 的多米诺骨牌覆盖 $3 × n$ 的棋盘有多少种方法</p>
 <p>生成函数</p>
 <p>例：设 $h_n$表示由数字 $1, 2, 3$ 构造的 $n$ 位数的个数，其中 $1$ 的个数是奇数，$2$ 的个数是 $3$ 的倍数，求 $h_n$</p>
 <p>卡特兰数</p>
-<p>$c_n =\sum_{i=0}^{n-1} c_i \cdot c_{n-i-1}$</p>
+<p>$c<em>n =\sum</em>{i=0}^{n-1} c<em>i \cdot c</em>{n-i-1}$</p>
 <p>$C(x)= xC(x)^2+1$</p>
 <p>$c_n = \frac{1}{n+1} {2n \choose n}$</p>
 <p>例： $n$ 个数字在进栈之前，已经有 $m$ 个数在栈中，问输出序列的种数</p>
@@ -259,7 +259,7 @@
 <p><strong>容斥原理</strong></p>
 <p>$\varphi(n) = n \prod (1-\frac{1}{p_i})$</p>
 <p>错排问题</p>
-<p>$f_n = (n-1)(f_{n-1}+f_{n-2})$</p>
+<p>$f<em>n = (n-1)(f</em>{n-1}+f_{n-2})$</p>
 <p>$f_n \to \frac{n!}{e}$</p>
 <p>100 囚徒问题</p>
 <p><strong>斯特林数</strong></p>
@@ -346,8 +346,8 @@
       <i class="fa fa-chevron-left"></i> 中南大学自动健康打卡脚本
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/05/13/submodular-optimization-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="next" title="submodular optimization 论文阅读">
-      submodular optimization 论文阅读 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/08/10/coevolutionary-algorithm-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="next" title="coevolutionary algorithm 论文阅读">
+      coevolutionary algorithm 论文阅读 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -421,7 +421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

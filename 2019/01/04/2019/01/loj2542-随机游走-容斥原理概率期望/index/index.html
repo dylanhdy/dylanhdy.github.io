@@ -28,7 +28,7 @@
 <meta property="og:description" content="问题描述给定一棵 $n$ 个结点的树，你从点 $x$ 出发，每次等概率随机选择一条与所在点相邻的边走过去。 有 $q$ 次询问，每次询问给定一个集合 $S$，求如果从 $x$ 出发一直随机游走，直到点集 $S$ 中所有点都至少经过一次的话，期望游走几步。 特别地，点 $x$（即起点）视为一开始就被经过了一次。 答案对 $998244353$ 取模。 输入第一行三个正整数 $n,q,x$。 接下来">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-01-04T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-05T14:30:21.230Z">
+<meta property="article:modified_time" content="2022-06-05T14:30:21.000Z">
 <meta property="article:author" content="Dylan">
 <meta property="article:tag" content="概率期望">
 <meta property="article:tag" content="容斥原理">
@@ -225,7 +225,7 @@
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出 $q$ 行，每行一个非负整数表示答案。</p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先要知道 $min-max$ 容斥，然后根据 $min-max$ 容斥的常规套路就可以把原问题转换为求 $f(root)$，表示从 $root$ 开始到集合 $T$ 中元素的最小期望步数。</p>
 <p>考虑求 $f(x)$。路径上概率期望的套路一般是根据期望的递推关系，对于每一个点列一个方程，最后解方程组得出期望。这题也可以按照这种方法，得出方程： <script type="math/tex">f\[x\]=\\frac{1}{deg\[x\]} \\sum f\[to\] +1</script> 用 $O(n^3)$ 解这个方程组，然后套 $min-max$ 容斥的复杂度是 $O(n^32^n+n^2q)$，但这个复杂度是满足不了要求的。我们可以考虑优化如何解这个方程组。下面将式子进行化简： <script type="math/tex">f\[x\]=\\frac{1}{deg\[x\]} \\sum\_{to \\in ch\[x\]} f\[to\] + \\frac{1}{deg\[x\]} f\[fa\]+ 1</script> 设 <script type="math/tex">A\_x=\\frac{1}{deg\[x\]}, B\_x=\\frac{\\sum\_{to \\in ch\[x\]} f\[to\]} {deg\[x\] }+1</script>那么就可以将上式写成： <script type="math/tex">f\[x\]=A\_x \* f\[fa\]+B\_x</script></p>
-<p>考虑： <script type="math/tex">\\sum f\[to\]=\\sum A\_{to} f\[x\]+\\sum B\_{to}</script> 将 $\\sum f[to]$ 代入原先式子，得到： <script type="math/tex">f\[x\]=\\frac{f\[fa\]}{deg\[x\]}+\\frac{\\sum A\_{to}\*f\[x\]+\\sum B\_{to}}{deg\[x\]}+1</script> <script type="math/tex">(deg\[x\]-\\sum A\_{to}) f\[x\]=f\[fa\]+\\sum B\_{to}+deg\[x\]</script> <script type="math/tex">f\[x\]=\\frac{f\[fa\]}{deg\[x\]-\\sum A\_{to}} + \\frac{\\sum B\_{to}+deg\[x\]}{deg\[x\]-\\sum A\_{to}}</script></p>
+<p>考虑： <script type="math/tex">\\sum f\[to\]=\\sum A\_{to} f\[x\]+\\sum B\_{to}</script> 将 $\sum f[to]$ 代入原先式子，得到： <script type="math/tex">f\[x\]=\\frac{f\[fa\]}{deg\[x\]}+\\frac{\\sum A\_{to}\*f\[x\]+\\sum B\_{to}}{deg\[x\]}+1</script> <script type="math/tex">(deg\[x\]-\\sum A\_{to}) f\[x\]=f\[fa\]+\\sum B\_{to}+deg\[x\]</script> <script type="math/tex">f\[x\]=\\frac{f\[fa\]}{deg\[x\]-\\sum A\_{to}} + \\frac{\\sum B\_{to}+deg\[x\]}{deg\[x\]-\\sum A\_{to}}</script></p>
 <p>得到： <script type="math/tex">A\_x=\\frac{1}{deg\[x\]-\\sum A\_{to}}, B\_{x}=\\frac{\\sum B\_{to}+deg\[x\]}{deg\[x\]-\\sum A\_{to}}</script></p>
 <p>然后我们设属于集合 $T$ 的点 $A_x=0, B_x=0$，这样我们就可以从下往上递推出 $A_x, B_x$，然后因为 $root$ 没有父亲，所以我们要求的 $f[root]$ 就是 $B_{root}$。</p>
 <p>先预处理出所有集合 $T$ 的 $f[root]$，然后对于每一个询问，枚举子集，用 $min-max$ 容斥得出答案。这样总复杂度就是 $O(n*2^n+qn^2)$。</p>
@@ -328,7 +328,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
