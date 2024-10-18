@@ -155,6 +155,256 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/15/2019/02/codeforces-global-round-1/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/15/2019/02/codeforces-global-round-1/index/" class="post-title-link" itemprop="url">Codeforces Global Round 1</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-15 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-15T08:00:00+08:00">2019-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 11:38:18" itemprop="dateModified" datetime="2022-09-07T11:38:18+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2 月 14 日 Codeforces Global Round 1 题目链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1110">https://codeforces.com/contest/1110</a></p>
+<h3 id="F-Nearest-Leaf"><a href="#F-Nearest-Leaf" class="headerlink" title="F - Nearest Leaf"></a>F - Nearest Leaf</h3><p><strong>思路：</strong></p>
+<p>考虑用线段树维护当前点到叶子节点的距离，那么对于询问就是查询区间最小值。我们从根节点开始，按照 dfs 序依次维护在每一个点上的线段树。当从点 $x$ 走到点 $son_x$ 且边权为 $dis$ 时，$son_x$ 子树内点的距离减少了 $dis$，其余点点距离增加了 $dis$，由于一棵子树的 dfs 序是连续的，因此就对应于线段树的区间修改。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/F.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="G-Tree-Tac-Toe"><a href="#G-Tree-Tac-Toe" class="headerlink" title="G - Tree-Tac-Toe"></a>G - Tree-Tac-Toe</h3><p><strong>思路：</strong></p>
+<p>首先发现黑色是不可能赢的。为了简化情况，我们先假设所有点都是没有涂色的，然后考虑有哪些情况白色必定赢。比较简单的一种就是存在度数大于 4 的节点，然后发现如果一个点度数为 3 且有两个相邻的非叶节点时，白色也同样必胜。排除掉这两种情况后，剩下的树的形态就比较简单了。如下图一样，就是中间一条长链，两端可能会有度数为 3 的点，当然也可能没有度数为3的点。</p>
+<p><img src="/images/5c83806ef22f2.png" alt="Tree-Tac-Toe 1" title="Tree-Tac-Toe 1"></p>
+<p>然后考虑这种情况下白色怎样才能获胜，可以发现只有两端都有度数为 3 的端点且链长为偶数时，白色才能获胜。然后其余的所有情况都会是平局。</p>
+<p>如果一开始树上有些点已经是白色了，考虑如何处理这种情况。比较巧妙的方式就是将一个白点按照下图的方式，拆成 4 个无色的点，可以发现这两种是完全等价的。然后就按照开始所讲的情况进行讨论即可。</p>
+<p><img src="/images/5c8383e9b7097.png" alt="Tree-Tac-Toe 2" title="Tree-Tac-Toe 2"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Global%20Round%201/G.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/09/2019/02/bzoj1145-%E5%9B%BE%E8%85%BE-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/09/2019/02/bzoj1145-%E5%9B%BE%E8%85%BE-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/index/" class="post-title-link" itemprop="url">BZOJ1145 图腾 [树状数组+组合数学]</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-09 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-09T08:00:00+08:00">2019-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 11:38:48" itemprop="dateModified" datetime="2022-09-07T11:38:48+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>小布的团队在山洞里发现了一幅巨大的壁画，壁画上被标记出了 $N$ 个点，经测量发现这 $N$ 个点的水平位置和竖直位置是两两不同的。小布认为这幅壁画所包含的信息仅与这 $N$ 个点的相对位置有关，因此不妨设坐标分别为 $(1, y_1) , (2, y_2), …, (n, y_n)$ 其中 $y_1$ 到 $y_n$ 是 $1$ 到 $N$ 的一个排列。小布的团队打算研究在这幅壁画中包含着多少个图腾，其中闪电图腾的定义图示如下（图腾的形式只与 4 个纵坐标值的相对大小排列顺序有关）： <img src="/images/1145_1.jpg" alt="闪电图腾" title="闪电图腾"> 崇拜高山的部落有两个氏族，因而山峰图腾有如下两种形式，左边为 A 类，右边为 B 类（同样，图腾的形式也都只与 4 个纵坐标值的大小排列顺序有关）： <img src="/images/1145_2.jpg" alt="A山峰图腾" title="A 类山峰图腾"> 小布的团队希望知道，这 $N$ 个点中两个部落图腾数目的差值。因此在本题中，你需要帮助小布的团队编写一个程序，计算闪电图腾数目减去山峰图腾数目的值，由于该值可能绝对值较大，本题中只需输出该值对 $16777216$ 的余数。</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行包含一个整数 $N$ ($N≤200000$) 为点的数目。 接下来一行包含 $N$ 个整数，分别为 $y1,y2,…,yn$。</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>仅包含一个数，表示闪电图腾数目与山峰图腾数目的差值对 16777216 的余数。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>超级神仙的一道题。</p>
+<p>我们先考虑所有的六种情况 $1234,1243,1324,1342,1423,1432$，然后题目要求的是 $1324-1243-1432$ 的数量。然后可以发现形如 $1xxx,12xx,13xx,1x2x,1234,1243$ 的这些情况是可以求出来的（可能还有其他的情况）。然后就将题目要求的情况变换成我们能求出的情况： $1324-1243-1432$ $=(1x2x-1423)-(12xx-1234)-(14xx-1423)$ $=1x2x-12xx+1234-14xx$ $=1234+13xx+1x2x-1xxx$</p>
+<p>我们设 $l_i=\sum_{j=1}^{i}[a_j&lt;a_i]$，$r_i=\sum_{j=i}^{n}[a_j&lt;a_i]$</p>
+<p>$1xxx$ 的数量比较好求，就是： <script type="math/tex">\\sum\_{i=1}^{n} {n-r\_i-i\\choose3}</script> $1234$ 的数量也不难，枚举 $3$ 的位置 $i$，那么 $4$ 的情况数就是 $n-r_i-i$，$12$ 的情况数就是 $\sum_{j=1}^{i} ([a_j&lt;a_i] l_i)$，总数量就是：<script type="math/tex">\\sum\_{i=1}^{n} (n-r\_i-i)\*\\sum\_{j=1}^{i} (\[a\_j<a\_i\] l\_i)</script> $13xx$ 的数量同样枚举 $3$ 的位置 $i$，那么 $4$ 的情况数还是 $(n-r_i-i)$，$132$ 的情况数可以先计算 $12$ 的情况数 $\sum_{j=i}^{n}([a_j&lt;a_i] (a_j-1))$ 然后减去 $12$ 同时在 $3$ 右边的情况 ${r_i}\choose{2}$，总数量就是：<script type="math/tex">\\sum\_{i=1}^{n}(n-r\_i-i)\*\[\\sum\_{j=i}^{n}(\[a\_j<a\_i\] (a\_j-1))- {r\_i \\choose 2}\]</script></p>
+<p>$1x2x$ 的数量可以枚举 $2$ 的位置 $i$，那么 $2$ 后面 $x$ 的情况数就是 $(n-r_i-i)$，$1x2$ 的情况数先可以计算 $1x$ 和 $x1$ 的情况数 $l_i*(i-1)$，然后减去两个数都比 $2$ 小的情况数 ${l_i \choose 2}$，最后减去 $x$ 在 $1$ 前的情况数 $\sum_{j=1}^{i} ([a_j&lt;a_i]j)$，总数量就是：<script type="math/tex">\\sum\_{i=1}^{n} (n-r\_i-i) \* \[l\_i\*(i-1)-{l\_i \\choose 2}-\\sum\_{j=1}^{i} (\[a\_j<a\_i\]j)\]</script> 所有这些东西都可以用树状数组在 $O(n\log n)$ 内维护。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 200005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 16777216</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, sum1, sum2, sum3, sum4, y[MAXN], l[MAXN], r[MAXN], t[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (; x &lt;= n; x += (x &amp; -x))</span><br><span class="line">        t[x] = (t[x] + y) % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (; x; x -= (x &amp; -x))</span><br><span class="line">        ans = (ans + t[x]) % P;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">comb</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LL up = <span class="number">1</span>, down = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">0</span>; i &lt; y; ++i)</span><br><span class="line">        up *= (x - i), down *= (i + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> up / down % P;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;y[i]);</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        l[i] = <span class="built_in">ask</span>(y[i]);</span><br><span class="line">        r[i] = y[i] - l[i] - <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">add</span>(y[i], <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        sum1 = (sum1 + <span class="built_in">comb</span>(n - r[i] - i, <span class="number">3</span>)) % P;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(t, <span class="number">0</span>, <span class="built_in">sizeof</span>(t));</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        sum2 = (sum2 + <span class="number">1LL</span> * (n - r[i] - i) * <span class="built_in">ask</span>(y[i]) % P) % P;</span><br><span class="line">        <span class="built_in">add</span>(y[i], l[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(t, <span class="number">0</span>, <span class="built_in">sizeof</span>(t));</span><br><span class="line">    <span class="keyword">for</span> (rint i = n; i &gt;= <span class="number">1</span>; --i)</span><br><span class="line">    &#123;</span><br><span class="line">        sum3 = (sum3 + <span class="number">1LL</span> * (n - r[i] - i) * (<span class="built_in">ask</span>(y[i]) - <span class="built_in">comb</span>(r[i], <span class="number">2</span>) + P) % P) % P;</span><br><span class="line">        <span class="built_in">add</span>(y[i], y[i] - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(t, <span class="number">0</span>, <span class="built_in">sizeof</span>(t));</span><br><span class="line">    <span class="keyword">for</span> (rint i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        sum4 = (sum4 + <span class="number">1LL</span> * (n - r[i] - i) * (<span class="number">1LL</span> * (i - <span class="number">1</span>) * l[i] - <span class="built_in">comb</span>(l[i], <span class="number">2</span>) - <span class="built_in">ask</span>(y[i])) % P + P) % P;</span><br><span class="line">        <span class="built_in">add</span>(y[i], i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, (sum2 + sum3 + sum4 - sum1 + P) % P);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/09/2019/02/yahoo-programming-contest-2019/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/02/09/2019/02/yahoo-programming-contest-2019/index/" class="post-title-link" itemprop="url">Yahoo Programming Contest 2019</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-02-09 08:00:00" itemprop="dateCreated datePublished" datetime="2019-02-09T08:00:00+08:00">2019-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 11:38:00" itemprop="dateModified" datetime="2022-09-07T11:38:00+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>2月10日 Yahoo Programming Contest 2019 题目链接：<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/yahoo-procon2019-qual">https://atcoder.jp/contests/yahoo-procon2019-qual</a></p>
+<h3 id="D-Ears"><a href="#D-Ears" class="headerlink" title="D - Ears"></a>D - Ears</h3><p><strong>思路：</strong> 我们可以将 Snuke 走过的路抽象成这五个部分： <img src="/images/5c8385c78c1bf.png" alt=""> 无论 Snuke 怎么走都会符合这个模型，只是可能有一些部分不会出现。如果发现了这个，后面只要直接 DP 就可以了。设 $f[i][j]$ 为第 $i$ 个位置属于第 $j$ 个部分的代价，转移时加上每个部分相应的代价即可。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 200005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P </span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, a[MAXN];</span><br><span class="line">LL ans=<span class="number">1e18</span>, f[MAXN][<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">cost</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(op==<span class="number">0</span> || op==<span class="number">4</span>) <span class="keyword">return</span> x;</span><br><span class="line">    <span class="keyword">if</span>(op==<span class="number">1</span> || op==<span class="number">3</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!x) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> x&amp;<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(op==<span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!x) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> !(x&amp;<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    <span class="built_in">memset</span>(f, <span class="number">0x3f</span>, <span class="built_in">sizeof</span>(f));</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;=<span class="number">4</span>; ++i) f[<span class="number">0</span>][i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="number">0</span>; j&lt;=<span class="number">4</span>; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=<span class="built_in">min</span>(f[i][j], f[i][j<span class="number">-1</span>]);</span><br><span class="line">            f[i][j]=<span class="built_in">min</span>(f[i][j], f[i<span class="number">-1</span>][j]+<span class="built_in">cost</span>(a[i], j));</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;=<span class="number">4</span>; ++i) ans=<span class="built_in">min</span>(ans, f[n][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="E-Odd-Subrectangles"><a href="#E-Odd-Subrectangles" class="headerlink" title="E - Odd Subrectangles"></a>E - Odd Subrectangles</h3><p><strong>思路：</strong> 如果行的集合已知，有一个很巧妙的性质：如果这些行的 $m$ 位的异或和不全为 $0$，那么有 $2^{m-1}$ 个列的集合满足题目要求；否则不会有列的集合满足要求。</p>
+<p>因此答案就变成了有多少个行的集合它们 $m$ 位的异或和不全为 $0$，这个东西和线性基的大小有关。设线性基的大小为 $siz$，那么不在线性基中 $n-r$ 个行构成的集合中的所有子集，线性基中都有唯一的集合和该子集异或和全为 $0$，因此答案就是 $2^{m-1}*(2^n-2^{n-siz})$。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 305</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, siz, a[MAXN][MAXN], bas[MAXN][MAXN], temp[MAXN], vis[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">ksm</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(y)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>) ans=<span class="number">1LL</span>*ans*x%P;</span><br><span class="line">        x=<span class="number">1LL</span>*x*x%P; y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">int</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memcpy</span>(temp, a, <span class="built_in">sizeof</span>(temp));</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=m; ++i)</span><br><span class="line">        <span class="keyword">if</span>(temp[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!vis[i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; ++j) bas[i][j]=temp[j];</span><br><span class="line">                vis[i]=<span class="number">1</span>;</span><br><span class="line">                siz++;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; ++j) temp[j]^=bas[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=m; ++j) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i][j]);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i) <span class="built_in">insert</span>(a[i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="number">1LL</span>*(<span class="built_in">ksm</span>(<span class="number">2</span>, n)-<span class="built_in">ksm</span>(<span class="number">2</span>, n-siz)+P)*<span class="built_in">ksm</span>(<span class="number">2</span>, m<span class="number">-1</span>)%P);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="F-Pass"><a href="#F-Pass" class="headerlink" title="F - Pass"></a>F - Pass</h3><p><strong>思路：</strong> 有一个性质是第 $i$ 个球一个是从 $1～i$ 中的一个人手上来的。因此对于序列唯一的限制就是序列中前 $i$ 个中红球数量不能超过前 $i$ 个人手中的红球数量，对于黑球也同理，且序列中后 $n$ 球没有任何限制。然后就可以根据这个性质简单 DP 即可。</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 2005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, ans, r[MAXN], b[MAXN], c[MAXN*<span class="number">2</span>][MAXN*<span class="number">2</span>], f[MAXN][MAXN];</span><br><span class="line"><span class="type">char</span> s[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, s+<span class="number">1</span>);</span><br><span class="line">    n=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">    c[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n*<span class="number">2</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="number">0</span>; j&lt;=i*<span class="number">2</span>; ++j) c[i][j]=(c[i<span class="number">-1</span>][j<span class="number">-1</span>]+c[i<span class="number">-1</span>][j])%P;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[i]==<span class="string">&#x27;0&#x27;</span>) r[i]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(s[i]==<span class="string">&#x27;1&#x27;</span>) r[i]=b[i]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(s[i]==<span class="string">&#x27;2&#x27;</span>) b[i]=<span class="number">2</span>;</span><br><span class="line">        r[i]+=r[i<span class="number">-1</span>], b[i]+=b[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="built_in">max</span>(<span class="number">0</span>, i-b[i]); j&lt;=<span class="built_in">min</span>(i, r[i]); ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            f[i][j]=(f[i][j]+f[i<span class="number">-1</span>][j])%P;</span><br><span class="line">            <span class="keyword">if</span>(j) f[i][j]=(f[i][j]+f[i<span class="number">-1</span>][j<span class="number">-1</span>])%P;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="built_in">max</span>(<span class="number">0</span>, n-b[n]); i&lt;=<span class="built_in">min</span>(i, r[n]); ++i) ans=(ans+<span class="number">1LL</span>*c[n][r[n]-i]*f[n][i]%P)%P;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/02/01/2019/02/cf1006f-lunar-new-year-and-a-recursive-sequence-%E7%9F%A9%E9%98%B5%E5%BF%AB%E9%80%9F%E5%B9%82exgcdbsgs/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,271 +562,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/24/2019/01/%E7%82%B9%E5%88%86%E6%B2%BB%E5%B0%8F%E7%BB%93/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/24/2019/01/%E7%82%B9%E5%88%86%E6%B2%BB%E5%B0%8F%E7%BB%93/index/" class="post-title-link" itemprop="url">点分治小结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-24 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-24T08:00:00+08:00">2019-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习小结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、点分治"><a href="#一、点分治" class="headerlink" title="一、点分治"></a>一、点分治</h3><p><strong>1.BZOJ2599 Race</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ2599%20Race.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>2.BZOJ1468 Tree</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ1468%20Tree.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>3.BZOJ2152 聪聪可可</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ2152%20%E8%81%AA%E8%81%AA%E5%8F%AF%E5%8F%AF.cpp" title="代码链接">代码链接</a></strong></p>
-<p><strong>4.BZOJ5186 Cow at Large</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ5186%20Cow%20at%20Large.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="二、点分树"><a href="#二、点分树" class="headerlink" title="二、点分树"></a>二、点分树</h3><p><strong>1.BZOJ4012 开店</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ4012%20%E5%BC%80%E5%BA%97.cpp" title="代码链接">代码链接</a></strong></p>
-<p>2.BZOJ3924 幻想乡战略游戏 （坑）</p>
-<h3 id="三、点分治序"><a href="#三、点分治序" class="headerlink" title="三、点分治序"></a>三、点分治序</h3><p><strong>1.BZOJ3784 树上的路径</strong></p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Note/%E7%82%B9%E5%88%86%E6%B2%BB/BZOJ3784%20%E6%A0%91%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="四、动态点分治"><a href="#四、动态点分治" class="headerlink" title="四、动态点分治"></a>四、动态点分治</h3><p>（坑）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/15/2019/01/loj2540-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/15/2019/01/loj2540-%E9%9A%8F%E6%9C%BA%E7%AE%97%E6%B3%95-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/" class="post-title-link" itemprop="url">LOJ2540 随机算法 [计数类DP]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-15 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-15T08:00:00+08:00">2019-01-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>我们知道，求任意图的最大独立集是一类 NP 完全问题，目前还没有准确的多项式算法，但是有许多多项式复杂度的近似算法。</p>
-<p>例如，小 C 常用的一种算法是：</p>
-<ol>
-<li>对于一个 $n$ 个点的无向图，先等概率随机一个 $1$ 到 $n$ 的排列 $p[1\ldots n]$。</li>
-<li>维护答案集合 $S$ ，一开始 $S$ 为空集，之后按照 $i=1\ldots n$ 的顺序，检查 ${p[i]}\cup S$ 是否是一个独立集，如果是的话就令 $S={p[i]}\cup S$。</li>
-<li>最后得到一个独立集 $S$ 作为答案。</li>
-</ol>
-<p>小 C 现在想知道，对于给定的一张图，这个算法的正确率，输出答案对 $998244353$ 取模</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行两个非负整数 $n,m$ 表示给定的图的点数和边数。</p>
-<p>接下来 $m$ 行，每行有两个正整数 $(u,v) (u\neq v)$ 描述这张图的一条无向边。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出正确率，答案对 $998244353$ 取模。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>这题比较巧妙的地方就是设计状态。考虑比较朴素的一种方法， $0$ 表示一个点未被选，$1$ 表示一个点选了但没在集合中，$2$ 表示一个点在集合中，这样的状态数就是 $n^3$，我们需要考虑的就是如何优化这种状态。</p>
-<p>这里要跳出按照排列的顺序选点这个思维定式。只要选了点 $i$ 加入独立集中，那么与 $i$ 相邻的点在它之后任意时候选都不会产生影响，所以假设有 $s1$ 个点没有考虑，这其中有 $s2$ 个点是与 $i$ 相邻的，那么我们考虑这 $s2$ 个点在排列中的情况数，不难发现这个就是 $A_{s1}^{s2}$。注意我们这里说的是「考虑」而不是选取，也就是说先预先给 $s2$ 个点排好位置，而不是按照排列的顺序依次选了这些点。</p>
-<p>所以我们可以这样设计状态，设 $f_{S, i}$ 为考虑了集合 $S$ 且其中独立集大小为 $i$ 的方案数。按照上文提到的考虑方法，可以知道只要是不属于集合 $S$ 的点一定可以加入 $S$ 中的独立集，因为与独立集相邻的点已经在 $S$ 中了。设已经考虑了点集 $S$ ，此时要加入点 $k$，与$k$ 相邻的点集为 $e_k$，还有 $s1$ 个点没有考虑，这其中有 $s2$ 个点是与 $k$ 相邻的，有转移方程</p>
-<script type="math/tex; mode=display">f\_{S \\bigcup e\_k, i+1} +=f\_{S, i} \* A\_{s1}^{s2}</script><p>其中 $k\notin S$，$s1=n-|S|-1$，$s2=|e_k\bigcap(e_k\bigcup S)|$。这样转移总复杂度就是 $O(n^22^n)$ 了。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 25</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXM (1&lt;&lt;20)+5</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> p 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m, e[MAXN], f[MAXM][MAXN], bit[MAXM], fac[MAXN], inv[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    fac[<span class="number">0</span>]=fac[<span class="number">1</span>]=inv[<span class="number">0</span>]=inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;n); ++i) bit[i]=bit[i&gt;&gt;<span class="number">1</span>]+(i&amp;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i) inv[i]=<span class="number">1LL</span>*inv[p%i]*(p-p/i)%p;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        inv[i]=<span class="number">1LL</span>*inv[i]*inv[i<span class="number">-1</span>]%p;</span><br><span class="line">        fac[i]=<span class="number">1LL</span>*fac[i<span class="number">-1</span>]*i%p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">A</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1LL</span>*fac[x]*inv[x-y]%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>, x, y; i&lt;=m; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;x, &amp;y);</span><br><span class="line">        x--, y--;</span><br><span class="line">        e[x]|=(<span class="number">1</span>&lt;&lt;y);</span><br><span class="line">        e[y]|=(<span class="number">1</span>&lt;&lt;x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; ++i) e[i]|=(<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint sta=<span class="number">0</span>; sta&lt;(<span class="number">1</span>&lt;&lt;n); ++sta)</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(!f[sta][i]) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span>(rint j=<span class="number">0</span>; j&lt;n; ++j)</span><br><span class="line">                <span class="keyword">if</span>(!((sta&gt;&gt;j)&amp;<span class="number">1</span>))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="type">int</span> nxt=sta|e[j], s1=n-bit[sta]<span class="number">-1</span>, s2=bit[e[j]^(e[j]&amp;sta)]<span class="number">-1</span>;</span><br><span class="line">                    f[nxt][i+<span class="number">1</span>]=(f[nxt][i+<span class="number">1</span>]+<span class="number">1LL</span>*f[sta][i]*<span class="built_in">A</span>(s1, s2)%p)%p;</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=n; i&gt;=<span class="number">0</span>; i--)</span><br><span class="line">        <span class="keyword">if</span>(f[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>][i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="number">1LL</span>*f[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>][i]*inv[n]%p);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/01/10/2019/01/loj2538-slay-the-spire-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/10/2019/01/loj2538-slay-the-spire-%E8%AE%A1%E6%95%B0%E7%B1%BBdp/index/" class="post-title-link" itemprop="url">LOJ2538 Slay the Spire [计数类DP]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-10 08:00:00" itemprop="dateCreated datePublished" datetime="2019-01-10T08:00:00+08:00">2019-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>九条可怜在玩一个很好玩的策略游戏：Slay the Spire，一开始九条可怜的卡组里有 $2n$ 张牌，每张牌上都写着一个数字 $w_i$,一共有两种类型的牌，每种类型各 $n$ 张：</p>
-<p>攻击牌：打出后对对方造成等于牌上的数字的伤害。</p>
-<p>强化牌：打出后，假设该强化牌上的数字为 $x$，则其他剩下的攻击牌的数字都会乘上 $x$。保证强化牌上的数字都大于 $1$。</p>
-<p>现在九条可怜会等概率随机从卡组中抽出 $m$ 张牌，由于费用限制，九条可怜最多打出 $k$ 张牌，假设九条可怜永远都会采取能造成最多伤害的策略，求她期望造成多少伤害。</p>
-<p>假设答案为 $ans$，你只需要输出 $ans * \frac{(2n)!}{m!(2n-m)!} \mod 998244353 $</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行一个正整数 $T$ 表示数据组数 接下来对于每组数据： 第一行三个正整数 $n,m,k$ 第二行 $n$ 个正整数 $w_i$，表示每张强化牌上的数值 第三行 $n$ 个正整数 $w_i$，表示每张攻击牌上的数值</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出 $T$ 行，每行一个非负整数表示每组数据的答案。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>首先题目要求的其实是所有 ${2n \choose m}$ 种情况造成的伤害之和，是一个计数问题。</p>
-<p>有一个很巧妙的条件是「强化牌上的数字是大于 1 的整数 」我们可以据此得出最优策略是：如果强化牌数量大于 $i$，那么就先用最大的 $k-1$ 张强化牌，再用最大的 $1$ 张攻击牌；否则就是先用掉所有强化牌，再用最大的 $k-i$ 张攻击牌。</p>
-<p>先将两种牌从大到小排序，设计状态 $f_{i,j}$ 为用了$i$ 张牌最小的牌为 $w_j$ 所有这种情况的强化倍数之和；$g_{i,j}$ 为用了$i$ 张牌最小的牌为 $w[j]$ 所有这种情况的总伤害之和。它们的转移方程分别为 <script type="math/tex">f\_{i,j}=w\_j \* \\sum\_{k=1}^{j-1} f\_{i-1,k}</script> <script type="math/tex">g\_{i,j}=w\_j\*{i-1 \\choose j-1}+ \\sum\_{k=1}^{j-1} g\_{i-1,k}</script> 但是这样还不够，我们还要考虑每一个状态所对应的情况数。设 $F_{i,j}$ 为抽到了 $i$ 张强化牌，并使用了其中 $j$ 张的情况的总强化倍数乘对应情况数；$G_{i,j}$ 为抽到了 $i$ 张攻击牌，并使用了其中 $j$ 张的情况的总伤害乘对应情况数。$F_{i,j},G_{i,j}$ 满足式子 <script type="math/tex">F\_{i,j}=\\sum\_{k=1}^{n} f\_{j,k}\*{n-k \\choose i-j}</script> <script type="math/tex">G\_{i,j}=\\sum\_{k=1}^{n} g\_{j,k}\*{n-k \\choose i-j}</script> 这时候我们最初提到的最优策略就要用到了，我们先枚举 $m$ 张牌的类型，然后根据最优策略算出对应的贡献。因此答案就是 <script type="math/tex">ans=\\sum\_{i=0}^{m-1} F\_{i,min(i,k-1)}\* G\_{m-i,max(k-i)}</script></p>
-<p>最后是实现的细节，我们先预处理 $f_{i,j}$ 和 $g_{i,j}$，利用前缀和可以做到 $O(n^2)$。然后我们可以在计算答案时对于每一个 $F_{i,j},G_{i,j}$ 用 $O(n)$ 计算出来，这样总复杂度就是 $O(n^2)$ 的。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 3005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> p 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> T, n, m, k, ans, w[MAXN], v[MAXN], f[MAXN][MAXN], g[MAXN][MAXN];</span><br><span class="line"><span class="type">int</span> inv[MAXN], fac[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">CMP</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&gt;y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    inv[<span class="number">0</span>]=inv[<span class="number">1</span>]=fac[<span class="number">0</span>]=fac[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=<span class="number">3000</span>; ++i) inv[i]=<span class="number">1LL</span>*inv[p%i]*(p-p/i)%p;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=<span class="number">3000</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        inv[i]=<span class="number">1LL</span>*inv[i<span class="number">-1</span>]*inv[i]%p;</span><br><span class="line">        fac[i]=<span class="number">1LL</span>*fac[i<span class="number">-1</span>]*i%p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">comb</span><span class="params">(LL x, LL y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(y&gt;x) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1LL</span>*fac[x]*inv[y]%p*inv[x-y]%p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calf</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(y==<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">comb</span>(n, x);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">        sum=(sum+<span class="number">1LL</span>*f[y][i]*<span class="built_in">comb</span>(n-i, x-y))%p;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">calg</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">        sum=(sum+<span class="number">1LL</span>*g[y][i]*<span class="built_in">comb</span>(n-i, x-y))%p;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span>(T--)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;n, &amp;m, &amp;k);</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;w[i]);</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;v[i]);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sort</span>(w+<span class="number">1</span>, w+n+<span class="number">1</span>, CMP);</span><br><span class="line">        <span class="built_in">sort</span>(v+<span class="number">1</span>, v+n+<span class="number">1</span>, CMP);</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">            g[<span class="number">1</span>][i]=v[i], f[<span class="number">1</span>][i]=w[i];</span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> sum1=<span class="number">0</span>, sum2=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(rint j=<span class="number">1</span>; j&lt;=n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                f[i][j]=<span class="number">1LL</span>*w[j]*sum1%p;</span><br><span class="line">                g[i][j]=(<span class="number">1LL</span>*<span class="built_in">comb</span>(j<span class="number">-1</span>, i<span class="number">-1</span>)*v[j]+sum2)%p;</span><br><span class="line">                <span class="comment">//printf(&quot;%d %d %d %d %d!!!\n&quot;, i, j, sum2, w[j]);</span></span><br><span class="line">                sum1=(sum1+f[i<span class="number">-1</span>][j])%p;</span><br><span class="line">                sum2=(sum2+g[i<span class="number">-1</span>][j])%p;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//for(rint i=1; i&lt;=n; ++i)</span></span><br><span class="line">        <span class="comment">//  for(rint j=1; j&lt;=n; ++j) printf(&quot;%d %d %d %d!!!\n&quot;, i, j, f[i][j], g[i][j]);</span></span><br><span class="line">        <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> a=<span class="built_in">calf</span>(i, <span class="built_in">min</span>(i, k<span class="number">-1</span>));</span><br><span class="line">            <span class="type">int</span> b=<span class="built_in">calg</span>(m-i, <span class="built_in">max</span>(<span class="number">1</span>, k-i));</span><br><span class="line">            ans=(ans+<span class="number">1LL</span>*a*b)%p;</span><br><span class="line">            <span class="comment">//printf(&quot;%d %d %d!!\n&quot;, ans, a, b);</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -642,7 +631,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -155,6 +155,209 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/13/submodular-optimization-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/13/submodular-optimization-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">submodular optimization 论文阅读</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-10-13 16:35:55" itemprop="dateCreated datePublished" datetime="2023-10-13T16:35:55+08:00">2023-10-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-01-26 12:39:56" itemprop="dateModified" datetime="2024-01-26T12:39:56+08:00">2024-01-26</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <embed src="/pdf/submodular-optimization.pdf" width="100%" height="500">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">高级计算机算法笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-02-28 16:46:44 / Modified: 17:20:42" itemprop="dateCreated datePublished" datetime="2023-02-28T16:46:44+08:00">2023-02-28</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ol>
+<li>问题 $\pi$，最大化或最小化问题</li>
+<li>实例(instance) $I$</li>
+<li>$I$ 的可行解集合 $S(I)$，需满足<ul>
+<li>可行解 $s$ 大小为 $|I|$ 的多项式($|s|\in poly(|I|)$)</li>
+<li>多项式时间能判断解 $s$ 是否可行($s\in S(I)$)</li>
+</ul>
+</li>
+<li>目标函数(objective function) $obj(I, s)$，需满足<ul>
+<li>$obj(I, s) \geq 0$</li>
+<li>给定 $I,s$ 时，目标函数能在多项式时间内算出</li>
+</ul>
+</li>
+<li>最优解 $OPT(I)$, 算法所得解 $ALG(I)$</li>
+<li>$\alpha$ 近似(factor-$\alpha$-approximation)：最小化问题为例，对于任意一个实例 $I$，算法给出的解 $s$ 都满足 $\frac{obj(I,s)}{OPT(I)} \leq \alpha$</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/28/%E9%AB%98%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/08/coevolutionary-algorithm-%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/08/coevolutionary-algorithm-%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/" class="post-title-link" itemprop="url">coevolutionary algorithm 研究报告</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-09-08 08:13:42 / Modified: 08:33:48" itemprop="dateCreated datePublished" datetime="2022-09-08T08:13:42+08:00">2022-09-08</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <embed src="/pdf/coevolutionary-algorithm3.pdf" width="100%" height="500">
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/15/coevolutionary-algorithm-%E9%A2%86%E5%9F%9F%E8%B0%83%E7%A0%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -279,254 +482,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">组合数学与图论笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-26 16:22:46" itemprop="dateCreated datePublished" datetime="2022-04-26T16:22:46+08:00">2022-04-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-07 16:26:08" itemprop="dateModified" datetime="2022-09-07T16:26:08+08:00">2022-09-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="组合数学"><a href="#组合数学" class="headerlink" title="组合数学"></a>组合数学</h1><p><strong>组合数</strong></p>
-<p>广义组合数</p>
-<p>${n \choose m} = \frac{n^{\underline{m}}}{m!}$  $n$ 为实数，$m$ 为自然数</p>
-<p>广义二项式定理</p>
-<p>$(x+1)^\alpha = \sum\limits_{i\geq0} {\alpha \choose i}x^i$   $\alpha$ 为实数</p>
-<p>单位根反演：</p>
-<p>$[n \mid k]=\frac{1}{n}\sum <em> {i=0}^{n-1} \omega </em> {n}^{ik}$</p>
-<p>$[k \mod n \equiv j ]=\frac{1}{n}\sum <em> {i=0}^{n-1} \omega </em> {n}^{i(k-j)}$</p>
-<p>例：求 $\sum {n \choose 3i}$</p>
-<p>范德蒙恒等式</p>
-<p>${n+m\choose j} = \sum\limits_{0\leq i\leq j}{n\choose i} {m\choose j-i}$</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/04/26/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%9B%BE%E8%AE%BA%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/13/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/13/%E4%B8%AD%E5%8D%97%E5%A4%A7%E5%AD%A6%E8%87%AA%E5%8A%A8%E5%81%A5%E5%BA%B7%E6%89%93%E5%8D%A1%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">中南大学自动健康打卡脚本</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-13 11:15:37" itemprop="dateCreated datePublished" datetime="2021-12-13T11:15:37+08:00">2021-12-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-13 11:16:45" itemprop="dateModified" datetime="2022-09-13T11:16:45+08:00">2022-09-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="CSUAutoReport"><a href="#CSUAutoReport" class="headerlink" title="CSUAutoReport"></a>CSUAutoReport</h1><p>中南大学自动健康打卡脚本</p>
-<p>作者：<a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY">@DavidHuang</a></p>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
-<li>支持新版本的中南大学统一身份认证平台</li>
-<li>解析上一次打卡的信息作为当天的打卡信息</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Python3"><a href="#Python3" class="headerlink" title="Python3"></a>Python3</h3><p>该项目需要 Python3，可以从 <a target="_blank" rel="noopener" href="https://www.python.org/">Python 官网</a> 下载并安装</p>
-<h3 id="Repo"><a href="#Repo" class="headerlink" title="Repo"></a>Repo</h3><p>点击右上角的 <code>Clone or download</code> 下载该项目至本地</p>
-<p>对于 git 命令行：<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/CrazyDaveHDY/CSUAutoSelect.git</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>安装依赖软件包，在命令行中运行：<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">pip3 install -r requirements.txt</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>修改 user.json 文件，其中 username 为学工号，password 为统一身份认证平台密码</p>
-<p>进入项目根目录，命令行中运行<br><figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">python3 report.py</span></span><br></pre></td></tr></table></figure></p>
-<p>自动打卡需要脚本一直运行，脚本会在本地时间 1:00 时进行健康打卡。</p>
-<h2 id="许可协议"><a href="#许可协议" class="headerlink" title="许可协议"></a>许可协议</h2><p>CSUAutoReport <a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/CSUAutoReport/blob/main/LICENSE">GPL-3.0 License</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/04/2020icpc-%E6%B5%8E%E5%8D%97%E7%AB%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/04/2020icpc-%E6%B5%8E%E5%8D%97%E7%AB%99/" class="post-title-link" itemprop="url">2020ICPC 济南站</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-04 08:00:00" itemprop="dateCreated datePublished" datetime="2021-01-04T08:00:00+08:00">2021-01-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这次济南区域赛还是是踩线拿的银奖，开了两道银牌题都没有写出来。平时训练效率确实有些低，训练时不够专注。以后需要改进：</p>
-<ol>
-<li>进行模拟赛时要写满五个小时，严格按照正式比赛流程进行</li>
-<li>以周为单位，系统地对竞赛知识点进行复习</li>
-<li>在 Codeforces, Atocer 网站上补题时，以重现赛的方式进行</li>
-</ol>
-<p>这次比赛时，和队友都交流配合更加默契了。比赛过程中还是要注意以下两点：</p>
-<ol>
-<li>与队友交换想法时一定要有明确的思路，把细节想清后再讨论</li>
-<li>讨论一题时双方都应该对题目有一定的思考，防止队友被误导</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -592,7 +551,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

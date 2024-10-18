@@ -155,6 +155,270 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/10/2020/10/2019icpc%E5%8D%97%E4%BA%AC%E7%AB%99/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/10/2020/10/2019icpc%E5%8D%97%E4%BA%AC%E7%AB%99/index/" class="post-title-link" itemprop="url">2019ICPC南京站</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-10 08:00:00" itemprop="dateCreated datePublished" datetime="2020-10-10T08:00:00+08:00">2020-10-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-06 10:24:03" itemprop="dateModified" datetime="2022-06-06T10:24:03+08:00">2022-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>比赛链接：<a target="_blank" rel="noopener" href="https://vjudge.net/contest/404866" title="https://vjudge.net/contest/404866">https://vjudge.net/contest/404866</a></p>
+<h3 id="B-Chessboard"><a href="#B-Chessboard" class="headerlink" title="B - Chessboard"></a>B - Chessboard</h3><p>首先可以发现最后一个上色的块一定在四个角上。接着考虑倒着推，根据题目的要求发现每次必须把一行或者一列上的色块全部上满色。把操作顺序反过来后，如果给某一行上色时留下一部分不上色，那么后续将这一部分补上颜色时一定会与题意矛盾。</p>
+<p>考虑从四个角的任意一个开始，有 $n-1$ 行 $m-1$ 列需要上色，每次上色可以在行和列中选一个上色，因此有 $4 \cdot {n+m-2 \choose n-1}$ 种方案</p>
+<p>行数或列数为 $1$ 的情况需要特判。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/tree/master/Contest_ACM/OCT-4%20Training" title="代码链接">代码链接</a></strong></p>
+<h3 id="H-Prince-and-Princess"><a href="#H-Prince-and-Princess" class="headerlink" title="H - Prince and Princess"></a>H - Prince and Princess</h3><p>不难发现，如果说真话的人数超过一半，则一定可以找到公主的位置，否则有可能无法确定公主的位置。</p>
+<p>要特判只有一间房子的情况，比赛时忘了特判卡了很久。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/OCT-4%20Training/H.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="I-Space-Station"><a href="#I-Space-Station" class="headerlink" title="I - Space Station"></a>I - Space Station</h3><p>考虑记忆化搜索，搜索的情况数的上限是 $50$ 以内的无序拆分数之和。</p>
+<p>当目前的能量值大于 $50$ 时可以直接剪枝，然后还是 TLE。考虑能量为 $0$ 的星球可以任意时候到达且不影响当前能量，搜索时也可以剪枝。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/OCT-4%20Training/I.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="J-Spy"><a href="#J-Spy" class="headerlink" title="J - Spy"></a>J - Spy</h3><p>比赛时发现这题可以转化为求二分图的最大权完美匹配，遂复制粘贴一波费用流板子，然后 TLE。然后想到了没有学过的 KM 算法，在网上找了几个 KM 板子复制粘贴一波，然后还是 TLE。打算以后真正学 KM 算法的时候再把这题补完。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/07/2020/10/ccpc2020%E7%BD%91%E7%BB%9C%E8%B5%9B/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/07/2020/10/ccpc2020%E7%BD%91%E7%BB%9C%E8%B5%9B/index/" class="post-title-link" itemprop="url">2020CCPC 网络赛</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-10-07 08:00:00" itemprop="dateCreated datePublished" datetime="2020-10-07T08:00:00+08:00">2020-10-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-06 10:28:00" itemprop="dateModified" datetime="2022-06-06T10:28:00+08:00">2022-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>比赛链接：<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/contests/contest_show.php?cid=909" title="http://acm.hdu.edu.cn/contests/contest_show.php?cid=909">http://acm.hdu.edu.cn/contests/contest_show.php?cid=909</a></p>
+<h3 id="B-Graph-Theory-Class"><a href="#B-Graph-Theory-Class" class="headerlink" title="B - Graph Theory Class"></a>B - Graph Theory Class</h3><p>令 $f(n)$ 为小于等于 $n$ 的质数个数，答案其实就是</p>
+<script type="math/tex; mode=display">\sum_{i=3}^{n+1}i+f(n+1)-1</script><p>然后用 min_25 求 $f(n)$ 即可</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/B.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="E-Lunch"><a href="#E-Lunch" class="headerlink" title="E - Lunch"></a>E - Lunch</h3><p>设只有一根长度为 $l_i$ 的巧克力局面的 SG 值为 $SG(l_i)$</p>
+<p>那么当前局面 SG 值就为 $\bigoplus_{i=1}^{n} SG(l_i)$</p>
+<p>令 $pri$ 为任意不为 $2$ 的质数，那么 $SG(x\cdot pri)=SG(pri)+1$。当 $x$ 为奇数时，类似的有 $SG(x\cdot 2)=SG(x)+1$；当 $x$ 为偶数时，考虑 $x$ 获得 $SG(x)$ 级胜态的策略，$1$ 级胜态的局面为奇数根长度为 $2$ 的巧克力，如果 $SG(x*2)$ 采取相同的策略，最后的局面则为奇数根长度为 $4$ 的巧克力，此时 SG 值仍然为 $1$。因此 $x\cdot 2$ 不存在获得 $SG(x)+1$ 级胜态的策略，即此时 $SG(x\cdot 2)=SG(x)$。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="F-Robotic-Class"><a href="#F-Robotic-Class" class="headerlink" title="F - Robotic Class"></a>F - Robotic Class</h3><p>考虑每个区间的临界点，将其分别放入左右区间的路径上去模拟，如果到达 $n$ 点的数值不同，则函数不连续。</p>
+<p>模拟其实用 DFS 和 BFS 均可，下面代码是我用 BFS 的写法。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="M-Residual-Polynomial"><a href="#M-Residual-Polynomial" class="headerlink" title="M - Residual Polynomial"></a>M - Residual Polynomial</h3><p>对分治 FFT 的理解还不够到位，比赛时没有想出来。</p>
+<p>先考虑 $a<em>i$ 对 $w</em>{i-j}$ 的贡献。感性理解一下， $f<em>{1}$ 经过了 $j$ 次求导和 $n-j$ 次平移后，$a_i$ 的贡献才能加在 $w</em>{i-j}$ 上。因此我们令 $d<em>j$ 为 $\prod</em>{i=2}^{n}(b<em>ix+c_i)$ 的第 $j$ 项系数，那么 $a_i$ 对 $w</em>{i-j}$ 的贡献就为 $a_i\cdot d_j\cdot i!/(i-j)!$ 。</p>
+<p>令 $a<em>i\cdot i!$ 的母函数为 $f(x)$，$d</em>{n-i}$ 的母函数为 $g(x)$，那么 $f(x)\cdot g(x)$ 就是 $w_{i+n}\cdot i!$ 的母函数。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest_ACM/CCPC2020%E7%BD%91%E7%BB%9C%E8%B5%9B/E.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/04/16/2019/04/atcoder-grand-contest-032/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/16/2019/04/atcoder-grand-contest-032/index/" class="post-title-link" itemprop="url">AtCoder Grand Contest 032</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-04-16 08:00:00" itemprop="dateCreated datePublished" datetime="2019-04-16T08:00:00+08:00">2019-04-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-09-07 11:22:26" itemprop="dateModified" datetime="2022-09-07T11:22:26+08:00">2022-09-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>3 月 23 日 AtCoder Grand Contest 032 比赛链接：<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc032">https://atcoder.jp/contests/agc032</a></p>
+<h3 id="B-Balanced-Neighbors"><a href="#B-Balanced-Neighbors" class="headerlink" title="B - Balanced Neighbors"></a>B - Balanced Neighbors</h3><p><strong>思路：</strong> 当 $n$ 为偶数时，可以把点 $(i,n-i+1)$ 配对，然后每个点向与它一对之外的所有点连边；当 $n$ 为奇数时，把点 $(i,n-i)$ 配对，同样每一点向与它一对之外的所有点连边（包括 $n$ ）。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/B.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="C-Three-Circuits"><a href="#C-Three-Circuits" class="headerlink" title="C - Three Circuits"></a>C - Three Circuits</h3><p><strong>思路：</strong></p>
+<p>因为是连通图，你可以把三个环拼成一条欧拉回路，因此如果这张图含有奇度数的点，则一定不存在构造方案。如果有一个点的度数大于等于 $6$，代表着这条欧拉回路经过了这个点至少 $3$ 次，而每一次都可以形成一个环，所以这样是一定存在构造方案的。</p>
+<p>经过上面讨论后，剩下的图只有度数为 $4$ 和度数为 $2$ 的点。如果一张图度数为 $4$ 的点大于等于 $3$ 个，那么所有构成环的情况分为下面两种: 存在一条路径从一个度数为 $4$ 的点出发，不经过其他度数为 $4$ 的点并且回到出发点；一条路径经过两个度数为 $4$ 的点一次，并形成了环。可以发现这样的图至少存在 $3$ 个环。</p>
+<p>剩下的情况中如果度数为 $4$ 的点少于两个，那么显然是不存在构造方案的。如果度数为 $4$ 的点恰有两个，就只有下图两种情况，只有这张图的最小割为 $2$ 时才存在构造方案。所以可以用一个 BFS，模拟一下最大流的过程判断这张图的割。</p>
+<p><img src="/images/5cb6817496ed0.png" alt="AtCoder Grand Contest 032 解题报告 1" title="AtCoder Grand Contest 032 解题报告 1"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/C.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="D-Rotation-Sort"><a href="#D-Rotation-Sort" class="headerlink" title="D - Rotation Sort"></a>D - Rotation Sort</h3><p><strong>思路：</strong></p>
+<p>首先转换一下题意，题目中的一次操作可以看成：从序列中取出一个元素，将它插入前面或后面的一个位置，分别花费 $A$ 或 $B$ 的代价。不难发现每一个元素最多会被操作一次，且有些元素不会被操作。我们就可以从这入手设计 DP 状态。设 $f_{i,j}$ 表示处理完前 $i$ 个数且最后一不会被操作的数为 $j$ 所花费的最小代价，然后根据题意简单地转移一下就好。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/D.cpp" title="代码链接">代码链接</a></strong></p>
+<h3 id="E-Modulo-Pairing"><a href="#E-Modulo-Pairing" class="headerlink" title="E - Modulo Pairing"></a>E - Modulo Pairing</h3><p><strong>思路：</strong></p>
+<p>假设 $lim$ 已知，考虑对于数 $x$，我们要找到一个 $y$ 与它配对，使得 $x+y$ 在模 $m$ 意义下不超过 $lim$。 如果 $x+y &#60; m$，那么 $y$ 最大可以取 $lim-x-1$ ;如果 $x+y &#62; m$，那么 $y$ 最大可以取 $lim+m-x$。我们让 $y$ 在对应的取值范围内选尽量大的数一定不会更劣，所以假如对于一个 $x$，我们决定了与它配对的 $y$ 与 $m-x$ 的关系，那么 $y$ 的值我们也可以确定。</p>
+<p>考虑这样一个结论：将所有数排好序后，设最大值为 $x<em>{max}$，如果一个数 $x$ 大于 $m-x</em>{max}$，那么与它配对的 $y$ 就一定比 $m-x$ 大; 否则一定比 $m-x$ 小。这样以来我们就可以二分出一个位置 $pos$，在 $pos$ 左边的数两两配对小于 $m$，在 $pos$ 右边的数两两配对不小于 $m$。确定出 $pos$ 后，答案就可以跟着确定下来。</p>
+<p>对于结论的正确性，我们可以对所有情况进行讨论。设蓝色的线为小于 $m$ 的匹配，红色的线为不小于 $m$ 的匹配，根据下图可以发现该结论对于所有情况均成立：</p>
+<p><img src="/images/5cb6817495ccb.png" alt="AtCoder Grand Contest 032 解题报告 2" title="AtCoder Grand Contest 032 解题报告 2"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/AtCoder%20Grand%20Contest%20032/E.cpp" title="代码链接">代码链接</a></strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/29/2019/03/bzoj4771-%E4%B8%83%E5%BD%A9%E6%A0%91-%E4%B8%BB%E5%B8%AD%E6%A0%91-%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6/index/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -320,259 +584,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/21/2019/03/codeforces-round-545/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/21/2019/03/codeforces-round-545/index/" class="post-title-link" itemprop="url">Codeforces Round #545</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-21 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-21T08:00:00+08:00">2019-03-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%A7%A3%E9%A2%98%E6%8A%A5%E5%91%8A/" itemprop="url" rel="index"><span itemprop="name">解题报告</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>3 月 8 日 Codeforces Round #545 比赛链接：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1138">https://codeforces.com/contest/1138</a></p>
-<h3 id="E-Museums-Tour"><a href="#E-Museums-Tour" class="headerlink" title="E - Museums Tour"></a>E - Museums Tour</h3><p><strong>思路：</strong></p>
-<p>首先考虑将每一个 museum 按天数分为 $d$ 个点，然后对应的向相邻的连边。接着就很自然的想到用 tarjan 缩点，然后考虑如何统计答案。有一个性质就是如果一个 museum 对应不同天的点之间有边，那么这些点一定是在同一个强联通分量里面的，因此你缩点后直接找一个包含 museum 数最多的链就是对的。</p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Round%20%23545/E.cpp" title="代码链接">代码链接</a></strong></p>
-<h3 id="F-Cooperative-Game"><a href="#F-Cooperative-Game" class="headerlink" title="F - Cooperative Game"></a>F - Cooperative Game</h3><p><strong>思路：</strong> 如果你知道 pollard-rho 中的 floyd 判环的话，这题的思路就应该不难想到。如果你直接模拟这个过程：让一个人每次走一步另一个人每次走两步，就能够在 $2*(t+c)$ 次交互内让两个人在环上相遇。那么问题就在于如何不知道终点位置的情况下让所有人走到终点。这里有个非常巧妙的性质就是在相遇点走 $t$ 步后一定能到达终点，如果我们设两个人分别走了 $t+x$，$2t+2x$ 步后相遇，那么 $t+x$ 一定是环长的倍数，如果再走 $t$ 步就意味着在环上总共走了 $t+x$ 步（一开始在链上走了 $t$ 步），那么就一定走到了终点。因此只要让一些人留在起点，两个人在环上相遇后所有一起走若干步，如果大家全部相遇，就意味着已经到终点了。</p>
-<p><strong><a target="_blank" rel="noopener" href="https://github.com/CrazyDaveHDY/OI-Code/blob/master/Contest/Codeforces%20Round%20%23545/F.cpp" title="代码链接">代码链接</a></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/14/2019/03/bzoj4540-%E5%BA%8F%E5%88%97-%E8%8E%AB%E9%98%9F-rmq/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/14/2019/03/bzoj4540-%E5%BA%8F%E5%88%97-%E8%8E%AB%E9%98%9F-rmq/index/" class="post-title-link" itemprop="url">BZOJ4540 序列 [莫队/RMQ]</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-14 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-14T08:00:00+08:00">2019-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-06-05 22:30:21" itemprop="dateModified" datetime="2022-06-05T22:30:21+08:00">2022-06-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>给定长度为 $n$ 的序列：$a_1,a_2,…,a_n$，记为 $a[1:n]$。有 $q$ 个询问，每个询问给定两个数 $l,r$，求 $a[l:r]$ 中所有子序列的最小值之和。</p>
-<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>第一行包含两个整数 $n$ 和 $q$，分别代表序列长度和询问数。</p>
-<p>接下来一行，包含 $n$ 个整数，第 $i$ 个整数为 $a_i$。</p>
-<p>接下来 $q$ 行，每行包含两个整数 $l$ 和 $r$，代表一次询问。</p>
-<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>对于每次询问，输出一行，代表询问的答案。</p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>有一种比较直观的方法就是使用莫队，队中维护一个单调栈，并且记录栈中元素到前一个元素这段区间的答案。当插入元素时，更新单调栈，通过记录的信息可以比较容易的求出答案。</p>
-<p>这题还有一个很妙的 Idea。考虑类似于上面莫队的方法，先处理出右端点为 $i$ 的所有 $a[l,i]$ 的最小值的和，记为 $pre_i$，再处理一个 $pre_i$ 的前缀和 $spre_i$，这样 $spre_i$ 即是 $a[1,i]$ 的答案。类似的再处理出 $suf_i$，表示所有左端点为 $i$ 的序列的最小值之和，以及 $ssuf_i$ 表示 $suf_i$ 的后缀和。</p>
-<p>预处理完这些东西后，考虑如何回答区间 $a[l,r]$ 的答案，我们设 $a[l,r]$ 中最小值位于 $pos$，这个可以利用 ST 表求出。经过 $pos$ 这一点的所有区间对答案的贡献可以直接计算出来，考虑剩下 $a[l,pos-1]$ 及 $a[pos+1,r]$ 这两段的贡献如何计算。我们发现 $spre[r]-spre[pos]$ 就包含了 $a[pos+1,r]$ 这一段的答案和右端点在 $[pos+1,r]$ 左端点在 $[1,pos-1]$ 的区间最小值之和。而后面一部分由于跨过了 $pos$，它的贡献可以等价为 $(r-pos)*pre[pos]$，将它们相减就可以计算出 $a[pos+1,r]$ 的贡献，类似的可以同样计算出 $a[l,pos-1]$ 的贡献。</p>
-<p>这样我们可以在 $O(1)$ 的时间内回答每一个询问，而算法复杂度的瓶颈在 $O(n \log n)$ 的 ST 表预处理上，而如果使用笛卡尔树或者用一些 $O(n)$ RMQ 的高级姿势，就可以在线性复杂度内完成这个操作。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXN 100005</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> P 998244353</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rint register int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LD long double</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, q, top, a[MAXN], f[MAXN][<span class="number">20</span>], sta[MAXN], Log[MAXN];</span><br><span class="line">LL pre[MAXN], spre[MAXN], suf[MAXN], ssuf[MAXN];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">query</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> k=Log[y-x+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(a[f[x][k]]&lt;a[f[y-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]]) <span class="keyword">return</span> f[x][k];</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> f[y-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;q);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">        f[i][<span class="number">0</span>]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;<span class="number">20</span>; ++i)</span><br><span class="line">        <span class="keyword">for</span>(rint j=<span class="number">1</span>; j+(<span class="number">1</span>&lt;&lt;i)<span class="number">-1</span>&lt;=n; ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[f[j][i<span class="number">-1</span>]]&lt;a[f[j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)][i<span class="number">-1</span>]]) f[j][i]=f[j][i<span class="number">-1</span>];</span><br><span class="line">            <span class="keyword">else</span> f[j][i]=f[j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)][i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">2</span>; i&lt;=n; ++i) Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">    sta[top=<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>; i&lt;=n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; a[sta[top]]&gt;=a[i]) top--;</span><br><span class="line">        pre[i]=pre[sta[top]]+<span class="number">1LL</span>*a[i]*(i-sta[top]);</span><br><span class="line">        sta[++top]=i;</span><br><span class="line">        spre[i]=spre[i<span class="number">-1</span>]+pre[i];</span><br><span class="line">    &#125;</span><br><span class="line">    sta[top=<span class="number">0</span>]=n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(rint i=n; i&gt;=<span class="number">1</span>; --i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(top &amp;&amp; a[sta[top]]&gt;=a[i]) top--;</span><br><span class="line">        suf[i]=suf[sta[top]]+<span class="number">1LL</span>*(sta[top]-i)*a[i];</span><br><span class="line">        sta[++top]=i;</span><br><span class="line">        ssuf[i]=ssuf[i+<span class="number">1</span>]+suf[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">1</span>, l, r; i&lt;=q; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        LL ans=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;l, &amp;r);</span><br><span class="line">        <span class="type">int</span> pos=<span class="built_in">query</span>(l, r);</span><br><span class="line">        ans+=<span class="number">1LL</span>*(pos-l+<span class="number">1</span>)*(r-pos+<span class="number">1</span>)*a[pos];</span><br><span class="line">        ans+=ssuf[l]-ssuf[pos]<span class="number">-1LL</span>*(pos-l)*suf[pos];</span><br><span class="line">        ans+=spre[r]-spre[pos]<span class="number">-1LL</span>*(r-pos)*pre[pos];</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/03/14/2019/03/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%85%A8%E5%AE%B6%E6%A1%B6/index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/03/14/2019/03/%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%85%A8%E5%AE%B6%E6%A1%B6/index/" class="post-title-link" itemprop="url">多项式全家桶</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-03-14 08:00:00" itemprop="dateCreated datePublished" datetime="2019-03-14T08:00:00+08:00">2019-03-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-09-07 16:12:30" itemprop="dateModified" datetime="2022-09-07T16:12:30+08:00">2022-09-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E5%B0%8F%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">学习小结</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="分治FFT-1"><a href="#分治FFT-1" class="headerlink" title="分治FFT 1"></a>分治FFT 1</h3><p>已知函数 $g(x)$，且 $f(x),g(x)$ 存在如下关系，求 $f(x)$</p>
-<script type="math/tex; mode=display">f(i)=\sum_{j=1}^{i} f(i-j)g(j)</script><p>可以利用 CDQ 分治的思想，将一段区间分为两半递归处理，并统计左半部分对右部分的贡献。具体地说，当我们要计算 $f(l \sim r)$ 时，先计算出 $f(l \sim mid)$ 的值，然后将这部分和 $g(1 \sim r-l)$ 卷积起来，就可以得到这部分对后半贡献。递归的边界应该是 $f(0)=1$，然后向上合并就可以计算出 $f(x)$ 的每一项，这样的复杂度是 $O(n \log^2 n)$ 的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">divide</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>, bit=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">divide</span>(l, mid);</span><br><span class="line">    <span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;bit)&lt;=((r-l+<span class="number">1</span>)&lt;&lt;<span class="number">1</span>)) bit++;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        pos[i]=(pos[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(bit<span class="number">-1</span>));</span><br><span class="line">        a[i]=b[i]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(rint i=l; i&lt;=mid; ++i) a[i-l]=f[i];</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;=r-l; ++i) b[i]=g[i];</span><br><span class="line">    <span class="built_in">ntt</span>(a, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>), <span class="built_in">ntt</span>(b, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i) a[i]=<span class="number">1LL</span>*a[i]*b[i]%P;</span><br><span class="line">    <span class="built_in">ntt</span>(a, <span class="number">1</span>&lt;&lt;bit, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=mid+<span class="number">1</span>; i&lt;=r; ++i) f[i]=<span class="built_in">add</span>(f[i], a[i-l]);</span><br><span class="line">    <span class="built_in">divide</span>(mid+<span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="分治FFT-2"><a href="#分治FFT-2" class="headerlink" title="分治FFT 2"></a>分治FFT 2</h3><p>对于给定数组 $a,b$，且 $f(x)$ 有如下形式，求 $f(x)$</p>
-<script type="math/tex; mode=display">f(x)=\prod_{i=0}^{n} (a_ix+b_i)</script><p>可以利用分治的思想，将这个 $n+1$ 个多项式每次分为两部分，递归处理完后再将两部分合并。具体地说，当计算 $\prod_{i=l}^{r} (a_ix+b_i)$ 时，可以分别递归计算 $l \sim mid$ 和 $mid+1 \sim r$ 这两部分多项式的积，然后再用一遍 FFT 合并，这样复杂度也是 $O(n \log^2 n)$ 的。在一些情况下可以利用倍增的思想将复杂度优化至 $O(n \log n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">divide</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> l, <span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r) &#123;a[<span class="number">0</span>]=l, a[<span class="number">1</span>]=<span class="number">1</span>; <span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>, bit=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;bit)&lt;=(r-l+<span class="number">1</span>)) bit++;</span><br><span class="line">    <span class="type">int</span> b[(<span class="number">1</span>&lt;&lt;bit)+<span class="number">5</span>], c[(<span class="number">1</span>&lt;&lt;bit)+<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;<span class="number">1</span>&lt;&lt;bit; ++i) b[i]=c[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">divide</span>(b, l, mid), <span class="built_in">divide</span>(c, mid+<span class="number">1</span>, r);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;<span class="number">1</span>&lt;&lt;bit; ++i) pos[i]=(pos[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(bit<span class="number">-1</span>));</span><br><span class="line">    <span class="built_in">ntt</span>(b, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>), <span class="built_in">ntt</span>(c, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;<span class="number">1</span>&lt;&lt;bit; ++i) a[i]=<span class="number">1LL</span>*b[i]*c[i]%P;</span><br><span class="line">    <span class="built_in">ntt</span>(a, <span class="number">1</span>&lt;&lt;bit, <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多项式求逆"><a href="#多项式求逆" class="headerlink" title="多项式求逆"></a>多项式求逆</h3><p>如果多项式 $f(x),g(x)$ 满足如下关系，我们就记 $g(x)$ 为 $f(x)$ 的逆元。</p>
-<script type="math/tex; mode=display">f(x)g(x) \equiv 1 \pmod {x^n}</script><p>我们可以递归地求解这个问题，首先考虑 $n=1$ 时，不妨设 $f(x) \equiv c \pmod x$，此时显然有 $f^{-1}(x)=c^{-1}$；</p>
-<p>当 $n&gt;1$ 时，我们假设 $f(x)$ 在 $\mod x^{\lceil \frac{n}{2} \rceil}$ 意义下的逆元 $g’(x)$ 已经求出，那么就有</p>
-<script type="math/tex; mode=display">f(x) g'(x) \equiv 1 \pmod {x^{\lceil \frac{n}{2} \rceil}}</script><p>根据定义可以知道</p>
-<script type="math/tex; mode=display">f(x) g(x) \equiv 1 \pmod {x^{\lceil \frac{n}{2} \rceil}}</script><p>两式相减得到：</p>
-<script type="math/tex; mode=display">g(x)-g'(x) \equiv 0 \pmod {x^{\lceil \frac{n}{2} \rceil}}</script><p>将左边的多项式平方后放在模 $x^n$ 意义下，这个多项式每一项可以写成原多项式的卷积，这个卷积的每一项一定包含一个原多项式的 $0 \sim \lceil \frac{n}{2} \rceil$ 次项，并且原多项式的 $0 \sim \lceil \frac{n}{2} \rceil$ 次项均为 $0$，所以这个 $n$ 次的多项式每一项也一定都为 $0$。即：</p>
-<script type="math/tex; mode=display">g^2(x)-2g'(x)g(x)+g'^2(x) \equiv 0 \pmod{ x^n}</script><p>将两边同时乘上 $f(x)$ 后可以得到：</p>
-<script type="math/tex; mode=display">g(x)= 2g'(x) - g'(x)f(x) \pmod{x^n}</script><p>这样以来，我们就可以用 $O(n \log n)$ 的时间从 $g’(x)$ 推到 $g(x)$，根据主定理可以知道总时间复杂度依然为 $O(n \log n)$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">inv</span><span class="params">(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;b[<span class="number">0</span>]=<span class="built_in">ksm</span>(a[<span class="number">0</span>], P<span class="number">-2</span>); <span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="built_in">inv</span>(a, b, (n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> bit=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;bit)&lt;(n&lt;&lt;<span class="number">1</span>)) bit++;</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i) pos[i]=(pos[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(bit<span class="number">-1</span>));</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;n; ++i) c[i]=a[i];</span><br><span class="line">    <span class="keyword">for</span>(rint i=n; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i) c[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">ntt</span>(c, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>), <span class="built_in">ntt</span>(b, <span class="number">1</span>&lt;&lt;bit, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=<span class="number">0</span>; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i) b[i]=<span class="number">1LL</span>*<span class="built_in">sub</span>(<span class="number">2</span>, <span class="number">1LL</span>*c[i]*b[i]%P)*b[i]%P;</span><br><span class="line">    <span class="built_in">ntt</span>(b, <span class="number">1</span>&lt;&lt;bit, <span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(rint i=n; i&lt;(<span class="number">1</span>&lt;&lt;bit); ++i) b[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -638,7 +653,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">132</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
