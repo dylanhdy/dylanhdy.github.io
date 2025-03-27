@@ -155,7 +155,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/17/DPVS%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%87%B4%E6%80%A7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/27/%E9%AB%98%E6%95%88%E6%A0%A1%E9%AA%8C%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E7%BB%93%E6%9E%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,7 +169,264 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/10/17/DPVS%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%87%B4%E6%80%A7/" class="post-title-link" itemprop="url">DPVS一致性哈希的原理</a>
+            <a href="/2025/03/27/%E9%AB%98%E6%95%88%E6%A0%A1%E9%AA%8C%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E7%BB%93%E6%9E%9C/" class="post-title-link" itemprop="url">高效校验模型推理结果</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2025-03-27 10:13:20 / Modified: 12:05:26" itemprop="dateCreated datePublished" datetime="2025-03-27T10:13:20+08:00">2025-03-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <!-- 单个模型执行推理任务的速度往往很有限，在面对海量地推理任务时，一种常见的方法是将任务路由给多个相同的模型。 -->
+<p>如今越来越多地人开始本地部署大模型，然而大模型的本地部署需要大量的硬件资源，而这些硬件资源的利用率往往非常低。而另一边公开的模型服务经常会由于资源不足导致无法处理海量请求。因此一个很自然的想法是设计一个模型服务的分发平台，个人用户可以将私有部署的模型接入到平台中，通过执行推理任务来赚取收益，而平台自身不处理请求，而是单纯地进行任务分发。通过这种方式既可以对外提供一个高可用性和高扩展性的模型服务，也能够有效整合私有模型的硬件资源。</p>
+<p>正如BT网络中的Free-riding Attack，这个模型服务分发平台也会面临相同的问题：用户能够很轻易地伪造推理结果来赚取收益。有一些直观的方法去校验推理结果，但它们都会有严重的缺陷：<br>方法一：平台对下发的推理任务进行采样，执行样本中的任务并将自身结果与用户结果进行比较，以判断用户的可信度<br>缺陷：用户伪造结果的成本极低，而平台对结果进行校验的成本极高。当样本量大到一定程度时，大量计算需要平台进行，失去了推理任务分发的意义<br>方法二：将任务同时分发给多个用户，通过投票等共识算法决定正确结果<br>缺陷：无法抵御女巫攻击，可以零成本地伪造大量用户来上传错误结果并赚取收益</p>
+<p>下文将会介绍一种高效的推理结果校验算法，它解决了上述方法的缺陷，能够作为模型服务分发平台的基石：</p>
+<p>校验算法的输入需要原始的模型参数、模型输入、每层的输出，输出为true或false表示输出是否能够匹配模型参数。<br>校验算法的核心是从所有层的输出向量中随机选出c个元素进行校验。对于一个特定元素a，只需要获取上一层的输出和该层参数矩阵对应于该元素的列向量，若这两个向量的点积与该元素的值一致，则认为校验成功。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/14/DPVS-kni%E7%BD%91%E7%BB%9C%E4%B8%8D%E9%80%9A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2025/02/14/DPVS-kni%E7%BD%91%E7%BB%9C%E4%B8%8D%E9%80%9A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/" class="post-title-link" itemprop="url">DPVS kni网络不通问题排查</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2025-02-14 14:41:33" itemprop="dateCreated datePublished" datetime="2025-02-14T14:41:33+08:00">2025-02-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/11/05/DPVS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%9A%84%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/11/05/DPVS%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%AD%E7%9A%84%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">DPVS在虚拟机中的部署</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-11-05 16:33:22 / Modified: 16:35:54" itemprop="dateCreated datePublished" datetime="2024-11-05T16:33:22+08:00">2024-11-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>部署在虚拟tap网卡上</p>
+</li>
+<li><p>部署在VF直通网卡上</p>
+</li>
+<li><p>kni设备配置</p>
+</li>
+<li><p>pdump无法抓包分析</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/21/Raft%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/21/Raft%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Raft算法学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2024-10-21 10:21:17 / Modified: 16:40:05" itemprop="dateCreated datePublished" datetime="2024-10-21T10:21:17+08:00">2024-10-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>记录Raft算法中的细节：</p>
+<p><strong>leader选举随机超时机制</strong></p>
+<p>大于两个candidate参与选举时可能导致选票分散，没有candidate获得大多数选票。condidate上会出现选举超时的情况，candidate会增加自己的term并开启新一轮选举。</p>
+<p>如果每个candidate的超时时间一致，新一轮选举依旧会出现投票分散的情况，因此每个candidate的超时时间会在一个范围内随机选取。</p>
+<p><strong>日志匹配性</strong></p>
+<p>不同节点上的日志条目若拥有相同的term和index，那该条目及其之前的条目都是一致的。</p>
+<p>首先给定的term和index的条目只会由唯一确定的leader下发，且leader不会覆盖或删除自己的条目，因此该条目在各节点上都一致。此外下发请求会包含leader中上一个条目的term和index，只有其与follower本地的上一个条目一致时才会被接收，因此之前的条目也都是一致的。</p>
+<p>通过比较term和index，follower发现本地条目与下发请求不一致时会拒绝请求。leader会维护每个follower的nextIndex，下发请求被拒绝时会回退nextIndex，并下发上一个条目，重复此过程直到某个条目被follower接收。follower接收后会使用下发的条目覆盖本地条目，因此系统能够自动收敛。</p>
+<p><strong>日志提交方案</strong></p>
+<p>假设先前term中有一条目已在多数节点上被存储，若leader在得知此信息后将该条目提交，仍有可能出现该提交条目未来被覆盖的情况，导致不同节点的执行结果不一致。</p>
+<p>为保证安全性，Raft只会提交当前term中被多数节点存储的term，并利用日志匹配性推断先前的条目均被多数节点存储。该策略牺牲了一定的实时性，推迟了先前term中条目的提交时间。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/17/DPVS%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%9A%84%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Dylan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Dylan's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/17/DPVS%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%9A%84%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">DPVS一致性哈希的原理</a>
         </h2>
 
         <div class="post-meta">
@@ -186,7 +443,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-10-18 16:08:01" itemprop="dateModified" datetime="2024-10-18T16:08:01+08:00">2024-10-18</time>
+                <time title="Modified: 2024-10-21 17:52:39" itemprop="dateModified" datetime="2024-10-21T17:52:39+08:00">2024-10-21</time>
               </span>
 
           
@@ -200,264 +457,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>使用 OSPF/ECMP 组织多个 DPVS 节点，不同节点上的 RS 创建顺序可能不一致，DPVS 一致性哈希在不同的节点能否将流量路由到相同的 RS？RS创建和删除时，流量的目的RS是否保持一致？</p>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>使用 OSPF/ECMP 组织多个 DPVS 节点，不同节点上的 RS 创建顺序可能不一致，DPVS 一致性哈希在不同的节点能否将流量路由到相同的 RS？当有RS创建和删除时，流量的目的RS是否保持一致？</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>假设已有 n 个 $RS$，$RS_1,…RS_n$，权重分别为 $w_1,…,w_n$。</p>
 <ol>
 <li>一致性哈希基于红黑树，根据地址+端口组织RS。虽然插入顺序不同会导致底层红黑树结构不同，但相同源IP的流量会路由到相同的RS。</li>
 <li>$RS<em>i$被选中的概率为$\frac{w_i}{\sum</em>{i}^{n}w<em>i}$。加入权重为$w</em>{new}$的$RS<em>{new}$时，会有$\frac{w</em>{new}}{\sum<em>{i}^{n}w_i+w</em>{new}}$比例的流量目的$RS$会变为$RS_{new}$，其余流量目的$RS$不变；删除$RS_i$时，目的为$RS_i$的流量会根据权重比例分配到其他$RS$，其余流量目的$RS$不变；$RS$更新时，会先删除再加入。</li>
 </ol>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>DPVS版本的ipvsadm中，一致性哈希的哈希目标默认使用源IP。此外可以通过 -Y 参数指定哈希目标为 quic 中的 qid。</p>
-<p>DPVS一致性哈希使用libconhash库。libconhash哈希函数默认使用md5算法，并将结果转化为unsigned long，因此槽位有$2^{64}$个，并且在哈希冲突时不进行插入操作。此外使用红黑树组织哈希节点，节点键值为哈希结果。</p>
+<p>哈希函数默认使用md5算法，并将结果转化为unsigned long，因此槽位有$2^{64}$个，并且在哈希冲突时不进行插入操作。此外使用红黑树组织哈希节点，节点键值为哈希结果。</p>
 <p><strong>RS 加入</strong></p>
-<p>将RS的地址+端口作为哈希节点的标识iden，将RS权重作为哈希节点的副本数量replicas，创建哈希节点。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">dp_vs_conhash_add_dest</span><span class="params">(<span class="keyword">struct</span> dp_vs_service *svc,</span></span><br><span class="line"><span class="params">        <span class="keyword">struct</span> dp_vs_dest *dest)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    p_node = &amp;(p_conhash_node-&gt;node);</span><br><span class="line">    inet_ntop(dest-&gt;af, &amp;dest-&gt;addr, addr, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">    <span class="built_in">snprintf</span>(iden, <span class="keyword">sizeof</span>(iden), <span class="string">&quot;%s%d&quot;</span>, addr, dest-&gt;port);</span><br><span class="line">    conhash_set_node(p_node, iden, weight / weight_gcd * REPLICA);</span><br><span class="line"></span><br><span class="line">    ret = conhash_add_node(p_sched_data-&gt;conhash, p_node);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        RTE_LOG(ERR, SERVICE, <span class="string">&quot;%s: conhash_add_node failed\n&quot;</span>, __func__);</span><br><span class="line">        rte_free(p_conhash_node);</span><br><span class="line">        <span class="keyword">return</span> EDPVS_INVAL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>创建哈希节点时，会在红黑树上创建副本数量个rbnode。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __conhash_add_replicas(<span class="keyword">struct</span> conhash_s *conhash, <span class="keyword">struct</span> node_s *node)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; node-&gt;replicas; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* calc hash value of all virtual nodes */</span></span><br><span class="line">        __conhash_node2string(node, i, buff, &amp;len);</span><br><span class="line">        hash = conhash-&gt;cb_hashfunc(buff);</span><br><span class="line">        <span class="comment">/* add virtual node, check duplication */</span></span><br><span class="line">        <span class="keyword">if</span>(util_rbtree_search(&amp;(conhash-&gt;vnode_tree), hash) == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            rbnode = __conhash_get_rbnode(node, hash);</span><br><span class="line">            <span class="keyword">if</span>(rbnode != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                util_rbtree_insert(&amp;(conhash-&gt;vnode_tree), rbnode);</span><br><span class="line">                conhash-&gt;ivnodes++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>rbnode的哈希值从哈希节点的标识+副本编号计算得来。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __conhash_node2string(<span class="type">const</span> <span class="keyword">struct</span> node_s *node, u_int replica_idx, <span class="type">char</span> buf[<span class="number">128</span>], u_int *len)</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> (defined (WIN32) || defined (__WIN32))</span></span><br><span class="line">    _snprintf_s(buf, <span class="number">127</span>, _TRUNCATE, <span class="string">&quot;%s-%03d&quot;</span>, node-&gt;iden, replica_idx);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="built_in">snprintf</span>(buf, <span class="number">127</span>, <span class="string">&quot;%s-%03d&quot;</span>, node-&gt;iden, replica_idx);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>RS 查找</strong></p>
-<p>直接对流量的源IP做哈希，哈希值为查找的key，在红黑树中查找rbnode，返回rbnode对应的RS。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="keyword">struct</span> dp_vs_dest *</span><br><span class="line"><span class="title function_">dp_vs_conhash_get</span><span class="params">(<span class="keyword">struct</span> dp_vs_service *svc, <span class="keyword">struct</span> conhash_s *conhash,</span></span><br><span class="line"><span class="params">                  <span class="type">const</span> <span class="keyword">struct</span> rte_mbuf *mbuf)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (svc-&gt;flags &amp; DP_VS_SVC_F_QID_HASH) &#123;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (svc-&gt;flags &amp; DP_VS_SVC_F_SIP_HASH) &#123;</span><br><span class="line">        <span class="keyword">if</span> (EDPVS_OK == get_sip_hash_target(svc-&gt;af, mbuf, &amp;addr_fold)) &#123;</span><br><span class="line">            <span class="built_in">snprintf</span>(str, <span class="keyword">sizeof</span>(str), <span class="string">&quot;%u&quot;</span>, addr_fold);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        RTE_LOG(ERR, IPVS, <span class="string">&quot;%s: invalid hash target.\n&quot;</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    node = conhash_lookup(conhash, str);</span><br><span class="line">    <span class="keyword">return</span> node == <span class="literal">NULL</span>? <span class="literal">NULL</span>: node-&gt;data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="keyword">struct</span> node_s* <span class="title function_">conhash_lookup</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> conhash_s *conhash, <span class="type">const</span> <span class="type">char</span> *object)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* calc hash value */</span></span><br><span class="line">    hash = conhash-&gt;cb_hashfunc(object);</span><br><span class="line"></span><br><span class="line">    rbnode = util_rbtree_lookup((<span class="type">util_rbtree_t</span> *)&amp;(conhash-&gt;vnode_tree), hash);</span><br><span class="line">    <span class="keyword">if</span>(rbnode != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">virtual_node_s</span> *<span class="title">vnode</span> =</span> rbnode-&gt;data;</span><br><span class="line">        <span class="keyword">return</span> vnode-&gt;node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>具体会返回红黑树中大于等于key的最小rbnode。由于rbnode的哈希值与源IP的哈希值无任何联系，因此查找的key就是以源IP做种子生成的随机数。相对地，可以认为每个rbnode占据一段连续哈希槽，RS拥有其所有rbnode的哈希槽，流量的目的RS就是源IP哈希值的对应RS。</p>
-<p>RS删除时，其rbnode的哈希槽会合并到前一个rbnode上，由于每个RS对应rbnode的分布是完全随机的，因此被删除RS的哈希槽会按权重比例随机并入其他RS的哈希槽中。而其余哈希槽对应的RS没有变动，因此这部分流量的目的RS不会改变。类似地，RS插入时会按权重比例抢占其他RS的哈希槽，且其余未为被抢占的哈希槽的RS不会变动。基于此实现了该哈希算法的一致性。</p>
+<p>将RS的地址+端口作为哈希节点的标识iden，根据RS权重生成哈希节点的副本数量replicas，创建哈希节点。其中副本数量会乘上常量REPLICA，具体是160。由于副本的键值是随机生成的，副本量大时 其分布会更为均匀，减少了极端情况出现的可能性。因此增加副本数量是通过牺牲少了时间以保证结果的均匀性。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">dp_vs_conhash_add_dest</span><span class="params">(<span class="keyword">struct</span> dp_vs_service *svc,</span></span><br><span class="line"><span class="params">        <span class="keyword">struct</span> dp_vs_dest *dest)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    p_node = &amp;(p_conhash_node-&gt;node);</span><br><span class="line">    inet_ntop(dest-&gt;af, &amp;dest-&gt;addr, addr, <span class="keyword">sizeof</span>(addr));</span><br><span class="line">    <span class="built_in">snprintf</span>(iden, <span class="keyword">sizeof</span>(iden), <span class="string">&quot;%s%d&quot;</span>, addr, dest-&gt;port);</span><br><span class="line">    conhash_set_node(p_node, iden, weight / weight_gcd * REPLICA);</span><br><span class="line"></span><br><span class="line">    ret = conhash_add_node(p_sched_data-&gt;conhash, p_node);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        RTE_LOG(ERR, SERVICE, <span class="string">&quot;%s: conhash_add_node failed\n&quot;</span>, __func__);</span><br><span class="line">        rte_free(p_conhash_node);</span><br><span class="line">        <span class="keyword">return</span> EDPVS_INVAL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>创建哈希节点时，会在红黑树上创建副本数量个rbnode。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __conhash_add_replicas(<span class="keyword">struct</span> conhash_s *conhash, <span class="keyword">struct</span> node_s *node)</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; node-&gt;replicas; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">/* calc hash value of all virtual nodes */</span></span><br><span class="line">        __conhash_node2string(node, i, buff, &amp;len);</span><br><span class="line">        hash = conhash-&gt;cb_hashfunc(buff);</span><br><span class="line">        <span class="comment">/* add virtual node, check duplication */</span></span><br><span class="line">        <span class="keyword">if</span>(util_rbtree_search(&amp;(conhash-&gt;vnode_tree), hash) == <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            rbnode = __conhash_get_rbnode(node, hash);</span><br><span class="line">            <span class="keyword">if</span>(rbnode != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                util_rbtree_insert(&amp;(conhash-&gt;vnode_tree), rbnode);</span><br><span class="line">                conhash-&gt;ivnodes++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>rbnode的哈希值从哈希节点的标识+副本编号计算得来。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> __conhash_node2string(<span class="type">const</span> <span class="keyword">struct</span> node_s *node, u_int replica_idx, <span class="type">char</span> buf[<span class="number">128</span>], u_int *len)</span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> (defined (WIN32) || defined (__WIN32))</span></span><br><span class="line">    _snprintf_s(buf, <span class="number">127</span>, _TRUNCATE, <span class="string">&quot;%s-%03d&quot;</span>, node-&gt;iden, replica_idx);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="built_in">snprintf</span>(buf, <span class="number">127</span>, <span class="string">&quot;%s-%03d&quot;</span>, node-&gt;iden, replica_idx);</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><strong>RS 查找</strong></p>
+<p>直接对流量的源IP做哈希，哈希值为查找的key，在红黑树中查找rbnode，返回rbnode对应的RS。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="keyword">inline</span> <span class="keyword">struct</span> dp_vs_dest *</span><br><span class="line"><span class="title function_">dp_vs_conhash_get</span><span class="params">(<span class="keyword">struct</span> dp_vs_service *svc, <span class="keyword">struct</span> conhash_s *conhash,</span></span><br><span class="line"><span class="params">                  <span class="type">const</span> <span class="keyword">struct</span> rte_mbuf *mbuf)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (svc-&gt;flags &amp; DP_VS_SVC_F_QID_HASH) &#123;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (svc-&gt;flags &amp; DP_VS_SVC_F_SIP_HASH) &#123;</span><br><span class="line">        <span class="keyword">if</span> (EDPVS_OK == get_sip_hash_target(svc-&gt;af, mbuf, &amp;addr_fold)) &#123;</span><br><span class="line">            <span class="built_in">snprintf</span>(str, <span class="keyword">sizeof</span>(str), <span class="string">&quot;%u&quot;</span>, addr_fold);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        RTE_LOG(ERR, IPVS, <span class="string">&quot;%s: invalid hash target.\n&quot;</span>, __func__);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    node = conhash_lookup(conhash, str);</span><br><span class="line">    <span class="keyword">return</span> node == <span class="literal">NULL</span>? <span class="literal">NULL</span>: node-&gt;data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="keyword">struct</span> node_s* <span class="title function_">conhash_lookup</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> conhash_s *conhash, <span class="type">const</span> <span class="type">char</span> *object)</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* calc hash value */</span></span><br><span class="line">    hash = conhash-&gt;cb_hashfunc(object);</span><br><span class="line"></span><br><span class="line">    rbnode = util_rbtree_lookup((<span class="type">util_rbtree_t</span> *)&amp;(conhash-&gt;vnode_tree), hash);</span><br><span class="line">    <span class="keyword">if</span>(rbnode != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">virtual_node_s</span> *<span class="title">vnode</span> =</span> rbnode-&gt;data;</span><br><span class="line">        <span class="keyword">return</span> vnode-&gt;node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>具体会返回红黑树中大于等于key的最小rbnode，如果key小于所有的rbnode则返回最小的rbnode。由于rbnode的哈希值与源IP的哈希值无任何联系，因此查找的key就是以源IP做种子生成的随机数。相对地，可以认为每个rbnode占据一段连续哈希槽，RS拥有其所有rbnode的哈希槽，流量的目的RS就是源IP哈希值对应槽位的RS。</p>
+<p>RS删除时，其rbnode的哈希槽会合并到前一个rbnode上，由于每个RS对应rbnode的分布是完全随机的，因此被删除RS的哈希槽会按权重比例随机并入其他RS的哈希槽中。而其余哈希槽对应的RS没有变动，因此这部分流量的目的RS不会改变。类似地，RS插入时会按权重比例抢占其他RS的哈希槽，且其余未为被抢占的哈希槽的RS不会变动。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">util_rbtree_node_t</span>* <span class="title function_">util_rbtree_lookup</span><span class="params">(<span class="type">util_rbtree_t</span> *rbtree, <span class="type">long</span> key)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>((rbtree != <span class="literal">NULL</span>) &amp;&amp; !util_rbtree_isempty(rbtree))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">util_rbtree_node_t</span> *node = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="type">util_rbtree_node_t</span> *temp = rbtree-&gt;root;</span><br><span class="line">        <span class="type">util_rbtree_node_t</span> *null = _NULL(rbtree);</span><br><span class="line">        <span class="keyword">while</span>(temp != null)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(key &lt;= temp-&gt;key)</span><br><span class="line">            &#123;</span><br><span class="line">                node = temp; <span class="comment">/* update node */</span></span><br><span class="line">                temp = temp-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(key &gt; temp-&gt;key)</span><br><span class="line">            &#123;</span><br><span class="line">                temp = temp-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* if node==NULL return the minimum node */</span></span><br><span class="line">        <span class="keyword">return</span> ((node != <span class="literal">NULL</span>) ? node : util_rbtree_min(rbtree));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/17/go%E7%A8%8B%E5%BA%8F%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8nftables/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/10/17/go%E7%A8%8B%E5%BA%8F%E9%9D%99%E6%80%81%E8%B0%83%E7%94%A8nftables/" class="post-title-link" itemprop="url">go程序静态调用nftables.md</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2024-10-17 17:50:37" itemprop="dateCreated datePublished" datetime="2024-10-17T17:50:37+08:00">2024-10-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/11/Autotools%E5%92%8CLibtool%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/11/Autotools%E5%92%8CLibtool%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Autotools和Libtool的使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2024-09-11 12:04:34 / Modified: 12:40:12" itemprop="dateCreated datePublished" datetime="2024-09-11T12:04:34+08:00">2024-09-11</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Autotools"><a href="#Autotools" class="headerlink" title="Autotools"></a>Autotools</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tangm421/p/13828233.html#111-autotools">https://www.cnblogs.com/tangm421/p/13828233.html#111-autotools</a><br><a target="_blank" rel="noopener" href="https://www.xinhecuican.tech/post/94468308.html">https://www.xinhecuican.tech/post/94468308.html</a></p>
-<h1 id="Libtool"><a href="#Libtool" class="headerlink" title="Libtool"></a>Libtool</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35847200">https://zhuanlan.zhihu.com/p/35847200</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/12/15/generalized-median-computation-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/12/15/generalized-median-computation-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">generalized median computation 论文阅读</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-12-15 12:36:10" itemprop="dateCreated datePublished" datetime="2023-12-15T12:36:10+08:00">2023-12-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-01-26 12:45:57" itemprop="dateModified" datetime="2024-01-26T12:45:57+08:00">2024-01-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <embed src="/pdf/generalized-median.pdf" width="100%" height="500">
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/01/self-adjusting-evolutionary-algorithm-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Dylan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Dylan's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/11/01/self-adjusting-evolutionary-algorithm-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">self-adjusting evolutionary algorithm 论文阅读</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-11-01 18:24:34" itemprop="dateCreated datePublished" datetime="2023-11-01T18:24:34+08:00">2023-11-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-09-11 12:41:45" itemprop="dateModified" datetime="2024-09-11T12:41:45+08:00">2024-09-11</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <embed src="/pdf/self-adjust-ea.pdf" width="100%" height="500">
       
     </div>
 
@@ -475,7 +487,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -541,7 +553,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">132</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -581,7 +593,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
